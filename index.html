@@ -1,0 +1,2653 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>មេរៀនទី១៧ ពហុកោណ - ថ្នាក់ទី៩</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Battambang:wght@400;700&family=Moul&display=swap" rel="stylesheet">
+    <style>
+        body { 
+            font-family: 'Battambang', cursive, sans-serif; 
+            background-color: #f3f4f6;
+            background-image: 
+                url("data:image/svg+xml,%3Csvg width='250' height='250' xmlns='http://www.w3.org/2000/svg'%3E%3Ctext x='20' y='40' font-size='18' fill='rgba(30,58,138,0.15)' font-weight='bold' font-family='Times New Roman'%3ES=(n-2)×180°%3C/text%3E%3Ctext x='150' y='150' font-size='22' fill='rgba(21,128,61,0.15)' font-weight='bold' font-family='Times New Roman'%3EΣ=360°%3C/text%3E%3Ctext x='40' y='200' font-size='20' fill='rgba(180,83,9,0.15)' font-weight='bold' font-family='Times New Roman'%3Eα%2Bβ=180°%3C/text%3E%3Cpolygon points='200,30 230,80 170,80' fill='none' stroke='rgba(0,0,0,0.08)' stroke-width='2'/%3E%3Cpolygon points='80,90 120,90 120,130 80,130' fill='none' stroke='rgba(0,0,0,0.08)' stroke-width='2'/%3E%3Cpolygon points='40,120 60,100 80,120 70,140 50,140' fill='none' stroke='rgba(0,0,0,0.08)' stroke-width='2'/%3E%3C/svg%3E"),
+                linear-gradient(rgba(255, 255, 255, 0.85), rgba(243, 244, 246, 0.95)),
+                url('https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=1920&q=80');
+            background-attachment: fixed;
+            background-size: auto, cover, cover;
+            background-position: center, center, center;
+            background-repeat: repeat, no-repeat, no-repeat;
+        }
+        .title-font { font-family: 'Moul', cursive; }
+        .math-text { font-family: 'Times New Roman', Times, serif; font-size: 1.1em; font-style: italic; }
+        
+        /* Tab Colors */
+        .tab-content-1 { background-color: #eff6ff; border-top: 4px solid #3b82f6; } 
+        .tab-content-2 { background-color: #f0fdf4; border-top: 4px solid #22c55e; } 
+        .tab-content-3 { background-color: #fff7ed; border-top: 4px solid #f97316; } 
+        .tab-content-4 { background-color: #faf5ff; border-top: 4px solid #a855f7; } 
+        .tab-content-5 { background-color: #fff1f2; border-top: 4px solid #e11d48; } 
+        
+        .tab-btn-1.active { background-color: #3b82f6; color: white; border-color: #3b82f6; }
+        .tab-btn-2.active { background-color: #22c55e; color: white; border-color: #22c55e; }
+        .tab-btn-3.active { background-color: #f97316; color: white; border-color: #f97316; }
+        .tab-btn-4.active { background-color: #a855f7; color: white; border-color: #a855f7; }
+        .tab-btn-5.active { background-color: #e11d48; color: white; border-color: #e11d48; }
+
+        .hidden { display: none; }
+        .fade-in { animation: fadeIn 0.5s; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* Slide specific styles - A4 Landscape Ratio (297:210) */
+        .slide-container { 
+            aspect-ratio: 297 / 210; 
+            background: white; 
+            border: 2px solid #fdba74; 
+            max-height: 80vh;
+            margin: 0 auto;
+            width: 100%;
+            overflow: hidden; 
+        }
+        
+        /* Fullscreen handling for A4 Landscape Strict Aspect Ratio */
+        #presentation-wrapper:fullscreen {
+            background-color: #111827; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            margin: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+        }
+        #presentation-wrapper:fullscreen .slide-container {
+            border: none;
+            border-radius: 0;
+            margin: auto;
+            aspect-ratio: 297 / 210;
+        }
+        @media (min-aspect-ratio: 297/210) {
+            #presentation-wrapper:fullscreen .slide-container {
+                height: 100vh;
+                width: calc(100vh * (297 / 210));
+            }
+        }
+        @media (max-aspect-ratio: 297/210) {
+            #presentation-wrapper:fullscreen .slide-container {
+                width: 100vw;
+                height: calc(100vw * (210 / 297));
+            }
+        }
+        #presentation-wrapper:fullscreen .fullscreen-hide {
+            display: none !important;
+        }
+        
+        /* Manim-style Animations */
+        .manim-draw { stroke-dasharray: 1000; stroke-dashoffset: 1000; animation: drawPath 3s ease-in-out forwards; }
+        .manim-draw-fast { stroke-dasharray: 1000; stroke-dashoffset: 1000; animation: drawPath 1.5s ease-in-out forwards; }
+        .delay-1 { animation-delay: 1s; }
+        .delay-2 { animation-delay: 2s; }
+        .delay-3 { animation-delay: 3s; }
+        
+        @keyframes drawPath { to { stroke-dashoffset: 0; } }
+        .manim-fade-in { opacity: 0; animation: fadeIn 1s forwards; }
+        
+        /* 3D Animations applied to PISA tests */
+        .perspective-container { perspective: 1000px; display: flex; justify-content: center; align-items: center; padding: 2rem 0; cursor: grab; }
+        .perspective-container:active { cursor: grabbing; }
+        .rotating-plane { transform-style: preserve-3d; }
+        .svg-3d-shadow { filter: drop-shadow(0px 20px 10px rgba(0,0,0,0.25)); }
+        
+        .ball-sphere {
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #fff, #e5e7eb, #9ca3af);
+            box-shadow: inset -10px -10px 20px rgba(0,0,0,0.3), 10px 10px 20px rgba(0,0,0,0.2);
+            position: relative;
+            animation: floatBall 4s ease-in-out infinite;
+        }
+        @keyframes floatBall { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        
+        @keyframes radarSweep { to { stroke-dashoffset: -20; } }
+        .radar-anim-in { stroke-dasharray: 10, 10; animation: radarSweep 1s linear infinite reverse; }
+        .radar-anim-out { stroke-dasharray: 10, 10; animation: radarSweep 1s linear infinite; }
+        
+        .tesseract-outer { animation: hyperSpin 15s infinite linear; transform-origin: center; }
+        .tesseract-inner { animation: hyperPulse 4s infinite alternate ease-in-out; transform-origin: center; }
+        @keyframes hyperSpin { 100% { transform: rotate(360deg); } }
+        @keyframes hyperPulse { 0% { transform: scale(0.3) rotate(0deg); opacity: 0.5; } 100% { transform: scale(1.6) rotate(90deg); opacity: 1; } }
+        .glow-effect { filter: drop-shadow(0 0 15px rgba(6, 182, 212, 0.7)); }
+
+        .pdf-exclude { display: block; }
+    </style>
+
+<style>
+.dark-mode{
+    background:#0f172a !important;
+    color:#f8fafc !important;
+}
+.dark-mode .bg-white{
+    background:#1e293b !important;
+    color:#f8fafc !important;
+}
+.dark-mode .text-gray-700,
+.dark-mode .text-gray-800,
+.dark-mode .text-gray-600{
+    color:#e2e8f0 !important;
+}
+.floating-tools{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    z-index:9999;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+.tool-btn{
+    background:#2563eb;
+    color:white;
+    border:none;
+    padding:12px 16px;
+    border-radius:14px;
+    font-weight:bold;
+    cursor:pointer;
+    box-shadow:0 4px 10px rgba(0,0,0,0.2);
+}
+.quiz-box{
+    background:linear-gradient(135deg,#dbeafe,#ede9fe);
+    border-radius:20px;
+    padding:20px;
+    margin-top:20px;
+}
+@media(max-width:768px){
+    body{
+        padding:8px !important;
+    }
+    .title-font{
+        font-size:1.5rem !important;
+    }
+}
+</style>
+
+</head>
+<body class="p-4 md:p-8">
+
+    <div class="max-w-5xl mx-auto bg-white rounded-xl shadow-2xl border border-gray-100 overflow-hidden" id="main-app-container">
+        <!-- Header -->
+        <div class="bg-blue-900 text-white p-6 text-center relative backdrop-blur-sm bg-opacity-90">
+            <h1 class="title-font text-3xl md:text-4xl text-yellow-400 mb-2">មេរៀនទី១៧ ពហុកោណ</h1>
+            <h2 class="text-xl md:text-2xl mb-4">គណិតវិទ្យា ថ្នាក់ទី៩</h2>
+            <div class="inline-block bg-white text-blue-900 px-4 py-2 rounded-full font-bold shadow">
+                រៀបចំដោយលោកគ្រូ ផន គារវតា
+            </div>
+        </div>
+
+        <!-- Tab Navigation -->
+        <div class="flex flex-wrap border-b border-gray-200 pdf-exclude" id="tab-navigation">
+            <button onclick="switchTab(1)" id="btn-tab-1" class="tab-btn-1 active flex-1 py-3 px-2 md:px-4 text-center font-bold text-gray-600 hover:bg-blue-50 transition border-b-2 border-transparent text-sm md:text-base whitespace-nowrap">
+                ១. មេរៀនសង្ខេប
+            </button>
+            <button onclick="switchTab(2)" id="btn-tab-2" class="tab-btn-2 flex-1 py-3 px-2 md:px-4 text-center font-bold text-gray-600 hover:bg-green-50 transition border-b-2 border-transparent text-sm md:text-base whitespace-nowrap">
+                ២. លំហាត់អនុវត្តន៍
+            </button>
+            <button onclick="switchTab(3)" id="btn-tab-3" class="tab-btn-3 flex-1 py-3 px-2 md:px-4 text-center font-bold text-gray-600 hover:bg-orange-50 transition border-b-2 border-transparent text-sm md:text-base whitespace-nowrap">
+                ៣. ស្លាយមេរៀន
+            </button>
+            <button onclick="switchTab(4)" id="btn-tab-4" class="tab-btn-4 flex-1 py-3 px-2 md:px-4 text-center font-bold text-gray-600 hover:bg-purple-50 transition border-b-2 border-transparent text-sm md:text-base whitespace-nowrap">
+                ៤. វិញ្ញាសាឌីប្លូម
+            </button>
+            <button onclick="switchTab(5)" id="btn-tab-5" class="tab-btn-5 flex-1 py-3 px-2 md:px-4 text-center font-bold text-gray-600 hover:bg-rose-50 transition border-b-2 border-transparent text-sm md:text-base whitespace-nowrap">
+                🎮 ៥. ល្បែងសិក្សា
+            </button>
+        </div>
+
+        <!-- TAB 1: Lesson Summary -->
+        <div id="tab-1" class="p-6 md:p-8 tab-content-1 fade-in relative">
+            <div class="flex justify-end mb-4 pdf-exclude">
+                <button id="btn-pdf-tab1" onclick="downloadTabPDF('tab-1', 'មេរៀនសង្ខេប_ពហុកោណ.pdf', 'portrait')" class="bg-red-600 text-white px-5 py-2 rounded-lg font-bold hover:bg-red-700 shadow-md flex items-center gap-2 transition">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                    ដោនឡោត PDF (A4 បញ្ឈរ)
+                </button>
+            </div>
+
+            <h2 class="title-font text-2xl text-blue-800 mb-6 border-b-2 border-blue-200 pb-2">ខ្លឹមសារមេរៀនសង្ខេប</h2>
+            
+            <div id="section1" class="mb-8 bg-white p-5 rounded-lg shadow-sm border border-blue-100">
+                <h3 class="text-xl font-bold text-blue-700 mb-3">១. សញ្ញាណ និង របកគំហើញពហុកោណ</h3>
+                <p class="text-gray-700 mb-4 leading-relaxed">
+                    ពាក្យថា <strong>"ពហុកោណ" (Polygon)</strong> មានប្រភពមកពីភាសាក្រិកបុរាណ ដែលផ្សំឡើងដោយពាក្យ <strong>"Polus"</strong> (មានន័យថា ច្រើន) និង <strong>"Gonia"</strong> (មានន័យថា មុំ)។ ការសិក្សាពីពហុកោណត្រូវបានកត់ត្រាដំបូងដោយអ្នកប្រាជ្ញគណិតវិទ្យាក្រិកបុរាណ ដូចជា ពីតាក័រ (Pythagoras) និង អឺគ្លីត (Euclid)។
+                </p>
+                
+                <div class="bg-blue-50 p-5 rounded-lg border-2 border-blue-200 shadow-sm mt-4">
+                    <h4 class="font-bold text-blue-900 text-lg mb-3">ការកកើតនិងបញ្ជាក់រូបធរណីមាត្រ (Geometric Demonstration)</h4>
+                    <p class="text-gray-700 mb-4 text-sm">
+                        តើពហុកោណកើតឡើងដោយរបៀបណា? នៅក្នុងធរណីមាត្រ រូបរាងទាំងនេះវិវត្តពីចំណុច ទៅជាខ្សែ ហើយក្លាយជាផ្ទៃបិទជិត៖
+                    </p>
+                    <div class="flex justify-around items-center flex-wrap gap-4">
+                        <div class="text-center">
+                            <svg width="100" height="100" viewBox="0 0 100 100" class="mx-auto bg-white rounded border border-blue-100 shadow-sm">
+                                <circle cx="20" cy="80" r="4" fill="#3b82f6" class="manim-fade-in" />
+                                <circle cx="50" cy="20" r="4" fill="#3b82f6" class="manim-fade-in delay-1" />
+                                <circle cx="80" cy="80" r="4" fill="#3b82f6" class="manim-fade-in delay-2" />
+                            </svg>
+                            <p class="mt-2 text-sm font-bold text-gray-600">១. ចំណុច (Points)</p>
+                        </div>
+                        <div class="text-3xl text-gray-400">→</div>
+                        <div class="text-center">
+                            <svg width="100" height="100" viewBox="0 0 100 100" class="mx-auto bg-white rounded border border-blue-100 shadow-sm">
+                                <circle cx="20" cy="80" r="4" fill="#3b82f6" />
+                                <circle cx="50" cy="20" r="4" fill="#3b82f6" />
+                                <circle cx="80" cy="80" r="4" fill="#3b82f6" />
+                                <line x1="20" y1="80" x2="50" y2="20" stroke="#3b82f6" stroke-width="2" class="manim-draw delay-1" />
+                                <line x1="50" y1="20" x2="80" y2="80" stroke="#3b82f6" stroke-width="2" class="manim-draw delay-2" />
+                                <line x1="80" y1="80" x2="20" y2="80" stroke="#3b82f6" stroke-width="2" class="manim-draw delay-3" />
+                            </svg>
+                            <p class="mt-2 text-sm font-bold text-gray-600">២. អង្កត់ (Lines)</p>
+                        </div>
+                        <div class="text-3xl text-gray-400">→</div>
+                        <div class="text-center">
+                            <svg width="100" height="100" viewBox="0 0 100 100" class="mx-auto bg-white rounded border border-blue-100 shadow-sm">
+                                <polygon points="20,80 50,20 80,80" fill="rgba(59,130,246,0.3)" stroke="#3b82f6" stroke-width="2" class="manim-fade-in delay-3" />
+                            </svg>
+                            <p class="mt-2 text-sm font-bold text-blue-700">៣. ពហុកោណ</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mt-4 text-sm text-center">
+                        ការភ្ជាប់ចំណុចចំនួន ៣ មិនរត់ត្រង់ជួរ បង្កើតបានជាផ្ទៃបិទជិតមួយ ដែលយើងហៅថា <b>"ត្រីកោណ"</b> ហើយវាគឺជាពហុកោណដំបូងគេបង្អស់ដែលកកើតឡើងក្នុងធម្មជាតិ!
+                    </p>
+                </div>
+            </div>
+
+            <!-- Section 2: Definition -->
+            <div id="section2" class="mb-8 bg-white p-5 rounded-lg shadow-sm border border-blue-100">
+                <h3 class="text-xl font-bold text-blue-700 mb-3">២. និយមន័យ</h3>
+                <p class="text-gray-700 mb-4 leading-relaxed">
+                    <strong>ពហុកោណ</strong> គឺជាខ្សែបិទដែលកើតឡើងពីអង្កត់នៃបន្ទាត់ចាប់ពីបីឡើងទៅ។ អង្កត់នីមួយៗហៅថា <strong>ជ្រុង</strong> ហើយចំណុចប្រសព្វនៃអង្កត់ហៅថា <strong>កំពូល</strong> នៃពហុកោណ។
+                </p>
+                <div class="flex flex-wrap justify-around items-end bg-blue-50 p-4 rounded-lg border border-blue-100">
+                    <div class="text-center">
+                        <svg width="100" height="100" viewBox="0 0 100 100" class="mx-auto">
+                            <polygon points="50,10 90,90 10,90" fill="rgba(59,130,246,0.1)" stroke="#3b82f6" stroke-width="4" stroke-linejoin="round" class="manim-draw" />
+                        </svg>
+                        <p class="mt-2 manim-fade-in delay-1 font-bold text-blue-700">ត្រីកោណ (៣ជ្រុង)</p>
+                    </div>
+                    <div class="text-center">
+                        <svg width="100" height="100" viewBox="0 0 100 100" class="mx-auto">
+                            <polygon points="10,10 90,10 90,90 10,90" fill="rgba(34,197,94,0.1)" stroke="#22c55e" stroke-width="4" stroke-linejoin="round" class="manim-draw delay-1" />
+                        </svg>
+                        <p class="mt-2 manim-fade-in delay-2 font-bold text-green-700">ចតុកោណ (៤ជ្រុង)</p>
+                    </div>
+                    <div class="text-center">
+                        <svg width="100" height="100" viewBox="0 0 100 100" class="mx-auto">
+                            <polygon points="50,10 95,45 80,95 20,95 5,45" fill="rgba(234,179,8,0.1)" stroke="#eab308" stroke-width="4" stroke-linejoin="round" class="manim-draw delay-2" />
+                        </svg>
+                        <p class="mt-2 manim-fade-in delay-3 font-bold text-yellow-600">បញ្ចកោណ (៥ជ្រុង)</p>
+                    </div>
+                </div>
+
+                <div class="mt-6 bg-white rounded-lg border border-blue-200 overflow-hidden shadow-sm">
+                    <h4 class="bg-blue-100 text-blue-800 font-bold p-3 border-b border-blue-200 text-center text-lg">ឈ្មោះពហុកោណទៅតាមចំនួនជ្រុង (n)</h4>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 p-4 text-center">
+                        <div class="bg-blue-50 p-4 rounded-lg border border-blue-200 shadow-sm flex flex-col items-center">
+                            <svg width="60" height="60" viewBox="0 0 100 100" class="mb-3">
+                                <polygon points="50,15 85,75 15,75" fill="rgba(59,130,246,0.2)" stroke="#3b82f6" stroke-width="4" stroke-linejoin="round" class="manim-draw" />
+                            </svg>
+                            <span class="font-bold text-blue-700 text-xl block mb-1">៣ ជ្រុង</span>
+                            <span class="text-gray-700 font-bold">ត្រីកោណ</span>
+                        </div>
+                        <div class="bg-green-50 p-4 rounded-lg border border-green-200 shadow-sm flex flex-col items-center">
+                            <svg width="60" height="60" viewBox="0 0 100 100" class="mb-3">
+                                <polygon points="15,15 85,15 85,85 15,85" fill="rgba(34,197,94,0.2)" stroke="#22c55e" stroke-width="4" stroke-linejoin="round" class="manim-draw delay-1" />
+                            </svg>
+                            <span class="font-bold text-green-700 text-xl block mb-1">៤ ជ្រុង</span>
+                            <span class="text-gray-700 font-bold">ចតុកោណ</span>
+                        </div>
+                        <div class="bg-yellow-50 p-4 rounded-lg border border-yellow-200 shadow-sm flex flex-col items-center">
+                            <svg width="60" height="60" viewBox="0 0 100 100" class="mb-3">
+                                <polygon points="50,10 90,39 74,86 26,86 10,39" fill="rgba(234,179,8,0.2)" stroke="#eab308" stroke-width="4" stroke-linejoin="round" class="manim-draw delay-2" />
+                            </svg>
+                            <span class="font-bold text-yellow-700 text-xl block mb-1">៥ ជ្រុង</span>
+                            <span class="text-gray-700 font-bold">បញ្ចកោណ</span>
+                        </div>
+                        <div class="bg-purple-50 p-4 rounded-lg border border-purple-200 shadow-sm flex flex-col items-center">
+                            <svg width="60" height="60" viewBox="0 0 100 100" class="mb-3">
+                                <polygon points="50,10 84.6,30 84.6,70 50,90 15.4,70 15.4,30" fill="rgba(168,85,247,0.2)" stroke="#a855f7" stroke-width="4" stroke-linejoin="round" class="manim-draw delay-3" />
+                            </svg>
+                            <span class="font-bold text-purple-700 text-xl block mb-1">៦ ជ្រុង</span>
+                            <span class="text-gray-700 font-bold">ឆកោណ</span>
+                        </div>
+                        <div class="bg-pink-50 p-4 rounded-lg border border-pink-200 shadow-sm flex flex-col items-center">
+                            <svg width="60" height="60" viewBox="0 0 100 100" class="mb-3">
+                                <polygon points="50,10 81.2,25.2 88.8,58.8 67.2,86 32.8,86 11.2,58.8 18.8,25.2" fill="rgba(236,72,153,0.2)" stroke="#ec4899" stroke-width="4" stroke-linejoin="round" class="manim-draw" />
+                            </svg>
+                            <span class="font-bold text-pink-700 text-xl block mb-1">៧ ជ្រុង</span>
+                            <span class="text-gray-700 font-bold">សត្តកោណ</span>
+                        </div>
+                        <div class="bg-indigo-50 p-4 rounded-lg border border-indigo-200 shadow-sm flex flex-col items-center">
+                            <svg width="60" height="60" viewBox="0 0 100 100" class="mb-3">
+                                <polygon points="50,10 78.3,21.7 90,50 78.3,78.3 50,90 21.7,78.3 10,50 21.7,21.7" fill="rgba(99,102,241,0.2)" stroke="#6366f1" stroke-width="4" stroke-linejoin="round" class="manim-draw delay-1" />
+                            </svg>
+                            <span class="font-bold text-indigo-700 text-xl block mb-1">៨ ជ្រុង</span>
+                            <span class="text-gray-700 font-bold">អដ្ឋកោណ</span>
+                        </div>
+                        <div class="bg-teal-50 p-4 rounded-lg border border-teal-200 shadow-sm flex flex-col items-center">
+                            <svg width="60" height="60" viewBox="0 0 100 100" class="mb-3">
+                                <polygon points="50,10 75.7,19.4 89.4,43 84.6,70 63.7,87.6 36.3,87.6 15.4,70 10.6,43 24.3,19.4" fill="rgba(20,184,166,0.2)" stroke="#14b8a6" stroke-width="4" stroke-linejoin="round" class="manim-draw delay-2" />
+                            </svg>
+                            <span class="font-bold text-teal-700 text-xl block mb-1">៩ ជ្រុង</span>
+                            <span class="text-gray-700 font-bold">នវកោណ</span>
+                        </div>
+                        <div class="bg-rose-50 p-4 rounded-lg border border-rose-200 shadow-sm flex flex-col items-center">
+                            <svg width="60" height="60" viewBox="0 0 100 100" class="mb-3">
+                                <polygon points="50,10 73.5,17.6 88,37.6 88,62.4 73.5,82.4 50,90 26.5,82.4 12,62.4 12,37.6 26.5,17.6" fill="rgba(244,63,94,0.2)" stroke="#f43f5e" stroke-width="4" stroke-linejoin="round" class="manim-draw delay-3" />
+                            </svg>
+                            <span class="font-bold text-rose-700 text-xl block mb-1">១០ ជ្រុង</span>
+                            <span class="text-gray-700 font-bold">ទសកោណ</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 3: Interior Angles -->
+            <div id="section3" class="mb-8 bg-white p-5 rounded-lg shadow-sm border border-blue-100">
+                <h3 class="text-xl font-bold text-blue-700 mb-3">៣. ផលបូកមុំក្នុងនៃពហុកោណ</h3>
+                
+                <div class="flex flex-col md:flex-row items-center bg-yellow-50 p-4 rounded-lg border border-yellow-200 mb-6 shadow-sm">
+                    <div class="flex-1">
+                        <p class="text-gray-800 mb-2 leading-relaxed">
+                            មូលហេតុដែលរូបមន្តផលបូកមុំក្នុងគឺ <strong>S = (n - 2) &times; 180&deg;</strong> ពីព្រោះពហុកោណដែលមាន n ជ្រុង អាចត្រូវបានពុះជា <strong>(n - 2) ត្រីកោណ</strong> ដោយគូសអង្កត់ទ្រូងចេញពីកំពូលតែមួយ។ ដោយសារត្រីកោណមួយមានផលបូកមុំ 180&deg; ដូច្នេះយើងគ្រាន់តែយកចំនួនត្រីកោណគុណនឹង 180&deg;។
+                        </p>
+                    </div>
+                    <div class="flex-1 mt-4 md:mt-0 flex justify-center">
+                        <div class="relative">
+                            <svg width="180" height="180" viewBox="0 0 100 100" class="bg-white rounded-lg shadow-sm border border-gray-100 p-2 mx-auto block">
+                                <polygon points="50,5 95,30 95,70 50,95 5,70 5,30" fill="rgba(34,197,94,0.1)" stroke="#22c55e" stroke-width="2" stroke-linejoin="round" class="manim-draw" />
+                                <line x1="50" y1="5" x2="95" y2="70" stroke="#ef4444" stroke-width="2" stroke-dasharray="4,4" class="manim-draw delay-1" />
+                                <line x1="50" y1="5" x2="50" y2="95" stroke="#ef4444" stroke-width="2" stroke-dasharray="4,4" class="manim-draw delay-2" />
+                                <line x1="50" y1="5" x2="5" y2="70" stroke="#ef4444" stroke-width="2" stroke-dasharray="4,4" class="manim-draw delay-3" />
+                                <text x="75" y="45" font-size="10" fill="#ef4444" font-weight="bold" class="manim-fade-in delay-3">1</text>
+                                <text x="70" y="70" font-size="10" fill="#ef4444" font-weight="bold" class="manim-fade-in delay-3">2</text>
+                                <text x="30" y="70" font-size="10" fill="#ef4444" font-weight="bold" class="manim-fade-in delay-3">3</text>
+                                <text x="25" y="45" font-size="10" fill="#ef4444" font-weight="bold" class="manim-fade-in delay-3">4</text>
+                            </svg>
+                            <p class="text-center text-xs font-bold text-gray-500 mt-2">ឆកោណ (n=6) ពុះបាន ៤ ត្រីកោណ</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="font-bold text-gray-800 mb-2 border-b pb-1">ក. ការរកផលបូកមុំក្នុង (ស្គាល់ជ្រុង n)</h4>
+                        <div class="bg-yellow-100 text-center py-3 rounded-lg border border-yellow-300 my-3 text-lg font-bold text-red-600 shadow-inner">
+                            S = (n - 2) &times; 180&deg;
+                        </div>
+                        <div class="bg-gray-50 p-3 border-l-4 border-blue-500 mb-4 shadow-sm text-sm">
+                            <h5 class="font-bold mb-1">លំហាត់គំរូទី១៖</h5>
+                            <p>គណនាផលបូកមុំក្នុងនៃឆកោណ។</p>
+                            <p>n = 6 នាំឲ្យ S = (6 - 2) &times; 180&deg; = <b class="text-blue-700">720&deg;</b></p>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-gray-800 mb-2 border-b pb-1">ខ. ការរកចំនួនជ្រុង (ស្គាល់ផលបូក S)</h4>
+                        <div class="bg-blue-100 text-center py-3 rounded-lg border border-blue-300 my-3 text-lg font-bold text-blue-800 shadow-inner">
+                            n = (S &divide; 180&deg;) + 2
+                        </div>
+                        <div class="bg-gray-50 p-3 border-l-4 border-green-500 mb-4 shadow-sm text-sm">
+                            <h5 class="font-bold mb-1">លំហាត់គំរូទី២៖</h5>
+                            <p>ផលបូកមុំក្នុងស្មើ ១៤៤០&deg; តើវាមានប៉ុន្មានជ្រុង?</p>
+                            <p>n = (1440&deg; &divide; 180&deg;) + 2 = <b class="text-blue-700">10 ជ្រុង</b></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-6 border-t border-gray-200 pt-4">
+                    <h4 class="font-bold text-gray-800 mb-2 border-b pb-1">គ. ការរកមុំក្នុងមួយ (សម្រាប់ពហុកោណនិយ័ត)</h4>
+                    <div class="bg-purple-100 text-center py-3 rounded-lg border border-purple-300 my-3 text-lg font-bold text-purple-800 shadow-inner">
+                        មុំក្នុងមួយ = [(n - 2) &times; 180&deg;] &divide; n
+                    </div>
+                    
+                    <div class="flex flex-col md:flex-row gap-4 items-center mb-4 mt-4">
+                        <div class="flex-1 w-full">
+                            <div class="bg-gray-50 p-4 border-l-4 border-purple-500 shadow-sm text-sm h-full">
+                                <h5 class="font-bold mb-1">លំហាត់គំរូទី៣៖</h5>
+                                <p>គណនារង្វាស់មុំក្នុងមួយនៃអដ្ឋកោណនិយ័ត (៨ជ្រុងស្មើ)។</p>
+                                <p class="mt-3 font-bold text-green-700">ដំណោះស្រាយ៖</p>
+                                <p>ដោយ n = 8</p>
+                                <p>មុំក្នុងមួយ = (6 &times; 180&deg;) &divide; 8 = 1080&deg; &divide; 8 = <b class="text-purple-700">135&deg;</b></p>
+                            </div>
+                        </div>
+                        <div class="flex-shrink-0">
+                            <svg width="150" height="150" viewBox="0 0 100 100" class="bg-white rounded-lg shadow-sm border border-gray-100 p-2 mx-auto block">
+                                <polygon points="50,10 78.3,21.7 90,50 78.3,78.3 50,90 21.7,78.3 10,50 21.7,21.7" fill="rgba(168,85,247,0.1)" stroke="#a855f7" stroke-width="2" class="manim-draw" />
+                                <path d="M 40 19.5 A 15 15 0 0 0 60 19.5" fill="none" stroke="#ef4444" stroke-width="3" class="manim-fade-in delay-1" />
+                                <text x="50" y="34" font-size="12" fill="#ef4444" font-weight="bold" text-anchor="middle" class="manim-fade-in delay-1">135&deg;</text>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-indigo-50 p-4 rounded-lg border border-indigo-200 shadow-sm mt-4 pdf-exclude">
+                    <h4 class="font-bold text-indigo-800 mb-3 flex items-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                        ម៉ាស៊ីនគិតលេខ
+                    </h4>
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <div class="bg-white p-3 rounded border border-indigo-100">
+                            <p class="mb-2 text-xs font-bold text-gray-500 uppercase tracking-wider">ស្វែងរក S</p>
+                            <div class="flex items-center gap-2">
+                                <label class="text-sm">n =</label>
+                                <input type="number" id="practice-n-in" min="3" value="8" class="border border-indigo-300 p-1 w-16 rounded">
+                                <button onclick="calcIntAngles()" class="bg-indigo-600 text-white text-sm px-3 py-1 rounded hover:bg-indigo-700 transition">គណនា</button>
+                            </div>
+                            <div id="practice-result-in" class="mt-2 text-sm font-bold text-indigo-900 hidden bg-indigo-50 p-2 rounded"></div>
+                        </div>
+                        <div class="bg-white p-3 rounded border border-indigo-100">
+                            <p class="mb-2 text-xs font-bold text-gray-500 uppercase tracking-wider">ស្វែងរក n</p>
+                            <div class="flex items-center gap-2">
+                                <label class="text-sm">S =</label>
+                                <input type="number" id="practice-s-in" min="180" step="180" value="1080" class="border border-indigo-300 p-1 w-20 rounded">
+                                <button onclick="calcSidesFromSum()" class="bg-green-600 text-white text-sm px-3 py-1 rounded hover:bg-green-700 transition">គណនា</button>
+                            </div>
+                            <div id="practice-result-s-in" class="mt-2 text-sm font-bold text-green-900 hidden bg-green-50 p-2 rounded"></div>
+                        </div>
+                        <div class="bg-white p-3 rounded border border-indigo-100">
+                            <p class="mb-2 text-xs font-bold text-gray-500 uppercase tracking-wider">មុំក្នុងមួយ</p>
+                            <div class="flex items-center gap-2">
+                                <label class="text-sm">n =</label>
+                                <input type="number" id="practice-single-in" min="3" value="8" class="border border-indigo-300 p-1 w-16 rounded">
+                                <button onclick="calcSingleIntAngle()" class="bg-purple-600 text-white text-sm px-3 py-1 rounded hover:bg-purple-700 transition">គណនា</button>
+                            </div>
+                            <div id="practice-result-single-in" class="mt-2 text-sm font-bold text-purple-900 hidden bg-purple-50 p-2 rounded"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 4: Exterior Angles -->
+            <div id="section4" class="mb-8 bg-white p-5 rounded-lg shadow-sm border border-blue-100">
+                <h3 class="text-xl font-bold text-blue-700 mb-3">៤. ផលបូកមុំក្រៅនៃពហុកោណ</h3>
+                <p class="mb-2 text-gray-700 leading-relaxed">ទោះបីជាពហុកោណប៉ោងនោះមានចំនួនជ្រុងប៉ុន្មានក៏ដោយ (ត្រីកោណ ចតុកោណ ឬ ១០០ជ្រុង) ក៏ផលបូកនៃ <strong>មុំក្រៅទាំងអស់</strong> របស់វាតែងតែមានរង្វាស់ថេរជានិច្ច គឺ ៣៦០ ដឺក្រេ។</p>
+                <div class="bg-yellow-100 text-center py-3 rounded-lg border border-yellow-300 my-4 text-xl font-bold text-red-600 shadow-inner w-full md:w-1/2 mx-auto">
+                    S' = 360&deg;
+                </div>
+                
+                <div class="flex flex-col lg:flex-row items-stretch bg-purple-50 p-6 rounded-lg border border-purple-200 mb-6 shadow-sm gap-8">
+                    <!-- Text Explanation Box -->
+                    <div class="flex-1 space-y-6 flex flex-col justify-center">
+                        <div class="bg-white p-5 rounded-lg shadow-sm border border-purple-100 relative overflow-hidden">
+                            <div class="absolute top-0 left-0 w-1 h-full bg-blue-500"></div>
+                            <h4 class="font-bold text-purple-800 text-lg border-b border-gray-100 pb-2 mb-3 flex items-center gap-2">
+                                <span class="bg-blue-100 text-blue-800 w-6 h-6 rounded-full flex items-center justify-center text-sm">១</span> មុំក្នុង + មុំក្រៅ = 180&deg;
+                            </h4>
+                            <p class="text-gray-800 text-sm leading-relaxed mb-2">
+                                <strong>មុំក្រៅ</strong> គឺជាមុំដែលកើតឡើងរវាង <strong>ជ្រុងមួយ</strong> និង <strong>បន្ទាត់បន្លាយនៃជ្រុងដែលនៅជាប់វា</strong>។
+                            </p>
+                            <div class="bg-blue-50 p-3 rounded text-sm text-gray-700 border border-blue-100">
+                                👉 ដោយសារជ្រុងពហុកោណ និងបន្ទាត់បន្លាយរបស់វា បង្កើតបានជា <b>"បន្ទាត់ត្រង់មួយ"</b> (រង្វាស់ ១៨០&deg;) នោះ <b class="text-blue-600">មុំក្នុង</b> និង <b class="text-red-500">មុំក្រៅ</b> ដែលនៅជាប់គ្នានៅត្រង់កំពូលតែមួយ គឺជា <b>មុំបន្ថែម (Supplementary Angles)</b> ដែលបូកបញ្ចូលគ្នាត្រូវតែស្មើនឹង <strong>180&deg;</strong> ជានិច្ច។
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white p-5 rounded-lg shadow-sm border border-purple-100 relative overflow-hidden">
+                            <div class="absolute top-0 left-0 w-1 h-full bg-rose-500"></div>
+                            <h4 class="font-bold text-purple-800 text-lg border-b border-gray-100 pb-2 mb-3 flex items-center gap-2">
+                                <span class="bg-rose-100 text-rose-800 w-6 h-6 rounded-full flex items-center justify-center text-sm">២</span> សម្រាយបញ្ជាក់តាមគណិតវិទ្យា
+                            </h4>
+                            <div class="text-gray-800 text-sm leading-relaxed space-y-3">
+                                <p>តើហេតុអ្វីបានជាផលបូកមុំក្រៅតែងតែស្មើ <b>360&deg;</b> ទោះមានប៉ុន្មានជ្រុងក៏ដោយ? យើងអាចស្រាយបញ្ជាក់តាមពីររបៀប៖</p>
+                                
+                                <div>
+                                    <p class="font-bold text-indigo-700">ក. តាមពិជគណិត (Algebraic Proof)៖</p>
+                                    <ul class="list-none ml-2 space-y-1 font-serif text-[13px] bg-gray-50 p-2 rounded border border-gray-100 mt-1">
+                                        <li>១. ផលបូកមុំក្នុងនិងក្រៅនៃកំពូលទាំង n ៖ <span class="text-blue-600">&Sigma;មុំក្នុង</span> + <span class="text-red-500">&Sigma;មុំក្រៅ</span> = <b class="text-gray-800">n &times; 180&deg;</b></li>
+                                        <li>២. តែយើងមានរូបមន្ត <span class="text-blue-600">&Sigma;មុំក្នុង</span> = <b class="text-gray-800">(n - 2) &times; 180&deg;</b></li>
+                                        <li>៣. ជំនួសចូល៖ (n - 2)&times;180&deg; + <span class="text-red-500">&Sigma;មុំក្រៅ</span> = n &times; 180&deg;</li>
+                                        <li>៤. ពន្លាត៖ n&times;180&deg; - 360&deg; + <span class="text-red-500">&Sigma;មុំក្រៅ</span> = n &times; 180&deg;</li>
+                                        <li>៥. សម្រួល <b>n&times;180&deg;</b> ចោលសងខាង នាំឲ្យ 👉 <b class="text-rose-600 font-sans text-sm">&Sigma;មុំក្រៅ = 360&deg;</b></li>
+                                    </ul>
+                                </div>
+                                
+                                <div>
+                                    <p class="font-bold text-indigo-700">ខ. តាមធរណីមាត្រវ៉ិចទ័រ (Vector Geometry)៖</p>
+                                    <p class="pl-3 border-l-2 border-indigo-300 ml-1 text-gray-600 text-[13px]">មុំក្រៅជារង្វាស់នៃការបត់ទិសដៅវ៉ិចទ័រ (Direction Vectors) តាមគែមនីមួយៗ។ ពេលវ៉ិចទ័រធ្វើចលនាជុំវិញពហុកោណ ហើយត្រឡប់មកទីតាំងដើម វាបានបង្វិលខ្លួនមួយជុំរង្វង់ពេញ គឺស្មើនឹង <b>៣៦០&deg;</b> ឬ <b>២&pi; រ៉ាដ្យង់</b> យ៉ាងពិតប្រាកដ។</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Graphics Box -->
+                    <div class="flex-1 flex flex-col gap-6 justify-center items-center w-full">
+                        <!-- Graphic 1: Interior + Exterior = 180 -->
+                        <div class="relative bg-white rounded-xl shadow-md border-2 border-blue-100 p-4 text-center w-full max-w-[340px]">
+                            <p class="text-sm font-bold text-blue-800 mb-2 bg-blue-50 py-1.5 rounded-lg border border-blue-200">មុំក្នុង + មុំក្រៅ = 180&deg;</p>
+                            <svg width="100%" height="130" viewBox="0 0 250 130" class="mx-auto block">
+                                <!-- Polygon body -->
+                                <polygon points="40,110 140,110 90,30" fill="rgba(139, 92, 246, 0.1)" stroke="#8b5cf6" stroke-width="3" stroke-linejoin="round" class="manim-draw" />
+                                <!-- Extended line -->
+                                <line x1="140" y1="110" x2="230" y2="110" stroke="#f59e0b" stroke-width="4" stroke-dasharray="6,4" class="manim-draw delay-1" />
+                                
+                                <!-- Interior Angle Arc -->
+                                <path d="M 115 110 A 25 25 0 0 1 126 87" fill="rgba(59, 130, 246, 0.2)" stroke="#3b82f6" stroke-width="3" class="manim-draw delay-2" />
+                                <text x="80" y="102" font-size="14" fill="#3b82f6" font-weight="bold" class="manim-fade-in delay-2">មុំក្នុង</text>
+                                
+                                <!-- Exterior Angle Arc -->
+                                <path d="M 126 87 A 25 25 0 0 1 165 110" fill="rgba(239, 68, 68, 0.2)" stroke="#ef4444" stroke-width="3" class="manim-draw delay-3" />
+                                <text x="165" y="90" font-size="14" fill="#ef4444" font-weight="bold" class="manim-fade-in delay-3">មុំក្រៅ</text>
+                                
+                                <!-- 180 indicator -->
+                                <path d="M 100 115 Q 140 130 180 115" fill="none" stroke="#10b981" stroke-width="2" />
+                                <text x="140" y="128" font-size="12" fill="#10b981" font-weight="bold" text-anchor="middle">មុំបន្ថែម (១៨០&deg;)</text>
+                            </svg>
+                        </div>
+
+                        <!-- Graphic 2: Translation of Angles -->
+                        <div class="relative bg-white rounded-xl shadow-md border-2 border-rose-100 p-4 text-center w-full max-w-[340px]">
+                            <p class="text-sm font-bold text-rose-800 mb-1 bg-rose-50 py-1.5 rounded-lg border border-rose-200">ទ្រឹស្តីរំកិលមុំក្រៅ (Angle Translation)</p>
+                            <p class="text-[11px] text-gray-500 mb-3 px-2 leading-tight">បើរំកិលមុំក្រៅទាំងអស់មកត្រួតស៊ីគ្នានៅចំណុច O វានឹងបង្កើតបានជារង្វង់ 360&deg; ពេញលេញ។</p>
+                            <svg width="100%" height="160" viewBox="0 0 320 160" class="mx-auto block">
+                                <!-- LEFT SIDE: Polygon with 4 exterior angles -->
+                                <g transform="translate(80, 80)">
+                                    <!-- Quad shape -->
+                                    <polygon points="-30,-30 30,-30 45,30 -15,40" fill="rgba(243, 244, 246, 0.5)" stroke="#6b7280" stroke-width="2"/>
+                                    <!-- Vertex 1 -->
+                                    <line x1="-30" y1="-30" x2="-30" y2="-60" stroke="#9ca3af" stroke-dasharray="3,3" stroke-width="2"/>
+                                    <path d="M -30,-45 A 15 15 0 0 1 -15,-30 L -30,-30 Z" fill="rgba(239,68,68,0.8)" stroke="#ef4444" stroke-width="1"/>
+                                    <!-- Vertex 2 -->
+                                    <line x1="30" y1="-30" x2="65" y2="-30" stroke="#9ca3af" stroke-dasharray="3,3" stroke-width="2"/>
+                                    <path d="M 45,-30 A 15 15 0 0 1 33,-18 L 30,-30 Z" fill="rgba(59,130,246,0.8)" stroke="#3b82f6" stroke-width="1"/>
+                                    <!-- Vertex 3 -->
+                                    <line x1="45" y1="30" x2="52" y2="58" stroke="#9ca3af" stroke-dasharray="3,3" stroke-width="2"/>
+                                    <path d="M 48,42 A 15 15 0 0 1 30,32 L 45,30 Z" fill="rgba(16,185,129,0.8)" stroke="#10b981" stroke-width="1"/>
+                                    <!-- Vertex 4 -->
+                                    <line x1="-15" y1="40" x2="-45" y2="45" stroke="#9ca3af" stroke-dasharray="3,3" stroke-width="2"/>
+                                    <path d="M -30,42 A 15 15 0 0 1 -18,26 L -15,40 Z" fill="rgba(245,158,11,0.8)" stroke="#f59e0b" stroke-width="1"/>
+                                </g>
+
+                                <!-- Arrow indicating translation -->
+                                <path d="M 140,80 Q 170,60 190,80" fill="none" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrowhead)"/>
+                                <defs>
+                                    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                        <polygon points="0 0, 10 3.5, 0 7" fill="#94a3b8" />
+                                    </marker>
+                                </defs>
+
+                                <!-- RIGHT SIDE: Center Point O with Pie Chart forming 360 -->
+                                <g transform="translate(240, 80)">
+                                    <!-- Red Sector -->
+                                    <path d="M 0,0 L 0,-35 A 35,35 0 0,1 35,0 Z" fill="rgba(239,68,68,0.8)" stroke="#fff" stroke-width="1.5" class="manim-fade-in delay-1"/>
+                                    <!-- Blue Sector -->
+                                    <path d="M 0,0 L 35,0 A 35,35 0 0,1 8.5,32.9 Z" fill="rgba(59,130,246,0.8)" stroke="#fff" stroke-width="1.5" class="manim-fade-in delay-1"/>
+                                    <!-- Green Sector -->
+                                    <path d="M 0,0 L 8.5,32.9 A 35,35 0 0,1 -34,-8.5 Z" fill="rgba(16,185,129,0.8)" stroke="#fff" stroke-width="1.5" class="manim-fade-in delay-1"/>
+                                    <!-- Yellow Sector -->
+                                    <path d="M 0,0 L -34,-8.5 A 35,35 0 0,1 0,-35 Z" fill="rgba(245,158,11,0.8)" stroke="#fff" stroke-width="1.5" class="manim-fade-in delay-1"/>
+                                    
+                                    <circle cx="0" cy="0" r="3" fill="#111827" class="manim-fade-in delay-2"/>
+                                    <text x="0" y="55" font-size="13" font-weight="bold" fill="#111827" text-anchor="middle" class="manim-fade-in delay-2">&Sigma;មុំក្រៅ = 360&deg;</text>
+                                </g>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-6 mt-6">
+                    <div>
+                        <h4 class="font-bold text-gray-800 mb-2 border-b pb-1">ក. ការរកមុំក្រៅមួយ (ពហុកោណនិយ័ត)</h4>
+                        <div class="bg-blue-100 text-center py-3 rounded-lg border border-blue-300 my-3 text-lg font-bold text-blue-800 shadow-inner">
+                            មុំក្រៅមួយ = 360&deg; &divide; n
+                        </div>
+                        <div class="flex flex-col xl:flex-row gap-4 items-center mb-4 mt-4">
+                            <div class="flex-1 w-full">
+                                <div class="bg-gray-50 p-4 border-l-4 border-blue-500 shadow-sm text-sm h-full">
+                                    <h5 class="font-bold mb-1">លំហាត់គំរូទី១៖</h5>
+                                    <p>គណនារង្វាស់មុំក្រៅមួយនៃបញ្ចកោណនិយ័ត (៥ជ្រុងស្មើគ្នា)។</p>
+                                    <p>មុំក្រៅមួយ = 360&deg; &divide; 5 = <b class="text-blue-700">72&deg;</b></p>
+                                </div>
+                            </div>
+                            <div class="flex-shrink-0">
+                                <svg width="130" height="130" viewBox="0 0 100 100" class="bg-white rounded-lg shadow-sm border border-gray-100 p-2 mx-auto block">
+                                    <polygon points="50,20 80,42 68,78 32,78 20,42" fill="rgba(59,130,246,0.1)" stroke="#3b82f6" stroke-width="2" class="manim-draw" />
+                                    <line x1="68" y1="78" x2="95" y2="78" stroke="#f59e0b" stroke-width="2" stroke-dasharray="3,3" class="manim-draw delay-1" />
+                                    <path d="M 83 78 A 15 15 0 0 0 76 68" fill="none" stroke="#ef4444" stroke-width="2" class="manim-fade-in delay-2" />
+                                    <text x="88" y="70" font-size="12" fill="#ef4444" font-weight="bold" class="manim-fade-in delay-2">72&deg;</text>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-gray-800 mb-2 border-b pb-1">ខ. ការរកចំនួនជ្រុង (ស្គាល់មុំក្រៅមួយ)</h4>
+                        <div class="bg-blue-100 text-center py-3 rounded-lg border border-blue-300 my-3 text-lg font-bold text-blue-800 shadow-inner">
+                            n = 360&deg; &divide; មុំក្រៅមួយ
+                        </div>
+                        <div class="bg-gray-50 p-4 border-l-4 border-green-500 mb-4 mt-4 shadow-sm text-sm h-full">
+                            <h5 class="font-bold mb-1">លំហាត់គំរូទី២៖</h5>
+                            <p>ពហុកោណនិយ័តមួយមានមុំក្រៅមួយស្មើនឹង ៤៥&deg;។ តើវាមានប៉ុន្មានជ្រុង?</p>
+                            <p>n = 360&deg; &divide; 45&deg; = <b class="text-blue-700">8 ជ្រុង (អដ្ឋកោណ)</b></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-indigo-50 p-4 rounded-lg border border-indigo-200 shadow-sm mt-4 pdf-exclude">
+                    <h4 class="font-bold text-indigo-800 mb-3 flex items-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                        ម៉ាស៊ីនគិតលេខ (អនុវត្តពហុកោណនិយ័ត)
+                    </h4>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-white p-3 rounded border border-indigo-100">
+                            <p class="mb-2 text-xs font-bold text-gray-500 uppercase tracking-wider">ស្វែងរកមុំក្រៅមួយ</p>
+                            <div class="flex items-center gap-2">
+                                <label class="text-sm">ជ្រុង n =</label>
+                                <input type="number" id="practice-n-out" min="3" value="10" class="border border-indigo-300 p-1 w-16 rounded shadow-sm focus:ring-1 focus:ring-indigo-500">
+                                <button onclick="calcExtAngles()" class="bg-indigo-600 text-white text-sm px-3 py-1 rounded shadow hover:bg-indigo-700 transition">គណនា</button>
+                            </div>
+                            <div id="practice-result-out" class="mt-2 text-sm font-bold text-indigo-900 hidden bg-indigo-50 p-2 rounded"></div>
+                        </div>
+                        <div class="bg-white p-3 rounded border border-indigo-100">
+                            <p class="mb-2 text-xs font-bold text-gray-500 uppercase tracking-wider">ស្វែងរកចំនួនជ្រុង (n)</p>
+                            <div class="flex items-center gap-2">
+                                <label class="text-sm">មុំក្រៅ =</label>
+                                <input type="number" id="practice-ext-in" min="1" max="180" value="40" class="border border-indigo-300 p-1 w-16 rounded shadow-sm focus:ring-1 focus:ring-indigo-500">
+                                <button onclick="calcSidesFromExt()" class="bg-green-600 text-white text-sm px-3 py-1 rounded shadow hover:bg-green-700 transition">គណនា n</button>
+                            </div>
+                            <div id="practice-result-ext-in" class="mt-2 text-sm font-bold text-green-900 hidden bg-green-50 p-2 rounded"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 5: Applications -->
+            <div id="section5" class="mb-8 bg-white p-5 rounded-lg shadow-sm border border-blue-100">
+                <h3 class="text-xl font-bold text-blue-700 mb-3">៥. ការអនុវត្តន៍ពហុកោណក្នុងជីវភាពរស់នៅប្រចាំថ្ងៃ</h3>
+                
+                <!-- PISA Test 1: Tiling -->
+                <div class="bg-indigo-50 p-5 rounded-lg border-2 border-indigo-200 shadow-sm mb-6">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="bg-indigo-600 text-white px-3 py-1 rounded-full text-sm font-bold shadow">លំហាត់ PISA ទី១</span>
+                        <h4 class="font-bold text-indigo-900 text-lg">ការក្រាលឥដ្ឋកម្រាល (Tiling)</h4>
+                    </div>
+                    <p class="text-gray-800 mb-4 leading-relaxed">
+                        <b>បរិបទ៖</b> ជាងសំណង់ម្នាក់ចង់ក្រាលកម្រាលឥដ្ឋដោយប្រើឥដ្ឋរាង <strong>"អដ្ឋកោណនិយ័ត"</strong> (៨ជ្រុងស្មើ) ពណ៌ស។ នៅពេលគាត់យកឥដ្ឋអដ្ឋកោណ ២ សន្លឹកមកតម្រៀបទល់គែមគ្នា គាត់សង្កេតឃើញថាមានចន្លោះប្រហោងមួយនៅត្រង់កំពូលរួម ដែលតម្រូវឲ្យគាត់រកឥដ្ឋតូចមួយទៀតពណ៌ខ្មៅមកបិទបំពេញ។
+                    </p>
+                    <div class="mb-6 bg-white rounded-lg border border-indigo-100 shadow-inner overflow-hidden relative group pdf-exclude">
+                        <div class="interaction-hint absolute top-3 left-3 text-xs text-indigo-700 font-bold bg-indigo-100 px-3 py-1.5 rounded-full shadow-sm transition-opacity duration-300 z-10 flex items-center gap-2 border border-indigo-200">👆 ចុចហើយទាញដើម្បីវិល (Drag to Rotate)</div>
+                        <div class="perspective-container">
+                            <div class="rotating-plane">
+                                <svg width="300" height="200" viewBox="-50 -50 300 200" class="svg-3d-shadow">
+                                    <polygon points="50,0 100,0 135,35 135,85 100,120 50,120 15,85 15,35" fill="rgba(255,255,255,0.9)" stroke="#4f46e5" stroke-width="3" />
+                                    <polygon points="150,0 200,0 235,35 235,85 200,120 150,120 115,85 115,35" fill="rgba(255,255,255,0.9)" stroke="#4f46e5" stroke-width="3" />
+                                    <polygon points="100,0 150,0 135,35 115,35" fill="#1f2937" opacity="0.9" />
+                                    <line x1="135" y1="35" x2="115" y2="35" stroke="#ef4444" stroke-width="4" />
+                                    <text x="125" y="20" font-size="20" fill="white" text-anchor="middle" font-weight="bold">?</text>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="space-y-4 bg-white p-4 rounded-lg border border-indigo-100 text-gray-700 shadow-sm pdf-exclude">
+                        <p class="font-bold text-gray-800">សំណួរ៖ តើឥដ្ឋពណ៌ខ្មៅតូចនោះត្រូវមានរាងជាអ្វី? ចូរប្រើប្រាស់លក្ខណៈមុំនៃពហុកោណដើម្បីស្រាយបញ្ជាក់។</p>
+                        <div class="flex flex-wrap items-center gap-2">
+                            <span>១. រង្វាស់មុំក្នុងមួយនៃអដ្ឋកោណ (n=8) គឺ៖</span>
+                            <input type="number" id="pisa-step1" class="border border-indigo-300 focus:ring-2 focus:ring-indigo-500 p-1 w-20 rounded text-center font-bold text-indigo-800 shadow-sm">
+                        </div>
+                        <div class="flex flex-wrap items-center gap-2">
+                            <span>២. មុំនៃចន្លោះប្រហោង = 360&deg; - (2 &times; មុំអដ្ឋកោណ) =</span>
+                            <input type="number" id="pisa-step2" class="border border-indigo-300 focus:ring-2 focus:ring-indigo-500 p-1 w-20 rounded text-center font-bold text-indigo-800 shadow-sm">
+                        </div>
+                        <div class="flex flex-wrap items-center gap-2">
+                            <span>៣. សន្និដ្ឋាន៖ ឥដ្ឋខ្មៅនោះគឺជារាង</span>
+                            <select id="pisa-step3" class="border border-indigo-300 p-2 rounded bg-indigo-50 font-bold text-indigo-900 shadow-sm focus:ring-2 focus:ring-indigo-500">
+                                <option value="">-- ជ្រើសរើស --</option>
+                                <option value="triangle">ត្រីកោណ</option>
+                                <option value="square">ការ៉េ</option>
+                                <option value="pentagon">បញ្ចកោណ</option>
+                            </select>
+                        </div>
+                        <button onclick="checkPisa()" class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 font-bold shadow-sm">ផ្ទៀងផ្ទាត់</button>
+                        <div id="pisa-feedback" class="mt-3 hidden p-4 rounded-lg font-bold text-sm leading-relaxed border shadow-sm"></div>
+                    </div>
+                </div>
+
+                <!-- PISA Test 2: Honeycomb -->
+                <div class="bg-amber-50 p-5 rounded-lg border-2 border-amber-200 shadow-sm mb-6">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="bg-amber-500 text-white px-3 py-1 rounded-full text-sm font-bold shadow">លំហាត់ PISA ទី២</span>
+                        <h4 class="font-bold text-amber-900 text-lg">ស្ថាបត្យកម្មសំបុកឃ្មុំធម្មជាតិ</h4>
+                    </div>
+                    <p class="text-gray-800 mb-4 leading-relaxed">
+                        <b>បរិបទ៖</b> សត្វឃ្មុំសាងសង់សំបុករបស់វាដោយប្រើក្រឡារាង <strong>"ឆកោណនិយ័ត"</strong> (៦ជ្រុងស្មើ) ជាប់ៗគ្នា។ ពួកវាធ្វើបែបនេះព្រោះរាងឆកោណអាចផ្គុំចូលគ្នាបានជិតល្អ (គ្មានចន្លោះប្រហោង) និងជួយសន្សំសំចៃក្រមួនបានច្រើនបំផុត។
+                    </p>
+                    <div class="mb-6 bg-white rounded-lg border border-amber-100 shadow-inner overflow-hidden relative group pdf-exclude">
+                        <div class="interaction-hint absolute top-3 left-3 text-xs text-amber-700 font-bold bg-amber-100 px-3 py-1.5 rounded-full z-10">👆 ទាញដើម្បីវិល</div>
+                        <div class="perspective-container">
+                            <div class="rotating-plane">
+                                <svg width="220" height="220" viewBox="-50 -50 300 300" class="svg-3d-shadow">
+                                    <polygon points="100,60 143,85 143,135 100,160 57,135 57,85" fill="rgba(251, 191, 36, 0.4)" stroke="#d97706" stroke-width="4" />
+                                    <polygon points="100,-40 143,-15 143,35 100,60 57,35 57,-15" fill="rgba(251, 191, 36, 0.2)" stroke="#d97706" stroke-width="3" />
+                                    <polygon points="186,110 229,135 229,185 186,210 143,185 143,135" fill="rgba(251, 191, 36, 0.2)" stroke="#d97706" stroke-width="3" />
+                                    <polygon points="14,110 57,135 57,185 14,210 -29,185 -29,135" fill="rgba(251, 191, 36, 0.2)" stroke="#d97706" stroke-width="3" />
+                                    <polygon points="186,10 229,35 229,85 186,110 143,85 143,35" fill="rgba(251, 191, 36, 0.2)" stroke="#d97706" stroke-width="3" />
+                                    <polygon points="14,10 57,35 57,85 14,110 -29,85 -29,35" fill="rgba(251, 191, 36, 0.2)" stroke="#d97706" stroke-width="3" />
+                                    <polygon points="100,160 143,185 143,235 100,260 57,235 57,185" fill="rgba(251, 191, 36, 0.2)" stroke="#d97706" stroke-width="3" />
+                                    <circle cx="143" cy="85" r="8" fill="#ef4444" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="space-y-4 mb-6">
+                        <p class="font-bold text-gray-800">សូមសាកល្បងគិត និងឆ្លើយសំណួរខាងក្រោម៖</p>
+                        <ol class="list-decimal ml-6 text-gray-700 space-y-2 font-bold">
+                            <li>តើរង្វាស់មុំក្នុងមួយនៃក្រឡាឆកោណនិយ័តស្មើនឹងប៉ុន្មានដឺក្រេ?</li>
+                            <li>ត្រង់ចំណុចកំពូលមួយ (ចំណុចក្រហម) តើមានក្រឡាឆកោណចំនួនប៉ុន្មានជួបគ្នា? ហេតុអ្វីបានជាវាផ្គុំចូលគ្នាជិតឈឹង?</li>
+                            <li>ចុះបើឃ្មុំព្យាយាមសង់សំបុកជារាង <strong>"បញ្ចកោណនិយ័ត"</strong> (៥ជ្រុង) វិញ តើវានឹងមានចន្លោះប្រហោងឬទេ? ហេតុអ្វី?</li>
+                        </ol>
+                    </div>
+                    <details class="bg-white rounded-lg border border-amber-300 shadow-sm overflow-hidden group">
+                        <summary class="font-bold text-amber-800 bg-amber-100 p-4 cursor-pointer hover:bg-amber-200">👉 មើលចម្លើយ៖ ហេតុអ្វីឃ្មុំប្រើឆកោណ?</summary>
+                        <div class="p-5 text-gray-700 border-t border-amber-200 bg-gray-50">
+                            <div class="border-l-4 border-green-500 pl-3">
+                                <p class="font-bold text-green-700">ចម្លើយសំណួរទី១៖ ១២០ ដឺក្រេ</p>
+                                <p class="text-sm mt-1"><b>ការពន្យល់៖</b> រូបមន្តមុំក្នុងមួយនៃពហុកោណនិយ័តគឺ S = (n-2) &times; 180&deg; / n ។ ដោយ n=6, យើងបាន (6-2) &times; 180&deg; / 6 = 720&deg; / 6 = <b>120&deg;</b>។</p>
+                            </div>
+                            <div class="border-l-4 border-green-500 pl-3 mt-4">
+                                <p class="font-bold text-green-700">ចម្លើយសំណួរទី២៖ ៣ ក្រឡា</p>
+                                <p class="text-sm mt-1"><b>ការពន្យល់៖</b> ដោយសារមុំមួយមាន 120&deg; នោះយើងយក 360&deg; (រង្វង់ជុំវិញមួយកំពូល) &divide; 120&deg; = <b>3</b>។ នេះបញ្ជាក់ថា ឆកោណ ៣ ផ្គុំចូលគ្នាបានជិតល្អឥតខ្ចោះ 360&deg; តែម្តង ដោយគ្មានចន្លោះប្រហោង។</p>
+                            </div>
+                            <div class="border-l-4 border-green-500 pl-3 mt-4">
+                                <p class="font-bold text-green-700">ចម្លើយសំណួរទី៣៖ មានចន្លោះប្រហោង!</p>
+                                <p class="text-sm mt-1"><b>ការពន្យល់៖</b> មុំក្នុងនៃបញ្ចកោណនិយ័តគឺ 108&deg;។ បើយើងយក 360&deg; &divide; 108&deg; = <b>3.33</b> (ចែកមិនដាច់)។ មានន័យថា បើយើងយកបញ្ចកោណ ៣ មកផ្គុំគ្នា (108&deg;&times;3 = 324&deg;) វានៅសល់ចន្លោះប្រហោង 36&deg;។ ដូច្នេះ ឃ្មុំមិនអាចប្រើបញ្ចកោណបានទេ។</p>
+                            </div>
+                        </div>
+                    </details>
+                </div>
+
+                <!-- PISA Test 3: Soccer Ball -->
+                <div class="bg-blue-50 p-5 rounded-lg border-2 border-blue-200 shadow-sm mb-6 relative overflow-hidden">
+                    <div class="interaction-hint absolute top-4 right-4 text-xs text-blue-700 font-bold bg-blue-100 px-3 py-1.5 rounded-full shadow-sm transition-opacity duration-300 z-10 flex items-center gap-2 border border-blue-200 pdf-exclude">👆 ទាញរមៀលបាល់ (Drag to Roll)</div>
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-bold shadow">លំហាត់ PISA ទី៣</span>
+                        <h4 class="font-bold text-blue-900 text-lg">ការរចនាបាល់ទាត់ (Soccer Ball)</h4>
+                    </div>
+                    <p class="text-gray-800 mb-4 leading-relaxed">
+                        <b>បរិបទ៖</b> បាល់ទាត់ស្តង់ដារដែលប្រើក្នុងការប្រកួត World Cup ពីជំនាន់មុនៗ មិនមែនជារាងស្វ៊ែរដែលរលោងតាំងពីដើមនោះទេ ប៉ុន្តែវាជាពហុមុខដែលដេរភ្ជាប់ពី <strong>បញ្ចកោណ (៥ជ្រុង) ចំនួន ១២</strong> ពណ៌ខ្មៅ និង <strong>ឆកោណ (៦ជ្រុង) ចំនួន ២០</strong> ពណ៌ស បង្កើតបានជារូបរាងមួយហៅថា Truncated Icosahedron ។
+                    </p>
+                    <div class="flex justify-center mb-6 p-4 pdf-exclude">
+                        <div class="ball-sphere w-40 h-40 flex items-center justify-center relative overflow-hidden">
+                            <svg width="150" height="150" viewBox="0 0 100 100" style="opacity: 0.8; transform: rotate(15deg);">
+                                <polygon points="50,25 74,42 65,70 35,70 26,42" fill="#1f2937" stroke="#000" stroke-width="1"/>
+                                <polygon points="50,25 26,42 10,25 25,0 50,0 65,10" fill="none" stroke="#000" stroke-width="1"/>
+                                <polygon points="74,42 50,25 65,10 90,15 100,40 90,60" fill="none" stroke="#000" stroke-width="1"/>
+                                <polygon points="65,70 74,42 90,60 85,85 60,95 45,85" fill="none" stroke="#000" stroke-width="1"/>
+                                <polygon points="35,70 65,70 45,85 20,90 10,75 15,50" fill="none" stroke="#000" stroke-width="1"/>
+                                <polygon points="26,42 35,70 15,50 0,40 0,15 10,25" fill="none" stroke="#000" stroke-width="1"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="space-y-4 mb-6">
+                        <p class="font-bold text-gray-800">សំណួរដើម្បីការត្រិះរិះពិចារណា៖</p>
+                        <p class="text-gray-700">តើហេតុអ្វីបានជាគេមិនអាចដេរគែម <b>"ឆកោណសុទ្ធ"</b> បញ្ចូលគ្នាដើម្បីបង្កើតជាបាល់បាន? ហេតុអ្វីចាំបាច់ត្រូវតែមាន "បញ្ចកោណ" លាយបញ្ចូលគ្នា?</p>
+                    </div>
+                    <details class="bg-white rounded-lg border border-blue-300 shadow-sm overflow-hidden group">
+                        <summary class="font-bold text-blue-800 bg-blue-100 p-4 cursor-pointer">👉 មើលចម្លើយ៖ ហេតុអ្វីត្រូវលាយបញ្ចកោណជាមួយឆកោណ?</summary>
+                        <div class="p-5 text-gray-700 border-t border-blue-200 bg-gray-50">
+                            <p class="font-bold text-blue-700">ចម្លើយ៖ ដើម្បីឲ្យផ្ទៃរបស់វាអាច "កោង" បាន!</p>
+                            <p class="text-sm"><b>ការពន្យល់គណិតវិទ្យា៖</b> ដូចដែលយើងបានដឹងក្នុងលំហាត់សំបុកឃ្មុំ ឆកោណចំនួន៣ ជួបគ្នាមានមុំសរុប 120&deg; &times; 3 = <b>360&deg;</b>។ នៅពេលដែលផលបូកមុំជុំវិញចំណុចមួយស្មើ 360&deg; ពិតប្រាកដ ផ្ទៃនោះនឹងក្លាយជា <b>ផ្ទៃរាបស្មើ (Flat surface)</b> មិនអាចបត់កោងបានទេ។</p>
+                            <p class="text-sm">ដើម្បីឲ្យវាបត់កោងចេញជារាង 3D ស្វ៊ែរ ផលបូកមុំជុំវិញចំណុចរួមមួយ <b>ត្រូវតែតូចជាង 360&deg;</b> (ហៅថា Angle defect)។ ដូច្នេះ គេយកបញ្ចកោណមួយ (មុំ 108&deg;) មកជួបជាមួយឆកោណពីរ (120&deg; + 120&deg;) បង្កើតបានជាមុំរួម 108&deg; + 240&deg; = <b>348&deg;</b>។ កាលណាខ្វះ 12&deg; បែបនេះ វាបង្ខំឲ្យផ្ទៃក្រណាត់ត្រូវតែ "បត់កោង" ដើម្បីអាចដេរភ្ជាប់គ្នាបាន!</p>
+                        </div>
+                    </details>
+                </div>
+
+                <!-- Concept Test 4: Road Sign -->
+                <div class="bg-rose-50 p-5 rounded-lg border-2 border-rose-200 shadow-sm mb-6">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="bg-rose-600 text-white px-3 py-1 rounded-full text-sm font-bold shadow">លំហាត់ប្រាជ្ញទី៤</span>
+                        <h4 class="font-bold text-rose-900 text-lg">ការកាត់ផ្លាកសញ្ញាចរាចរណ៍</h4>
+                    </div>
+                    <p class="text-gray-800 mb-4 leading-relaxed">
+                        <b>បរិបទ៖</b> ផ្លាកសញ្ញា "ឈប់" (STOP) នៅតាមដងផ្លូវ គឺជារាង <strong>អដ្ឋកោណនិយ័ត (៨ជ្រុង)</strong>។ ជាងដែកម្នាក់មានបន្ទះដែកការ៉េមួយផ្ទាំង។ គាត់ត្រូវកាត់ជ្រុងទាំង ៤ នៃការ៉េនោះចេញ ដើម្បីទទួលបានរាងអដ្ឋកោណ។
+                    </p>
+                    <div class="flex justify-center mb-6">
+                        <svg width="150" height="150" viewBox="0 0 100 100" class="shadow-md">
+                            <rect x="10" y="10" width="80" height="80" fill="#fecdd3" stroke="#e11d48" stroke-width="2" stroke-dasharray="4,4" />
+                            <polygon points="10,10 35,10 10,35" fill="#fda4af" />
+                            <polygon points="90,10 65,10 90,35" fill="#fda4af" />
+                            <polygon points="10,90 35,90 10,65" fill="#fda4af" />
+                            <polygon points="90,90 65,90 90,65" fill="#fda4af" />
+                            <polygon points="35,10 65,10 90,35 90,65 65,90 35,90 10,65 10,35" fill="#e11d48" stroke="#be123c" stroke-width="2" />
+                            <text x="50" y="55" font-size="20" fill="white" font-weight="bold" text-anchor="middle" font-family="Arial">STOP</text>
+                        </svg>
+                    </div>
+                    <div class="space-y-4 mb-6">
+                        <p class="font-bold text-gray-800">សំណួរ៖</p>
+                        <p class="text-gray-700">តើត្រីកោណទាំង ៤ ដែលជាងដែកបានកាត់ចោលនៅតាមជ្រុង (ពណ៌ផ្កាឈូក) នោះ គឺជាប្រភេទត្រីកោណអ្វី? ហើយវាមានរង្វាស់មុំប៉ុន្មានដឺក្រេខ្លះ?</p>
+                    </div>
+                    <details class="bg-white rounded-lg border border-rose-300 shadow-sm overflow-hidden group">
+                        <summary class="font-bold text-rose-800 bg-rose-100 p-4 cursor-pointer hover:bg-rose-200 transition">
+                            👉 ចុចទីនេះដើម្បីផ្ទៀងផ្ទាត់ចម្លើយ
+                        </summary>
+                        <div class="p-5 text-gray-700 space-y-4 border-t border-rose-200 bg-gray-50">
+                            <p class="font-bold text-rose-700">ចម្លើយ៖ ជាត្រីកោណកែងសមបាត ដែលមានមុំ (90&deg;, 45&deg;, 45&deg;)</p>
+                            <ul class="text-sm list-disc ml-5 space-y-2">
+                                <li>ជ្រុងនៃចតុកោណកែង (ការ៉េ) គឺមានមុំ <b>90&deg;</b> ស្រាប់ទៅហើយ។</li>
+                                <li>មុំក្នុងនៃអដ្ឋកោណនិយ័តគឺ <b>135&deg;</b>។</li>
+                                <li>មុំនៅសល់នៃបន្ទាត់ត្រង់ (180&deg;) សម្រាប់ធ្វើជាមុំត្រីកោណកាត់ចេញ គឺ 180&deg; - 135&deg; = <b>45&deg;</b>។</li>
+                                <li>ដូច្នេះ ត្រីកោណដែលកាត់ចេញមានមុំ 90&deg; មួយ និងមុំ 45&deg; ពីរ ដែលជាលក្ខណៈនៃ <b>ត្រីកោណកែងសមបាត</b>។</li>
+                            </ul>
+                        </div>
+                    </details>
+                </div>
+
+                <!-- Modern Application 5: 3D Graphics / Low-Poly -->
+                <div class="bg-violet-50 p-5 rounded-lg border-2 border-violet-200 shadow-sm mb-6">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="bg-violet-600 text-white px-3 py-1 rounded-full text-sm font-bold shadow">លំហាត់ PISA ទី៥</span>
+                        <h4 class="font-bold text-violet-900 text-lg">ក្រាហ្វិកកុំព្យូទ័រ និងហ្គេម 3D</h4>
+                    </div>
+                    <p class="text-gray-800 mb-4 leading-relaxed">
+                        <b>បរិបទ៖</b> នៅក្នុងយុគសម័យឌីជីថល រាល់តួអង្គហ្គេម គំនូរជីវចល ឬម៉ូដែល 3D ដ៏រលោងស្អាតដែលអ្នកឃើញនៅលើអេក្រង់ តាមពិតកើតចេញពីការផ្គុំពហុកោណតូចៗរាប់លានបញ្ចូលគ្នា (ហៅថា Low-Poly mesh)។ ជាទូទៅ កម្មវិធី 3D Engine ទាំងអស់ តែងតែបំបែកពហុកោណធំៗឲ្យទៅជា <strong>"ត្រីកោណ"</strong> មុននឹងវាអាចបង្ហាញជារូបភាពបាន។
+                    </p>
+                    <div class="mb-6 bg-white rounded-lg border border-violet-100 shadow-inner overflow-hidden relative group pdf-exclude">
+                        <div class="interaction-hint absolute top-3 left-3 text-xs text-violet-700 font-bold bg-violet-100 px-3 py-1.5 rounded-full shadow-sm transition-opacity duration-300 z-10 flex items-center gap-2 border border-violet-200">👆 ចុចហើយទាញដើម្បីវិល (Drag to Rotate)</div>
+                        <div class="perspective-container">
+                            <div class="rotating-plane">
+                                <svg width="200" height="200" viewBox="-100 -100 200 200" class="svg-3d-shadow">
+                                    <polygon points="0,-80 70,-30 70,40 0,90 -70,40 -70,-30" fill="rgba(139, 92, 246, 0.15)" stroke="#8b5cf6" stroke-width="2"/>
+                                    <polygon points="0,-80 30,0 70,-30" fill="rgba(139, 92, 246, 0.3)" stroke="#8b5cf6" stroke-width="2"/>
+                                    <polygon points="0,-80 -30,0 -70,-30" fill="rgba(139, 92, 246, 0.4)" stroke="#8b5cf6" stroke-width="2"/>
+                                    <polygon points="0,90 30,0 70,40" fill="rgba(139, 92, 246, 0.2)" stroke="#8b5cf6" stroke-width="2"/>
+                                    <polygon points="0,90 -30,0 -70,40" fill="rgba(139, 92, 246, 0.5)" stroke="#8b5cf6" stroke-width="2"/>
+                                    <polygon points="0,-80 30,0 -30,0" fill="rgba(139, 92, 246, 0.6)" stroke="#8b5cf6" stroke-width="2"/>
+                                    <polygon points="0,90 30,0 -30,0" fill="rgba(139, 92, 246, 0.25)" stroke="#8b5cf6" stroke-width="2"/>
+                                    <polygon points="70,-30 30,0 70,40" fill="rgba(139, 92, 246, 0.35)" stroke="#8b5cf6" stroke-width="2"/>
+                                    <polygon points="-70,-30 -30,0 -70,40" fill="rgba(139, 92, 246, 0.45)" stroke="#8b5cf6" stroke-width="2"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="space-y-4 mb-6">
+                        <p class="font-bold text-gray-800">សំណួរដើម្បីការត្រិះរិះពិចារណា៖</p>
+                        <p class="text-gray-700">ហេតុអ្វីបានជាម៉ាស៊ីនកុំព្យូទ័រ (GPU) ចូលចិត្តប្រើប្រាស់ <strong>"ត្រីកោណ"</strong> ជាងគេបំផុតក្នុងការបង្កើតរូបភាព 3D? ហេតុអ្វីវាមិនប្រើចតុកោណ ឬបញ្ចកោណជំនួសវិញ?</p>
+                    </div>
+                    <details class="bg-white rounded-lg border border-violet-300 shadow-sm overflow-hidden group">
+                        <summary class="font-bold text-violet-800 bg-violet-100 p-4 cursor-pointer hover:bg-violet-200 transition">
+                            👉 ចុចទីនេះដើម្បីផ្ទៀងផ្ទាត់ចម្លើយ
+                        </summary>
+                        <div class="p-5 text-gray-700 space-y-4 border-t border-violet-200 bg-gray-50">
+                            <p class="font-bold text-violet-700">ចម្លើយ៖ ព្រោះត្រីកោណជារូបដែល "រាបស្មើជានិច្ច" (Always Coplanar)!</p>
+                            <ul class="text-sm list-disc ml-5 space-y-2">
+                                <li>តាមគោលការណ៍ធរណីមាត្រ កំពូលទាំង ៣ នៃត្រីកោណ តែងតែបង្កើតបានប្លង់រាបស្មើមួយជានិច្ច ទោះបីជាអ្នកទាញកំពូលណាមួយទៅទីណាក៏ដោយ។</li>
+                                <li>ផ្ទុយទៅវិញ បើអ្នកមានចតុកោណ (៤កំពូល) ហើយអ្នកទាញកំពូលមួយឡើងលើ វានឹងផ្នត់ ឬកោងខូចរាងលែងរាបស្មើហើយ (Non-planar)។</li>
+                                <li>កុំព្យូទ័រត្រូវការផ្ទៃរាបស្មើទាំងស្រុង ទើបវាអាចគណនាពន្លឺ ចំណាំងផ្លាត និងស្រមោល (Lighting & Shading) បានលឿននិងត្រឹមត្រូវ។ ដូច្នេះ ការបំបែកគ្រប់យ៉ាងទៅជាត្រីកោណ គឺជាវិធីដែលលឿនបំផុតសម្រាប់ Hardware ក្រាហ្វិកសព្វថ្ងៃ!</li>
+                            </ul>
+                        </div>
+                    </details>
+                </div>
+
+                <!-- Modern Application 6: Stealth Technology -->
+                <div class="bg-gray-800 p-5 rounded-lg border-2 border-gray-600 shadow-lg text-gray-200 mb-6">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="bg-gray-600 text-white px-3 py-1 rounded-full text-sm font-bold shadow">លំហាត់ PISA ទី៦</span>
+                        <h4 class="font-bold text-gray-100 text-lg">យន្តហោះបំបាំងកាយ (Stealth Technology)</h4>
+                    </div>
+                    <p class="text-gray-300 mb-4 leading-relaxed">
+                        <b>បរិបទ៖</b> យន្តហោះចម្បាំងបំបាំងកាយ (ដូចជាម៉ូដែល F-117 Nighthawk) មិនមានរាងកោងរលោងទេ។ ផ្ទៃរបស់វាពោរពេញទៅដោយរាង <strong>"ពហុកោណរាបស្មើ" (Facets)</strong> កាត់កាច់ៗគ្នា។
+                    </p>
+                    <div class="mb-6 bg-gray-900 rounded-lg border border-gray-700 shadow-inner overflow-hidden relative group pdf-exclude">
+                        <div class="perspective-container">
+                            <div class="rotating-plane">
+                                <svg width="300" height="250" viewBox="-150 -125 300 250" class="svg-3d-shadow">
+                                    <path d="M -130,-50 L -30,-10" stroke="#ef4444" stroke-width="3" class="radar-anim-in"/>
+                                    <path d="M -130,50 L -30,10" stroke="#ef4444" stroke-width="3" class="radar-anim-in" style="animation-delay: 0.5s;"/>
+                                    <path d="M -10,-20 L 80,-110" stroke="#3b82f6" stroke-width="4" class="radar-anim-out"/>
+                                    <path d="M -10,20 L 80,110" stroke="#3b82f6" stroke-width="4" class="radar-anim-out" style="animation-delay: 0.5s;"/>
+                                    <g transform="scale(1.3) translate(10, 0)">
+                                        <polygon points="-60,0 -10,-15 10,0 -10,15" fill="#374151" stroke="#111827" stroke-width="1.5"/>
+                                        <polygon points="-10,-15 40,-60 20,0 10,0" fill="#4b5563" stroke="#111827" stroke-width="1.5"/>
+                                        <polygon points="-10,15 40,60 20,0 10,0" fill="#4b5563" stroke="#111827" stroke-width="1.5"/>
+                                        <polygon points="10,0 20,0 60,-20 50,0" fill="#6b7280" stroke="#111827" stroke-width="1.5"/>
+                                        <polygon points="10,0 20,0 60,20 50,0" fill="#6b7280" stroke="#111827" stroke-width="1.5"/>
+                                        <polygon points="-10,0 0,-4 10,0 0,4" fill="#60a5fa" stroke="#1e3a8a" stroke-width="1"/>
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <details class="bg-gray-700 rounded-lg border border-gray-600 shadow-sm overflow-hidden group">
+                        <summary class="font-bold text-gray-200 bg-gray-600 p-4 cursor-pointer hover:bg-gray-500">👉 មើលចម្លើយ៖ ហេតុអ្វីយន្តហោះនេះកាច់ៗ?</summary>
+                        <div class="p-5 text-gray-300 border-t border-gray-500 bg-gray-800">
+                            <p>ដើម្បីបញ្ចៀសរលករ៉ាដាមិនឲ្យត្រឡប់ទៅរកប្រភពដើមវិញ! ផ្ទៃពហុកោណរាបស្មើជះចំណាំងផ្លាតរលករ៉ាដាទៅកាន់ទិសដៅផ្សេងយ៉ាងឆ្ងាយ ធ្វើឲ្យស្ថានីយ៍រ៉ាដាសត្រូវចាប់សញ្ញាមិនបាន។</p>
+                        </div>
+                    </details>
+                </div>
+
+                <!-- Modern Application 7: 4D Geometry / Tesseract -->
+                <div class="bg-cyan-50 p-5 rounded-lg border-2 border-cyan-300 shadow-lg relative overflow-hidden">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="bg-cyan-600 text-white px-3 py-1 rounded-full text-sm font-bold shadow">លំហាត់ PISA ទី៧</span>
+                        <h4 class="font-bold text-cyan-900 text-lg">ការឈានចូលវិមាត្រទី៤ (4D Tesseract)</h4>
+                    </div>
+                    <div class="mb-6 bg-gray-900 rounded-lg border border-cyan-500/50 shadow-2xl overflow-hidden relative group p-4 py-8 pdf-exclude">
+                        <div class="perspective-container">
+                            <div class="rotating-plane">
+                                <svg width="250" height="250" viewBox="-150 -150 300 300" class="glow-effect tesseract-outer">
+                                    <polygon points="-80,-80 80,-80 80,80 -80,80" fill="none" stroke="#06b6d4" stroke-width="2" />
+                                    <polygon points="-40,-120 120,-120 120,40 -40,40" fill="none" stroke="#06b6d4" stroke-width="2" />
+                                    <line x1="-80" y1="-80" x2="-40" y2="-120" stroke="#06b6d4" stroke-width="2" />
+                                    <line x1="80" y1="-80" x2="120" y2="-120" stroke="#06b6d4" stroke-width="2" />
+                                    <line x1="80" y1="80" x2="120" y2="40" stroke="#06b6d4" stroke-width="2" />
+                                    <line x1="-80" y1="80" x2="-40" y2="40" stroke="#06b6d4" stroke-width="2" />
+                                    <g class="tesseract-inner">
+                                        <polygon points="-50,-50 50,-50 50,50 -50,50" fill="rgba(168, 85, 247, 0.2)" stroke="#a855f7" stroke-width="2" />
+                                        <polygon points="-20,-80 80,-80 80,20 -20,20" fill="rgba(6, 182, 212, 0.1)" stroke="#a855f7" stroke-width="2" />
+                                        <line x1="-50" y1="-50" x2="-20" y2="-80" stroke="#a855f7" stroke-width="2" />
+                                        <line x1="50" y1="-50" x2="80" y2="-80" stroke="#a855f7" stroke-width="2" />
+                                        <line x1="50" y1="50" x2="80" y2="20" stroke="#a855f7" stroke-width="2" />
+                                        <line x1="-50" y1="50" x2="-20" y2="20" stroke="#a855f7" stroke-width="2" />
+                                        <line x1="-50" y1="-50" x2="-100" y2="-100" stroke="#ec4899" stroke-width="1.5" stroke-dasharray="4,4" />
+                                        <line x1="50" y1="-50" x2="100" y2="-100" stroke="#ec4899" stroke-width="1.5" stroke-dasharray="4,4" />
+                                        <line x1="50" y1="50" x2="100" y2="100" stroke="#ec4899" stroke-width="1.5" stroke-dasharray="4,4" />
+                                        <line x1="-50" y1="50" x2="-100" y2="100" stroke="#ec4899" stroke-width="1.5" stroke-dasharray="4,4" />
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <details class="bg-white rounded-lg border border-cyan-300 shadow-sm overflow-hidden group">
+                        <summary class="font-bold text-cyan-800 bg-cyan-100 p-4 cursor-pointer hover:bg-cyan-200">👉 មើលចម្លើយ៖ Tesseract កើតពីអ្វី?</summary>
+                        <div class="p-5 text-gray-700 border-t border-cyan-200 bg-cyan-50">
+                            <p>វាត្រូវបានបង្កើតចេញពី "គូប (Cubes) ចំនួន ៨" បញ្ចូលគ្នា! ដោយសារភ្នែកយើងរស់ក្នុងលោក 3D យើងឃើញគូបទាំង ៨ នោះត្រួតស៊ីគ្នា រួមនិងរីកឆ្លាស់គ្នាទៅវិញទៅមក បង្កើតបានជាចលនា 4D ដ៏អស្ចារ្យ។</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+            
+            <!-- Section 6: References -->
+            <div id="section6" class="mb-8 bg-gray-50 p-6 rounded-lg shadow-sm border border-gray-300 mt-8">
+                <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2 border-b border-gray-200 pb-2">
+                    <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                    ៦. ឯកសារយោង (References)
+                </h3>
+                <p class="text-gray-700 mb-5 leading-relaxed text-sm">
+                    ខ្លឹមសារមេរៀន លំហាត់ និងការអនុវត្តន៍ទាំងអស់នៅក្នុងឯកសារនេះ ត្រូវបានស្រាវជ្រាវ ចងក្រង និងដកស្រង់ចេញពីប្រភពសំខាន់ៗដូចខាងក្រោម៖
+                </p>
+                <ul class="list-none space-y-4 text-sm text-gray-800">
+                    <li class="flex items-start gap-3 bg-white p-3 rounded border border-gray-100 shadow-sm">
+                        <span class="text-blue-500 text-xl leading-none">📚</span>
+                        <span><b>សៀវភៅពុម្ពគណិតវិទ្យា ថ្នាក់ទី៩៖</b> បោះពុម្ពដោយក្រសួងអប់រំ យុវជន និងកីឡា នៃព្រះរាជាណាចក្រកម្ពុជា (ជាមូលដ្ឋានគ្រឹះទ្រឹស្តី រូបមន្ត និងនិយមន័យ)។</span>
+                    </li>
+                    <li class="flex items-start gap-3 bg-white p-3 rounded border border-gray-100 shadow-sm">
+                        <span class="text-purple-500 text-xl leading-none">📝</span>
+                        <span><b>វិញ្ញាសាប្រឡងឌីប្លូម (១៩៨៩ - បច្ចុប្បន្ន)៖</b> កម្រងវិញ្ញាសាប្រឡងសញ្ញាបត្រមធ្យមសិក្សាបឋមភូមិកន្លងមក ដើម្បីជាការអនុវត្តជាក់ស្តែងសម្រាប់សិស្ស។</span>
+                    </li>
+                    <li class="flex items-start gap-3 bg-white p-3 rounded border border-gray-100 shadow-sm">
+                        <span class="text-green-500 text-xl leading-none">🌍</span>
+                        <span><b>កម្មវិធីវាយតម្លៃសិស្សអន្តរជាតិ (PISA)៖</b> ដកស្រង់លំហាត់បែបត្រិះរិះពិចារណា និងការដោះស្រាយបញ្ហាក្នុងជីវភាពរស់នៅប្រចាំថ្ងៃពិតៗ (ដូចជាការសង់សំបុកឃ្មុំ ការក្រាលឥដ្ឋ និងការកាត់ផ្លាកសញ្ញា)។</span>
+                    </li>
+                    <li class="flex items-start gap-3 bg-white p-3 rounded border border-gray-100 shadow-sm">
+                        <span class="text-rose-500 text-xl leading-none">🚀</span>
+                        <span><b>វិទ្យាសាស្ត្រ និងបច្ចេកវិទ្យាទំនើប៖</b> ឯកសារស្រាវជ្រាវទាក់ទងនឹងការអនុវត្តធរណីមាត្រក្នុងវិស័យ ក្រាហ្វិក 3D (Polygonal Modeling), បច្ចេកវិទ្យាយន្តហោះបំបាំងកាយពីរ៉ាដា (Stealth Technology), និងទ្រឹស្តីវិមាត្រទី៤ (Tesseract 4D)។</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- TAB 2: Quiz -->
+        <div id="tab-2" class="p-6 md:p-8 tab-content-2 fade-in hidden relative">
+            <div class="flex justify-end mb-4 pdf-exclude">
+                <button id="btn-pdf-tab2" onclick="downloadTabPDF('tab-2', 'កិច្ចការផ្ទះ_ពហុកោណ_ថ្នាក់ទី៩.pdf', 'portrait')" class="bg-green-600 text-white px-5 py-2 rounded-lg font-bold hover:bg-green-700 shadow-md flex items-center gap-2 transition">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                    ដោនឡោត PDF (A4 បញ្ឈរ)
+                </button>
+            </div>
+
+            <!-- Header for Quiz -->
+            <div class="border-4 border-double border-green-700 p-5 mb-6 bg-white rounded-lg shadow-sm">
+                <h2 class="title-font text-center text-2xl mb-6 text-green-800">សន្លឹកកិច្ចការ លំហាត់អនុវត្ត</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 text-lg">
+                    <div class="flex items-center">
+                        <label for="student-name" class="whitespace-nowrap font-bold text-gray-700">ឈ្មោះ៖</label>
+                        <input type="text" id="student-name" class="flex-1 ml-3 border-b-2 border-gray-300 bg-transparent focus:outline-none focus:border-green-600 px-2 pb-1 text-blue-900 font-bold" placeholder="វាយឈ្មោះនៅទីនេះ">
+                    </div>
+                    <div class="flex items-center">
+                        <label for="student-gender" class="whitespace-nowrap font-bold text-gray-700">ភេទ៖</label>
+                        <input type="text" id="student-gender" class="w-full md:w-32 ml-3 border-b-2 border-gray-300 bg-transparent focus:outline-none focus:border-green-600 px-2 pb-1 text-blue-900 font-bold text-center" placeholder="ប្រុស/ស្រី">
+                    </div>
+                    <div class="flex items-center">
+                        <label for="student-grade" class="whitespace-nowrap font-bold text-gray-700">ថ្នាក់ទី៖</label>
+                        <input type="text" id="student-grade" class="w-full md:w-32 ml-3 border-b-2 border-gray-300 bg-transparent focus:outline-none focus:border-green-600 px-2 pb-1 text-blue-900 font-bold text-center" placeholder="៩">
+                    </div>
+                    <div class="flex items-center">
+                        <label for="student-year" class="whitespace-nowrap font-bold text-gray-700">ឆ្នាំសិក្សា៖</label>
+                        <input type="text" id="student-year" class="flex-1 ml-3 border-b-2 border-gray-300 bg-transparent focus:outline-none focus:border-green-600 px-2 pb-1 text-blue-900 font-bold text-center" placeholder="២០២៥ - ២០២៦">
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-5 rounded-lg shadow-md mb-6 flex flex-col md:flex-row justify-between items-center border border-green-200 pdf-exclude">
+                <div class="text-2xl font-bold text-gray-700 mb-4 md:mb-0">
+                    ម៉ោងកំណត់៖ <span id="timer-display" class="text-red-600 font-mono text-3xl">120:00</span>
+                </div>
+                <button id="start-btn" onclick="startQuiz()" class="bg-green-600 text-white px-8 py-3 rounded-lg font-bold text-lg hover:bg-green-700 shadow-lg shadow-green-400/50 transition">
+                    ចាប់ផ្តើមធ្វើតេស្ត
+                </button>
+            </div>
+
+            <div id="quiz-container" class="hidden opacity-50 pointer-events-none transition-all duration-300">
+                <p class="text-sm text-gray-500 mb-4">* សំណួរពហុជ្រើសរើសចំនួន ៥០ សំណួរ។</p>
+                <div id="questions-wrapper" class="space-y-6"></div>
+                
+                <div class="text-center mt-8 pdf-exclude">
+                    <button onclick="submitQuiz()" class="bg-blue-600 text-white px-8 py-3 rounded-lg font-bold text-xl hover:bg-blue-700 shadow-lg transition">
+                        បញ្ជូនចម្លើយ (Submit)
+                    </button>
+                </div>
+                
+                <div id="quiz-score" class="mt-6 text-center text-2xl font-bold hidden bg-white p-4 rounded-lg border shadow-sm"></div>
+                
+                <div id="post-quiz-actions" class="mt-8 flex justify-center gap-4 hidden pdf-exclude">
+                    <button id="btn-screenshot" onclick="downloadQuizScreenshot()" class="bg-blue-600 text-white px-8 py-3 rounded-lg font-bold text-xl hover:bg-blue-700 shadow-lg flex items-center justify-center gap-3 transition">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path></svg>
+                        ថត Screenshot លទ្ធផលសង្ខេប (PNG)
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 3: Slides -->
+        <div id="tab-3" class="p-6 md:p-8 tab-content-3 fade-in hidden">
+            <div class="flex flex-wrap justify-end gap-3 mb-4 pdf-exclude">
+                <button onclick="toggleFullscreen()" class="bg-gray-800 text-white px-6 py-3 rounded-lg font-bold hover:bg-gray-900 shadow-lg flex items-center gap-2 transition">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path></svg>
+                    Fullscreen (A4 ផ្តេក)
+                </button>
+                <button id="btn-pdf-slides" onclick="downloadSlidesPDF()" class="bg-orange-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-orange-700 shadow-lg flex items-center gap-2 transition">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                    ដោនឡោត PDF អត្ថបទទាំងមូល
+                </button>
+            </div>
+
+            <h2 class="title-font text-2xl text-orange-800 mb-4 border-b-2 border-orange-200 pb-2 pdf-exclude">ស្លាយមេរៀន (Presentation)</h2>
+            
+            <div id="presentation-wrapper" class="w-full flex justify-center bg-gray-100 p-2 rounded-lg border-2 border-orange-200 relative group">
+                <button onclick="toggleFullscreen()" class="absolute top-4 right-4 z-50 bg-gray-800/80 text-white px-4 py-2 rounded-lg font-bold hover:bg-gray-900 shadow-md flex items-center gap-2 transition pdf-exclude opacity-70 hover:opacity-100 backdrop-blur-sm">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path></svg>
+                    <span class="hidden sm:inline">ពេញអេក្រង់</span>
+                </button>
+
+                <div id="presentation-view" class="slide-container rounded-lg shadow-xl flex flex-col justify-center items-center p-8 relative bg-white w-full">
+                    <div id="slide-content" class="w-full h-full flex flex-col justify-center items-center text-center">
+                    </div>
+                    <div class="absolute bottom-4 left-0 right-0 flex justify-between px-8 fullscreen-hide pdf-exclude z-50">
+                        <button onclick="prevSlide()" class="bg-orange-500 text-white px-6 py-2 rounded hover:bg-orange-600 font-bold transition shadow-md">&larr; ថយក្រោយ</button>
+                        <span id="slide-counter" class="bg-white px-4 py-2 rounded font-bold text-orange-700 border border-orange-200 shadow-sm">1 / 25</span>
+                        <button onclick="nextSlide()" class="bg-orange-500 text-white px-6 py-2 rounded hover:bg-orange-600 font-bold transition shadow-md">បន្ទាប់ &rarr;</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 4: Diploma Exams -->
+        <div id="tab-4" class="p-6 md:p-8 tab-content-4 fade-in hidden relative">
+            <div class="flex justify-end mb-4 pdf-exclude">
+                <button id="btn-pdf-tab4" onclick="downloadTabPDF('tab-4', 'វិញ្ញាសាប្រឡងឌីប្លូម_ពហុកោណ.pdf', 'portrait')" class="bg-purple-600 text-white px-5 py-2 rounded-lg font-bold hover:bg-purple-700 shadow-md flex items-center gap-2 transition">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                    ដោនឡោត PDF (A4 បញ្ឈរ)
+                </button>
+            </div>
+
+            <div class="border-4 border-double border-purple-700 p-5 mb-6 bg-white rounded-lg shadow-sm">
+                <h2 class="title-font text-center text-2xl text-purple-800">លំហាត់ធ្លាប់ចេញប្រឡងឌីប្លូម (១៩៨៩ - បច្ចុប្បន្ន)</h2>
+                <p class="text-center text-gray-600 mt-2 font-bold">វិញ្ញាសាប្រឡងសញ្ញាបត្រមធ្យមសិក្សាបឋមភូមិ (ថ្នាក់ទី៩) ទាក់ទងនឹងមេរៀនពហុកោណ</p>
+            </div>
+
+            <div class="space-y-6">
+                <!-- Exercise 1: 1989 -->
+                <div class="bg-white p-6 rounded-lg border-l-8 border-purple-500 shadow-sm">
+                    <div class="flex gap-3 mb-4">
+                        <span class="bg-purple-100 text-purple-800 font-bold px-3 py-1 rounded-full text-sm">លំហាត់ទី១</span>
+                        <span class="text-gray-500 text-sm py-1">(សម័យប្រឡង៖ ឆ្នាំ ១៩៨៩)</span>
+                    </div>
+                    <p class="text-lg text-gray-800 mb-4 font-bold leading-relaxed">ផលបូកមុំក្នុងនៃពហុកោណមួយស្មើនឹង ១៨០០&deg;។ តើពហុកោណនោះមានប៉ុន្មានជ្រុង?</p>
+                    <details class="bg-purple-50 rounded border border-purple-200 shadow-inner group pdf-exclude">
+                        <summary class="font-bold text-purple-700 p-3 cursor-pointer hover:bg-purple-100 transition">👉 បង្ហាញចម្លើយ និង ដំណោះស្រាយ</summary>
+                        <div class="p-4 border-t border-purple-200 text-gray-700 space-y-3 text-lg">
+                            <p><b>ដំណោះស្រាយ៖</b></p>
+                            <ul class="ml-5 list-disc space-y-1">
+                                <li>តាមរូបមន្តផលបូកមុំក្នុង៖ S = (n - 2) &times; 180&deg;</li>
+                                <li>គេមាន S = 1800&deg; នាំឲ្យ (n - 2) &times; 180&deg; = 1800&deg;</li>
+                                <li>n - 2 = 1800 / 180 = 10</li>
+                                <li>n = 10 + 2 = <b class="text-purple-700 text-xl">12 ជ្រុង</b></li>
+                                <li>ដូចនេះ ពហុកោណនោះមាន <b class="text-purple-700">១២ ជ្រុង</b> (ទ្វាទសកោណ)។</li>
+                            </ul>
+                        </div>
+                    </details>
+                </div>
+
+                <!-- Exercise 2: 1995 -->
+                <div class="bg-white p-6 rounded-lg border-l-8 border-purple-500 shadow-sm">
+                    <div class="flex gap-3 mb-4">
+                        <span class="bg-purple-100 text-purple-800 font-bold px-3 py-1 rounded-full text-sm">លំហាត់ទី២</span>
+                        <span class="text-gray-500 text-sm py-1">(សម័យប្រឡង៖ ឆ្នាំ ១៩៩៥)</span>
+                    </div>
+                    <p class="text-lg text-gray-800 mb-4 font-bold leading-relaxed">ផលបូកមុំក្នុងនៃពហុកោណមួយធំជាងផលបូកមុំក្រៅរបស់វាចំនួន ២ ដង។ តើពហុកោណនោះមានប៉ុន្មានជ្រុង និងមានឈ្មោះអ្វី?</p>
+                    <details class="bg-purple-50 rounded border border-purple-200 shadow-inner group pdf-exclude">
+                        <summary class="font-bold text-purple-700 p-3 cursor-pointer hover:bg-purple-100 transition">👉 បង្ហាញចម្លើយ និង ដំណោះស្រាយ</summary>
+                        <div class="p-4 border-t border-purple-200 text-gray-700 space-y-3 text-lg">
+                            <p><b>ដំណោះស្រាយ៖</b></p>
+                            <ul class="ml-5 list-disc space-y-1">
+                                <li>តាមរូបមន្តផលបូកមុំក្នុង៖ S = (n - 2) &times; 180&deg;</li>
+                                <li>ផលបូកមុំក្រៅនៃពហុកោណប៉ោងគឺ S' = 360&deg; ជានិច្ច</li>
+                                <li>តាមបម្រាប់៖ S = 2 &times; S'</li>
+                                <li>(n - 2) &times; 180&deg; = 2 &times; 360&deg;</li>
+                                <li>(n - 2) &times; 180&deg; = 720&deg;</li>
+                                <li>n - 2 = 720 / 180 = 4</li>
+                                <li>n = 4 + 2 = <b class="text-purple-700 text-xl">6 ជ្រុង</b></li>
+                                <li>ដូចនេះ ពហុកោណនោះមាន ៦ជ្រុង ដែលមានឈ្មោះថា <b class="text-purple-700">ឆកោណ</b>។</li>
+                            </ul>
+                        </div>
+                    </details>
+                </div>
+
+                <!-- Exercise 3: 2002 -->
+                <div class="bg-white p-6 rounded-lg border-l-8 border-purple-500 shadow-sm">
+                    <div class="flex gap-3 mb-4">
+                        <span class="bg-purple-100 text-purple-800 font-bold px-3 py-1 rounded-full text-sm">លំហាត់ទី៣</span>
+                        <span class="text-gray-500 text-sm py-1">(សម័យប្រឡង៖ ឆ្នាំ ២០០២)</span>
+                    </div>
+                    <p class="text-lg text-gray-800 mb-4 font-bold leading-relaxed">ពហុកោណនិយ័តមួយមានមុំក្រៅមួយស្មើនឹង ៣០&deg;។<br>ក. តើពហុកោណនេះមានប៉ុន្មានជ្រុង?<br>ខ. គណនាផលបូកមុំក្នុងនៃពហុកោណនោះ។</p>
+                    <details class="bg-purple-50 rounded border border-purple-200 shadow-inner group pdf-exclude">
+                        <summary class="font-bold text-purple-700 p-3 cursor-pointer hover:bg-purple-100 transition">👉 បង្ហាញចម្លើយ និង ដំណោះស្រាយ</summary>
+                        <div class="p-4 border-t border-purple-200 text-gray-700 space-y-3 text-lg">
+                            <p><b>ក. រកចំនួនជ្រុង (n)៖</b></p>
+                            <ul class="ml-5 list-disc space-y-1">
+                                <li>តាមរូបមន្តមុំក្រៅមួយ = 360&deg; / n</li>
+                                <li>គេបាន៖ 30&deg; = 360&deg; / n</li>
+                                <li>n = 360 / 30 = <b class="text-purple-700 text-xl">12 ជ្រុង</b></li>
+                            </ul>
+                            <p class="mt-4"><b>ខ. គណនាផលបូកមុំក្នុង (S)៖</b></p>
+                            <ul class="ml-5 list-disc space-y-1">
+                                <li>តាមរូបមន្ត S = (n - 2) &times; 180&deg; ដោយ n = 12</li>
+                                <li>S = (12 - 2) &times; 180&deg; = 10 &times; 180&deg; = <b class="text-purple-700 text-xl">1800&deg;</b></li>
+                            </ul>
+                        </div>
+                    </details>
+                </div>
+
+                <!-- Exercise 4: 2014 -->
+                <div class="bg-white p-6 rounded-lg border-l-8 border-purple-500 shadow-sm">
+                    <div class="flex gap-3 mb-4">
+                        <span class="bg-purple-100 text-purple-800 font-bold px-3 py-1 rounded-full text-sm">លំហាត់ទី៤</span>
+                        <span class="text-gray-500 text-sm py-1">(សម័យប្រឡង៖ ឆ្នាំ ២០១៤)</span>
+                    </div>
+                    <p class="text-lg text-gray-800 mb-4 font-bold leading-relaxed">គណនារង្វាស់មុំក្នុងមួយ និងមុំក្រៅមួយនៃពហុកោណនិយ័តដែលមាន ១៥ ជ្រុង។</p>
+                    <details class="bg-purple-50 rounded border border-purple-200 shadow-inner group pdf-exclude">
+                        <summary class="font-bold text-purple-700 p-3 cursor-pointer hover:bg-purple-100 transition">👉 បង្ហាញចម្លើយ និង ដំណោះស្រាយ</summary>
+                        <div class="p-4 border-t border-purple-200 text-gray-700 space-y-3 text-lg">
+                            <p><b>ដំណោះស្រាយ៖</b></p>
+                            <p>យើងមានជ្រុង n = 15</p>
+                            <ul class="ml-5 list-disc space-y-1">
+                                <li><b>រកមុំក្រៅមួយ៖</b> 360&deg; / 15 = <b class="text-purple-700 text-xl">24&deg;</b></li>
+                                <li><b>រកមុំក្នុងមួយ៖</b> ដោយមុំក្នុងនិងមុំក្រៅជាមុំបន្ថែម (ផលបូក 180&deg;)</li>
+                                <li>មុំក្នុងមួយ = 180&deg; - 24&deg; = <b class="text-purple-700 text-xl">156&deg;</b></li>
+                                <li>(ឬប្រើរូបមន្ត (15-2)&times;180&deg;/15 = 13 &times; 12&deg; = 156&deg;)</li>
+                            </ul>
+                        </div>
+                    </details>
+                </div>
+
+                <!-- Exercise 5: 2018 (Existing) -->
+                <div class="bg-white p-6 rounded-lg border-l-8 border-purple-500 shadow-sm">
+                    <div class="flex gap-3 mb-4">
+                        <span class="bg-purple-100 text-purple-800 font-bold px-3 py-1 rounded-full text-sm">លំហាត់ទី៥</span>
+                        <span class="text-gray-500 text-sm py-1">(សម័យប្រឡង៖ ២៣ កក្កដា ឆ្នាំ ២០១៨)</span>
+                    </div>
+                    <p class="text-lg text-gray-800 mb-4 font-bold leading-relaxed">ពហុកោណនិយ័តមួយមានផលបូកមុំក្នុងស្មើនឹង ១០៨០&deg;។<br>ក. តើពហុកោណនោះមានប៉ុន្មានជ្រុង និងមានឈ្មោះអ្វី?<br>ខ. គណនារង្វាស់មុំក្នុងមួយ និងមុំក្រៅមួយនៃពហុកោណនោះ។</p>
+                    
+                    <details class="bg-purple-50 rounded border border-purple-200 shadow-inner group pdf-exclude">
+                        <summary class="font-bold text-purple-700 p-3 cursor-pointer hover:bg-purple-100 transition">👉 បង្ហាញចម្លើយ និង ដំណោះស្រាយ</summary>
+                        <div class="p-4 border-t border-purple-200 text-gray-700 space-y-3 text-lg">
+                            <p><b>ក. រកចំនួនជ្រុង (n) និងឈ្មោះ៖</b></p>
+                            <ul class="ml-5 list-disc space-y-1">
+                                <li>តាមរូបមន្តផលបូកមុំក្នុង៖ S = (n - 2) &times; 180&deg;</li>
+                                <li>គេមាន S = 1080&deg; គេបាន៖ 1080&deg; = (n - 2) &times; 180&deg;</li>
+                                <li>n - 2 = 1080 / 180 = 6</li>
+                                <li>n = 6 + 2 = <b class="text-purple-700 text-xl">8 ជ្រុង</b></li>
+                                <li>ដូចនេះ ពហុកោណនោះមាន ៨ជ្រុង ដែលមានឈ្មោះថា <b class="text-purple-700">អដ្ឋកោណនិយ័ត</b>។</li>
+                            </ul>
+                            <p class="mt-4"><b>ខ. គណនាមុំក្នុងមួយ និងមុំក្រៅមួយ៖</b></p>
+                            <ul class="ml-5 list-disc space-y-1">
+                                <li>មុំក្នុងមួយ = S / n = 1080&deg; / 8 = <b class="text-purple-700 text-xl">135&deg;</b></li>
+                                <li>មុំក្រៅមួយ = 360&deg; / n = 360&deg; / 8 = <b class="text-purple-700 text-xl">45&deg;</b></li>
+                                <li>(ចំណាំ៖ ផ្ទៀងផ្ទាត់ មុំក្នុង + មុំក្រៅ = 135&deg; + 45&deg; = 180&deg;)</li>
+                            </ul>
+                        </div>
+                    </details>
+                </div>
+
+                <!-- Exercise 6: 2020 (Existing) -->
+                <div class="bg-white p-6 rounded-lg border-l-8 border-purple-500 shadow-sm">
+                    <div class="flex gap-3 mb-4">
+                        <span class="bg-purple-100 text-purple-800 font-bold px-3 py-1 rounded-full text-sm">លំហាត់ទី៦</span>
+                        <span class="text-gray-500 text-sm py-1">(សម័យប្រឡង៖ ៣០ វិច្ឆិកា ឆ្នាំ ២០២០)</span>
+                    </div>
+                    <p class="text-lg text-gray-800 mb-4 font-bold leading-relaxed">រង្វាស់មុំក្នុងមួយនៃពហុកោណនិយ័តមួយស្មើនឹង ១៤៤&deg;។<br>ក. រករង្វាស់មុំក្រៅមួយនៃពហុកោណនោះ។<br>ខ. តើពហុកោណនេះមានឈ្មោះអ្វី? រកផលបូកមុំក្នុងទាំងអស់។</p>
+                    
+                    <details class="bg-purple-50 rounded border border-purple-200 shadow-inner group pdf-exclude">
+                        <summary class="font-bold text-purple-700 p-3 cursor-pointer hover:bg-purple-100 transition">👉 បង្ហាញចម្លើយ និង ដំណោះស្រាយ</summary>
+                        <div class="p-4 border-t border-purple-200 text-gray-700 space-y-3 text-lg">
+                            <p><b>ក. រករង្វាស់មុំក្រៅមួយ៖</b></p>
+                            <ul class="ml-5 list-disc space-y-1">
+                                <li>ដោយមុំក្នុង និងមុំក្រៅជាប់គ្នាជាមុំបន្ថែម ផលបូកវាគឺ 180&deg;។</li>
+                                <li>មុំក្រៅមួយ = 180&deg; - មុំក្នុងមួយ</li>
+                                <li>មុំក្រៅមួយ = 180&deg; - 144&deg; = <b class="text-purple-700 text-xl">36&deg;</b></li>
+                            </ul>
+                            <p class="mt-4"><b>ខ. រកឈ្មោះ និងផលបូកមុំក្នុង៖</b></p>
+                            <ul class="ml-5 list-disc space-y-1">
+                                <li>តាមរូបមន្តមុំក្រៅមួយ = 360&deg; / n</li>
+                                <li>គេបាន៖ 36&deg; = 360&deg; / n &Rightarrow; n = 360 / 36 = <b class="text-purple-700">10 ជ្រុង</b></li>
+                                <li>ដូចនេះ ពហុកោណនេះមានឈ្មោះថា <b class="text-purple-700">ទសកោណនិយ័ត</b>។</li>
+                                <li>ផលបូកមុំក្នុង S = មុំក្នុងមួយ &times; n = 144&deg; &times; 10 = <b class="text-purple-700 text-xl">1440&deg;</b></li>
+                            </ul>
+                        </div>
+                    </details>
+                </div>
+
+                <!-- Exercise 7: Selected -->
+                <div class="bg-white p-6 rounded-lg border-l-8 border-purple-500 shadow-sm">
+                    <div class="flex gap-3 mb-4">
+                        <span class="bg-purple-100 text-purple-800 font-bold px-3 py-1 rounded-full text-sm">លំហាត់ទី៧</span>
+                        <span class="text-gray-500 text-sm py-1">(វិញ្ញាសាជ្រើសរើសពិសេស)</span>
+                    </div>
+                    <p class="text-lg text-gray-800 mb-4 font-bold leading-relaxed">គេមានបញ្ចកោណប៉ោងមួយ (៥ជ្រុង) ដែលមានរង្វាស់មុំក្នុងចំនួនបួន គឺ ១០០&deg;, ១២០&deg;, ៩០&deg; និង ១១០&deg;។<br>ចូរគណនារង្វាស់មុំក្នុងទី៥ ដែលនៅសល់។</p>
+                    
+                    <details class="bg-purple-50 rounded border border-purple-200 shadow-inner group pdf-exclude">
+                        <summary class="font-bold text-purple-700 p-3 cursor-pointer hover:bg-purple-100 transition">👉 បង្ហាញចម្លើយ និង ដំណោះស្រាយ</summary>
+                        <div class="p-4 border-t border-purple-200 text-gray-700 space-y-3 text-lg">
+                            <p><b>ដំណោះស្រាយ៖</b></p>
+                            <ul class="ml-5 list-disc space-y-1">
+                                <li>តាមរូបមន្តផលបូកមុំក្នុងបញ្ចកោណ (n = 5) គឺ៖</li>
+                                <li>S = (5 - 2) &times; 180&deg; = 3 &times; 180&deg; = <b>540&deg;</b></li>
+                                <li class="mt-2">តាង <i class="font-serif">x</i> ជាមុំក្នុងទី៥ ដែលត្រូវរក គេបាន៖</li>
+                                <li>100&deg; + 120&deg; + 90&deg; + 110&deg; + <i class="font-serif">x</i> = 540&deg;</li>
+                                <li>420&deg; + <i class="font-serif">x</i> = 540&deg;</li>
+                                <li><i class="font-serif">x</i> = 540&deg; - 420&deg; = <b class="text-purple-700 text-xl">120&deg;</b></li>
+                                <li>ដូចនេះ មុំក្នុងទី៥ ដែលនៅសល់មានរង្វាស់ <b class="text-purple-700">១២០&deg;</b>។</li>
+                            </ul>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 5: Educational Game -->
+        <div id="tab-5" class="p-6 md:p-8 tab-content-5 fade-in hidden relative pdf-exclude">
+            <div class="border-4 border-double border-rose-600 p-5 mb-6 bg-white rounded-lg shadow-sm text-center">
+                <h2 class="font-moul text-3xl text-rose-700 mb-2">ល្បែងអ្នកប្រាជ្ញពហុកោណ</h2>
+                <p class="text-gray-600 font-bold">សាកល្បងល្បឿន និងការចងចាំរបស់អ្នក! (១០ វិនាទីក្នុង១សំណួរ)</p>
+            </div>
+
+            <!-- Game Main Container -->
+            <div class="max-w-2xl mx-auto bg-gray-900 rounded-2xl overflow-hidden shadow-2xl border-4 border-gray-800 relative">
+                
+                <!-- Start Screen -->
+                <div id="game-start-screen" class="p-10 text-center flex flex-col items-center justify-center min-h-[400px]">
+                    <div class="text-7xl mb-6 animate-bounce">⏱️</div>
+                    <h3 class="text-2xl text-white font-bold mb-4">តើអ្នកត្រៀមខ្លួនរួចរាល់ហើយឬនៅ?</h3>
+                    <p class="text-gray-400 mb-8 max-w-sm">ឆ្លើយសំណួរឲ្យបានលឿនបំផុត។ អ្នកមានបេះដូង ៣ បើអស់ម៉ោង ឬឆ្លើយខុស នឹងត្រូវកាត់បេះដូងមួយ។</p>
+                    <button onclick="initGame()" class="bg-rose-600 hover:bg-rose-500 text-white font-bold py-4 px-10 rounded-full text-xl shadow-[0_0_15px_rgba(225,29,72,0.6)] transition transform hover:scale-105">
+                        ▶ ចាប់ផ្តើមលេង
+                    </button>
+                </div>
+
+                <!-- Active Game Screen -->
+                <div id="game-active-screen" class="hidden flex flex-col min-h-[400px]">
+                    <!-- Header: Stats -->
+                    <div class="bg-gray-800 p-4 flex justify-between items-center text-white border-b border-gray-700">
+                        <div class="flex items-center gap-2">
+                            <span class="text-gray-400 text-sm uppercase">ពិន្ទុ៖</span>
+                            <span id="game-score" class="text-2xl font-bold text-rose-400">0</span>
+                        </div>
+                        <div id="game-lives" class="text-2xl flex gap-1">
+                            <span>❤️</span><span>❤️</span><span>❤️</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Timer Bar -->
+                    <div class="w-full bg-gray-700 h-2">
+                        <div id="game-timer-bar" class="bg-green-400 h-full w-full transition-all duration-100 ease-linear"></div>
+                    </div>
+
+                    <!-- Question Area -->
+                    <div class="flex-1 p-8 flex flex-col items-center justify-center text-center">
+                        <div id="game-question-svg" class="mb-6 w-32 h-32 hidden"></div>
+                        <h3 id="game-question-text" class="text-2xl md:text-3xl text-white font-bold leading-tight drop-shadow-md"></h3>
+                    </div>
+
+                    <!-- Answers Area -->
+                    <div id="game-options-grid" class="grid grid-cols-1 md:grid-cols-2 gap-3 p-6 bg-gray-800">
+                        <!-- Options injected via JS -->
+                    </div>
+                </div>
+
+                <!-- Game Over Screen -->
+                <div id="game-over-screen" class="hidden p-10 text-center flex flex-col items-center justify-center min-h-[400px]">
+                    <div class="text-7xl mb-4">💥</div>
+                    <h3 class="text-3xl text-white font-bold mb-2">ល្បែងបានបញ្ចប់!</h3>
+                    <p class="text-gray-400 mb-6">ពិន្ទុដែលអ្នកទទួលបានគឺ៖</p>
+                    <div class="text-6xl font-bold text-yellow-400 mb-8 drop-shadow-[0_0_10px_rgba(250,204,21,0.8)]" id="game-final-score">0</div>
+                    <button onclick="initGame()" class="bg-white text-gray-900 hover:bg-gray-200 font-bold py-3 px-8 rounded-full text-lg shadow transition transform hover:scale-105">
+                        🔄 លេងម្តងទៀត
+                    </button>
+                </div>
+                
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Hidden Container for Slide PDF Generation -->
+    <div id="hidden-slides-container" style="position: absolute; left: -9999px; top: 0; width: 1122px; background: white; z-index: -1;"></div>
+
+    <!-- Hidden Container for Quiz Result Screenshot (A4 Summary) -->
+    <div id="summary-certificate" style="display: none; position: absolute; left: -9999px; top: 0; width: 800px; background: white; z-index: -2;" class="p-10">
+        <div class="border-8 border-double border-green-700 rounded-2xl p-8 bg-green-50/30 relative">
+            <div class="absolute top-4 left-4 w-8 h-8 border-t-4 border-l-4 border-green-600"></div>
+            <div class="absolute top-4 right-4 w-8 h-8 border-t-4 border-r-4 border-green-600"></div>
+            <div class="absolute bottom-4 left-4 w-8 h-8 border-b-4 border-l-4 border-green-600"></div>
+            <div class="absolute bottom-4 right-4 w-8 h-8 border-b-4 border-r-4 border-green-600"></div>
+
+            <div class="text-center mb-8">
+                <h1 class="font-moul text-4xl text-blue-900 mb-4" style="font-family: 'Moul', cursive;">លទ្ធផលតេស្តសមត្ថភាព</h1>
+                <h2 class="text-2xl font-bold text-green-800">មេរៀនទី១៧៖ ពហុកោណ (គណិតវិទ្យា ថ្នាក់ទី៩)</h2>
+            </div>
+
+            <div class="grid grid-cols-2 gap-6 text-xl mb-8 p-6 bg-white rounded-xl border-2 border-gray-200 shadow-sm">
+                <p class="flex items-center"><b class="text-gray-600 w-32">ឈ្មោះសិស្ស៖</b> <span id="cert-name" class="font-bold text-blue-800"></span></p>
+                <p class="flex items-center"><b class="text-gray-600 w-24">ភេទ៖</b> <span id="cert-gender" class="font-bold text-blue-800"></span></p>
+                <p class="flex items-center"><b class="text-gray-600 w-32">ថ្នាក់ទី៖</b> <span id="cert-grade" class="font-bold text-blue-800"></span></p>
+                <p class="flex items-center"><b class="text-gray-600 w-24">ឆ្នាំសិក្សា៖</b> <span id="cert-year" class="font-bold text-blue-800"></span></p>
+            </div>
+
+            <div class="text-center p-8 bg-white rounded-xl border-2 border-blue-200 shadow-inner">
+                <p class="text-2xl text-gray-700 mb-4 font-bold">ពិន្ទុសរុបដែលទទួលបាន</p>
+                <div class="inline-block bg-gray-50 px-10 py-6 rounded-full border-4 border-gray-100 shadow-md">
+                    <p class="text-7xl font-bold" id="cert-score">0 / 50</p>
+                </div>
+                <p id="cert-msg" class="text-2xl mt-6"></p>
+            </div>
+
+            <div class="text-center mt-10 text-gray-500 text-sm">
+                <p>បង្កើតដោយស្វ័យប្រវត្តិពីប្រព័ន្ធសិក្សា</p>
+                <p class="mt-1">រៀបចំដោយលោកគ្រូ ផន គារវតា</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- Fullscreen Logic ---
+        function toggleFullscreen() {
+            const wrapper = document.getElementById('presentation-wrapper');
+            if (!document.fullscreenElement) {
+                wrapper.requestFullscreen().catch(err => {
+                    alert(`មិនអាចបើកពេញអេក្រង់បានទេ: ${err.message}`);
+                });
+            } else {
+                document.exitFullscreen();
+            }
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (document.fullscreenElement) {
+                if (event.key === 'ArrowRight' || event.key === ' ') {
+                    nextSlide();
+                } else if (event.key === 'ArrowLeft') {
+                    prevSlide();
+                }
+            }
+        });
+
+        // --- PDF Generation Logic ---
+        function downloadTabPDF(tabId, filename, orientation) {
+            const element = document.getElementById(tabId);
+            let btnId;
+            if(tabId === 'tab-1') btnId = 'btn-pdf-tab1';
+            else if(tabId === 'tab-2') btnId = 'btn-pdf-tab2';
+            else if(tabId === 'tab-4') btnId = 'btn-pdf-tab4';
+
+            const btn = document.getElementById(btnId);
+            if(!btn) return;
+            const originalText = btn.innerHTML;
+            
+            btn.innerHTML = `<svg class="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> កំពុងបង្កើត...`;
+            btn.disabled = true;
+
+            const excludeElements = element.querySelectorAll('.pdf-exclude');
+            excludeElements.forEach(el => el.style.display = 'none');
+            
+            if(tabId === 'tab-2') {
+                const qCont = document.getElementById('quiz-container');
+                qCont.classList.remove('hidden', 'opacity-50');
+                if(!quizActive && document.getElementById('questions-wrapper').innerHTML === '') {
+                    renderQuiz(); 
+                }
+            }
+
+            let hiddenDetails = [];
+            if(tabId === 'tab-4') {
+                hiddenDetails = Array.from(element.querySelectorAll('details:not([open])'));
+                hiddenDetails.forEach(detail => detail.setAttribute('open', 'true'));
+            }
+
+            const opt = {
+                margin:       10, 
+                filename:     filename,
+                image:        { type: 'jpeg', quality: 1.0 },
+                html2canvas:  { scale: 2, useCORS: true, logging: false },
+                jsPDF:        { unit: 'mm', format: 'a4', orientation: orientation }
+            };
+
+            html2pdf().set(opt).from(element).save().then(() => {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+                excludeElements.forEach(el => el.style.display = '');
+                
+                if(tabId === 'tab-2' && !quizActive && document.getElementById('quiz-score').classList.contains('hidden')) {
+                     document.getElementById('quiz-container').classList.add('opacity-50');
+                }
+                
+                if(tabId === 'tab-4') {
+                    hiddenDetails.forEach(detail => detail.removeAttribute('open'));
+                }
+            }).catch(err => {
+                console.error("PDF Error: ", err);
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+                excludeElements.forEach(el => el.style.display = '');
+                alert("មានបញ្ហាក្នុងការទាញយក PDF។");
+            });
+        }
+
+        function downloadSlidesPDF() {
+            const btn = document.getElementById('btn-pdf-slides');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = `<svg class="w-6 h-6 animate-spin" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> កំពុងបង្កើត PDF... (សូមរង់ចាំ)`;
+            btn.disabled = true;
+
+            const hiddenContainer = document.getElementById('hidden-slides-container');
+            hiddenContainer.innerHTML = ''; 
+
+            slides.forEach((slideHtml, index) => {
+                const slideWrapper = document.createElement('div');
+                slideWrapper.style.width = '1122px'; 
+                slideWrapper.style.height = '793px'; 
+                slideWrapper.style.pageBreakAfter = 'always';
+                slideWrapper.style.display = 'flex';
+                slideWrapper.style.flexDirection = 'column';
+                slideWrapper.style.justifyContent = 'center';
+                slideWrapper.style.alignItems = 'center';
+                slideWrapper.style.padding = '40px';
+                slideWrapper.style.boxSizing = 'border-box';
+                slideWrapper.style.backgroundColor = 'white';
+                slideWrapper.style.position = 'relative';
+                slideWrapper.style.overflow = 'hidden';
+                
+                const pageNum = document.createElement('div');
+                pageNum.style.position = 'absolute';
+                pageNum.style.bottom = '20px';
+                pageNum.style.right = '30px';
+                pageNum.style.fontSize = '16px';
+                pageNum.style.fontWeight = 'bold';
+                pageNum.style.color = '#4b5563';
+                pageNum.innerText = `${index + 1} / ${slides.length}`;
+                
+                let cleanHtml = slideHtml
+                    .replace(/manim-draw-fast|manim-draw/g, '')
+                    .replace(/manim-fade-in/g, '')
+                    .replace(/delay-[1-3]/g, '')
+                    .replace(/radar-anim-in|radar-anim-out/g, '')
+                    .replace(/tesseract-outer|tesseract-inner/g, '')
+                    .replace(/opacity:\s*0;?/g, 'opacity: 1;'); 
+
+                slideWrapper.innerHTML = cleanHtml;
+                
+                const excludes = slideWrapper.querySelectorAll('.interaction-hint, .pdf-exclude');
+                excludes.forEach(el => el.remove());
+
+                slideWrapper.appendChild(pageNum);
+                hiddenContainer.appendChild(slideWrapper);
+            });
+
+            setTimeout(() => {
+                const opt = {
+                    margin:       0,
+                    filename:     'ស្លាយមេរៀន_ពហុកោណ_ថ្នាក់ទី៩.pdf',
+                    image:        { type: 'jpeg', quality: 1.0 }, 
+                    html2canvas:  { scale: 3, useCORS: true, logging: false, windowWidth: 1122 }, 
+                    jsPDF:        { unit: 'mm', format: 'a4', orientation: 'landscape' } 
+                };
+
+                html2pdf().set(opt).from(hiddenContainer).save().then(() => {
+                    hiddenContainer.innerHTML = ''; 
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                }).catch(err => {
+                    console.error("Slides PDF Error: ", err);
+                    hiddenContainer.innerHTML = '';
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                    alert("មានបញ្ហាក្នុងការទាញយក PDF។");
+                });
+            }, 1500); 
+        }
+
+        // --- Tab Switching Logic ---
+        function switchTab(tabId) {
+            for(let i=1; i<=5; i++) {
+                const tabEl = document.getElementById('tab-' + i);
+                const btnEl = document.getElementById('btn-tab-' + i);
+                if(tabEl && btnEl) {
+                    tabEl.classList.add('hidden');
+                    btnEl.classList.remove('active');
+                }
+            }
+            document.getElementById('tab-' + tabId).classList.remove('hidden');
+            document.getElementById('btn-tab-' + tabId).classList.add('active');
+            
+            if(tabId === 1) {
+                const svgs = document.querySelectorAll('#tab-1 svg .manim-draw');
+                svgs.forEach(el => {
+                    el.style.animation = 'none';
+                    el.offsetHeight; 
+                    el.style.animation = null; 
+                });
+            }
+            
+            // បញ្ឈប់ហ្គេមបើសិនជាដូរ Tab
+            if(tabId !== 5 && typeof gameInterval !== 'undefined') {
+                clearInterval(gameInterval);
+                document.getElementById('game-start-screen').classList.remove('hidden');
+                document.getElementById('game-active-screen').classList.add('hidden');
+                document.getElementById('game-over-screen').classList.add('hidden');
+            }
+        }
+
+        function goToLesson(sectionId) {
+            switchTab(1);
+            setTimeout(() => {
+                const element = document.getElementById(sectionId);
+                if(element) {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    element.classList.add('bg-yellow-100');
+                    setTimeout(() => element.classList.remove('bg-yellow-100'), 2000);
+                }
+            }, 100);
+        }
+
+        // --- Practice Calculators ---
+        function calcIntAngles() {
+            const n = parseInt(document.getElementById('practice-n-in').value);
+            const resDiv = document.getElementById('practice-result-in');
+            if (n >= 3) {
+                const sum = (n - 2) * 180;
+                resDiv.innerHTML = `S = (${n} - 2) &times; 180&deg; = <span class="text-green-600">${sum}&deg;</span>`;
+                resDiv.classList.remove('hidden');
+            } else {
+                alert("ចំនួនជ្រុងត្រូវតែធំជាងឬស្មើ ៣!");
+            }
+        }
+
+        function calcSidesFromSum() {
+            const s = parseInt(document.getElementById('practice-s-in').value);
+            const resDiv = document.getElementById('practice-result-s-in');
+            if (s > 0 && s % 180 === 0) {
+                const n = (s / 180) + 2;
+                resDiv.innerHTML = `n = (${s}&deg; &divide; 180&deg;) + 2 = <span class="text-blue-600">${n} ជ្រុង</span>`;
+                resDiv.classList.remove('hidden');
+            } else {
+                alert("ផលបូកមុំត្រូវតែជាពហុគុណនៃ ១៨០!");
+            }
+        }
+
+        function calcSingleIntAngle() {
+            const n = parseInt(document.getElementById('practice-single-in').value);
+            const resDiv = document.getElementById('practice-result-single-in');
+            if (n >= 3) {
+                const singleAngle = ((n - 2) * 180) / n;
+                resDiv.innerHTML = `មុំក្នុងមួយ = <span class="text-purple-600">${parseFloat(singleAngle.toFixed(2))}&deg;</span>`;
+                resDiv.classList.remove('hidden');
+            } else {
+                alert("ចំនួនជ្រុងត្រូវតែធំជាងឬស្មើ ៣!");
+            }
+        }
+
+        function calcExtAngles() {
+            const n = parseInt(document.getElementById('practice-n-out').value);
+            const resDiv = document.getElementById('practice-result-out');
+            if (n >= 3) {
+                const angle = 360 / n;
+                resDiv.innerHTML = `មុំក្រៅមួយ = 360&deg; &divide; ${n} = <span class="text-indigo-600">${parseFloat(angle.toFixed(2))}&deg;</span>`;
+                resDiv.classList.remove('hidden');
+            } else {
+                alert("ចំនួនជ្រុងត្រូវតែធំជាងឬស្មើ ៣!");
+            }
+        }
+
+        function calcSidesFromExt() {
+            const extAngle = parseFloat(document.getElementById('practice-ext-in').value);
+            const resDiv = document.getElementById('practice-result-ext-in');
+            if (extAngle > 0 && extAngle < 180) {
+                const n = 360 / extAngle;
+                if(n % 1 !== 0) {
+                    resDiv.innerHTML = `n = 360&deg; &divide; ${extAngle}&deg; = ${n.toFixed(2)} <span class="text-red-500 text-xs block">(មិនមែនពហុកោណនិយ័ត)</span>`;
+                } else {
+                    resDiv.innerHTML = `n = 360&deg; &divide; ${extAngle}&deg; = <span class="text-green-600">${n} ជ្រុង</span>`;
+                }
+                resDiv.classList.remove('hidden');
+            } else {
+                alert("មុំក្រៅត្រូវតែនៅចន្លោះពី ០ ដល់ ១៨០ ដឺក្រេ!");
+            }
+        }
+
+        // --- Quiz Logic (Tab 2) ---
+        let timerInterval;
+        let timeLeft = 120 * 60;
+        let quizActive = false;
+        let currentScore = 0; 
+
+        let quizGroups = [];
+        let flatQuizData = []; 
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        const generateQuestions = () => {
+            quizGroups = [
+                {
+                    title: "ផ្នែកទី១៖ សញ្ញាណ និង និយមន័យពហុកោណ",
+                    topicRef: "section2",
+                    questions: [
+                        { q: "ពាក្យថា ពហុកោណ (Polygon) មានប្រភពពីភាសាអ្វី?", correct: "ក្រិកបុរាណ", wrong: ["ឡាតាំង", "អង់គ្លេស", "បារាំង"] },
+                        { q: "នៅក្នុងពាក្យ Polygon ពាក្យ Gonia មានន័យថាអ្វី?", correct: "មុំ", wrong: ["ជ្រុង", "ចំណុច", "ខ្សែ"] },
+                        { q: "តើពហុកោណតូចបំផុតមានប៉ុន្មានជ្រុង?", correct: "៣ ជ្រុង", wrong: ["១ ជ្រុង", "២ ជ្រុង", "៤ ជ្រុង"] },
+                        { q: "ផ្ទៃបិទជិតដែលមាន ៥ជ្រុង ហៅថាអ្វី?", correct: "បញ្ចកោណ", wrong: ["ត្រីកោណ", "ចតុកោណ", "ឆកោណ"] },
+                        { q: "តើអដ្ឋកោណ មានប៉ុន្មានជ្រុង?", correct: "៨ ជ្រុង", wrong: ["៦ ជ្រុង", "៧ ជ្រុង", "៩ ជ្រុង"] },
+                        { q: "ពហុកោណដែលកកើតឡើងដំបូងគេក្នុងធម្មជាតិគឺអ្វី?", correct: "ត្រីកោណ", wrong: ["រង្វង់", "ការ៉េ", "បន្ទាត់"] },
+                        { q: "ចំណុចប្រសព្វនៃអង្កត់ជ្រុងពហុកោណហៅថាអ្វី?", correct: "កំពូល", wrong: ["មុំ", "អង្កត់ទ្រូង", "ចំណុចកណ្តាល"] },
+                        { q: "ទសកោណជាពហុកោណដែលមានប៉ុន្មានជ្រុង?", correct: "១០ ជ្រុង", wrong: ["៨ ជ្រុង", "៩ ជ្រុង", "១២ ជ្រុង"] }
+                    ]
+                },
+                {
+                    title: "ផ្នែកទី២៖ ផលបូកមុំក្នុង និងមុំក្នុងមួយ",
+                    topicRef: "section3",
+                    questions: []
+                },
+                {
+                    title: "ផ្នែកទី៣៖ ផលបូកមុំក្រៅ និងមុំក្រៅមួយ",
+                    topicRef: "section4",
+                    questions: []
+                },
+                {
+                    title: "ផ្នែកទី៤៖ ការអនុវត្តន៍ក្នុងជីវភាពរស់នៅ (PISA)",
+                    topicRef: "section5",
+                    questions: [
+                        { q: "សម្រាប់ការក្រាលឥដ្ឋអដ្ឋកោណនិយ័ត តើឥដ្ឋពណ៌ខ្មៅតូចសម្រាប់បិទចន្លោះប្រហោងជារាងអ្វី?", correct: "ការ៉េ", wrong: ["ត្រីកោណ", "បញ្ចកោណ", "រង្វង់"] },
+                        { q: "ហេតុអ្វីបានជារាងការ៉េអាចបិទជិតចន្លោះរវាងអដ្ឋកោណ២បាន?", correct: "ព្រោះមុំដែលខ្វះគឺ 360&deg; - 270&deg; = 90&deg;", wrong: ["ព្រោះការ៉េមានជ្រុង៤", "ព្រោះវាស្អាត", "ព្រោះមុំវាគឺ 180&deg;"] },
+                        { q: "សត្វឃ្មុំសាងសង់សំបុកដោយប្រើក្រឡារាងអ្វី?", correct: "ឆកោណនិយ័ត", wrong: ["ការ៉េ", "បញ្ចកោណ", "ត្រីកោណ"] },
+                        { q: "តើត្រង់ចំណុចកំពូលមួយនៃសំបុកឃ្មុំ មានក្រឡាប៉ុន្មានជួបគ្នា?", correct: "៣ ក្រឡា", wrong: ["២ ក្រឡា", "៤ ក្រឡា", "៥ ក្រឡា"] },
+                        { q: "ហេតុអ្វីសត្វឃ្មុំមិនអាចប្រើរាងបញ្ចកោណធ្វើសំបុក?", correct: "ព្រោះវានឹងសល់ចន្លោះប្រហោង 36&deg;", wrong: ["ព្រោះវាមិនស្អាត", "ព្រោះសត្វឃ្មុំមិនចេះធ្វើ", "ព្រោះវាតូចពេក"] },
+                        { q: "បាល់ទាត់ស្តង់ដារ ផ្សំឡើងពីរាងពហុកោណអ្វីខ្លះ?", correct: "បញ្ចកោណ និង ឆកោណ", wrong: ["ឆកោណសុទ្ធ", "ការ៉េ និង ត្រីកោណ", "អដ្ឋកោណ និង ឆកោណ"] },
+                        { q: "ហេតុអ្វីយើងមិនអាចដេរគែមឆកោណសុទ្ធបញ្ចូលគ្នាដើម្បីបង្កើតជាបាល់បាន?", correct: "ព្រោះមុំជុំវិញស្មើ 360&deg; វានឹងរាបស្មើមិនកោង", wrong: ["ព្រោះវាធ្ងន់", "ព្រោះវាស៊ីក្រណាត់ច្រើន", "ព្រោះវាមិនមាំ"] },
+                        { q: "ផ្លាកសញ្ញា STOP ដែលកាត់ចេញពីបន្ទះដែកការ៉េ ត្រីកោណដែលត្រូវកាត់ចោលជាប្រភេទត្រីកោណអ្វី?", correct: "ត្រីកោណកែងសមបាត", wrong: ["ត្រីកោណសម័ង្ស", "ត្រីកោណសមបាត", "ត្រីកោណកែងធម្មតា"] },
+                        { q: "ហេតុអ្វីយន្តហោះបំបាំងកាយ (Stealth) ប្រើប្រាស់ផ្ទៃពហុកោណកាច់ៗ?", correct: "ដើម្បីបញ្ចៀសចំណាំងផ្លាតរលករ៉ាដាទៅទិសផ្សេង", wrong: ["ដើម្បីឲ្យហោះលឿន", "ដើម្បីសោភ័ណភាព", "ដើម្បីកាត់បន្ថយកម្លាំងខ្យល់"] },
+                        { q: "តើ Tesseract (4D Hypercube) បង្កើតចេញពីរូបរាងអ្វី ហើយមានចំនួនប៉ុន្មាន?", correct: "គូប ចំនួន ៨", wrong: ["ការ៉េ ចំនួន ៦", "គូប ចំនួន ៦", "ការ៉េ ចំនួន ៨"] }
+                    ]
+                }
+            ];
+
+            const n_in = [4, 5, 6, 7, 8, 9, 10, 12, 15, 20];
+            n_in.forEach(n => {
+                quizGroups[1].questions.push({ 
+                    q: `គណនាផលបូកមុំក្នុងនៃពហុកោណដែលមាន ${n} ជ្រុង។`, 
+                    correct: `${(n - 2) * 180}&deg;`, 
+                    wrong: [`${(n - 1) * 180}&deg;`, `${n * 180}&deg;`, `${(n - 2) * 90}&deg;`] 
+                });
+            });
+
+            const s_in = [360, 540, 720, 1080, 1440];
+            s_in.forEach(sum => {
+                let n = (sum / 180) + 2;
+                quizGroups[1].questions.push({ 
+                    q: `បើផលបូកមុំក្នុងនៃពហុកោណមួយស្មើនឹង ${sum}&deg; តើវាមានប៉ុន្មានជ្រុង?`, 
+                    correct: `${n} ជ្រុង`, 
+                    wrong: [`${n-1} ជ្រុង`, `${n+1} ជ្រុង`, `${n+2} ជ្រុង`] 
+                });
+            });
+
+            const n_single_in = [3, 4, 5, 6, 8];
+            n_single_in.forEach(n => {
+                quizGroups[1].questions.push({ 
+                    q: `គណនារង្វាស់មុំក្នុងមួយនៃពហុកោណនិយ័ត ${n} ជ្រុង។`, 
+                    correct: `${((n-2)*180)/n}&deg;`, 
+                    wrong: [`${(((n-2)*180)/n)+10}&deg;`, `${360/n}&deg;`, `180&deg;`] 
+                });
+            });
+
+            quizGroups[2].questions.push({ q: "តើផលបូកមុំក្រៅនៃពហុកោណប៉ោងណាមួយស្មើនឹងប៉ុន្មាន?", correct: "360&deg;", wrong: ["180&deg;", "540&deg;", "អាស្រ័យលើចំនួនជ្រុង"] });
+            quizGroups[2].questions.push({ q: "ផលបូកមុំក្រៅនៃចតុកោណស្មើប៉ុន្មាន?", correct: "360&deg;", wrong: ["180&deg;", "540&deg;", "720&deg;"] });
+            quizGroups[2].questions.push({ q: "ផលបូកមុំក្រៅនៃទសកោណ (១០ជ្រុង) ស្មើប៉ុន្មាន?", correct: "360&deg;", wrong: ["1440&deg;", "1800&deg;", "720&deg;"] });
+            
+            const n_ext = [4, 5, 6, 8, 10, 12];
+            n_ext.forEach(n => {
+                quizGroups[2].questions.push({ 
+                    q: `គណនារង្វាស់មុំក្រៅមួយនៃពហុកោណនិយ័ត ${n} ជ្រុង។`, 
+                    correct: `${360/n}&deg;`, 
+                    wrong: [`${((n-2)*180/n)}&deg;`, `360&deg;`, `${(360/n)+5}&deg;`] 
+                });
+            });
+
+            const s_ext = [72, 45, 36];
+            s_ext.forEach(ext => {
+                quizGroups[2].questions.push({ 
+                    q: `ពហុកោណនិយ័តមួយមានមុំក្រៅមួយស្មើនឹង ${ext}&deg;។ តើវាមានប៉ុន្មានជ្រុង?`, 
+                    correct: `${360/ext} ជ្រុង`, 
+                    wrong: [`${(360/ext)-1} ជ្រុង`, `${(360/ext)+2} ជ្រុង`, `មិនអាចរកបាន`] 
+                });
+            });
+        };
+
+        generateQuestions();
+
+        function renderQuiz() {
+            const wrapper = document.getElementById('questions-wrapper');
+            let html = '';
+            flatQuizData = []; 
+            let globalIndex = 0;
+
+            quizGroups.forEach((group) => {
+                html += `
+                <div class="mt-8 mb-4 border-b-2 border-green-300 pb-2">
+                    <h3 class="text-2xl font-bold text-green-800">${group.title}</h3>
+                </div>`;
+                
+                group.questions.forEach((q) => {
+                    let options = [q.correct, ...q.wrong];
+                    shuffleArray(options); 
+                    
+                    flatQuizData.push({ correct: q.correct, topic: group.topicRef, options: options });
+
+                    html += `
+                    <div class="bg-gray-50 p-5 rounded-lg border border-gray-200 shadow-sm mb-4" id="q-container-${globalIndex}">
+                        <h3 class="font-bold text-lg mb-3 text-gray-800">${globalIndex + 1}. ${q.q}</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            ${options.map((opt, i) => `
+                                <label class="flex items-center space-x-3 p-3 bg-white border rounded-lg cursor-pointer hover:bg-green-50 transition shadow-sm">
+                                    <input type="radio" name="q${globalIndex}" value="${i}" class="w-5 h-5 text-green-600 focus:ring-green-500">
+                                    <span class="math-text">${opt}</span>
+                                </label>
+                            `).join('')}
+                        </div>
+                        <div id="feedback-${globalIndex}" class="mt-4 hidden p-3 rounded-lg font-bold text-sm border"></div>
+                    </div>
+                    `;
+                    globalIndex++;
+                });
+            });
+            wrapper.innerHTML = html;
+        }
+
+        function formatTime(seconds) {
+            const m = Math.floor(seconds / 60).toString().padStart(2, '0');
+            const s = (seconds % 60).toString().padStart(2, '0');
+            return `${m}:${s}`;
+        }
+
+        function startQuiz() {
+            if(quizActive) return;
+            const container = document.getElementById('quiz-container');
+            const startBtn = document.getElementById('start-btn');
+            
+            container.classList.remove('hidden', 'opacity-50', 'pointer-events-none');
+            startBtn.classList.add('hidden');
+            quizActive = true;
+            
+            renderQuiz();
+
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                document.getElementById('timer-display').innerText = formatTime(timeLeft);
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    alert("អស់ម៉ោងហើយ! ប្រព័ន្ធនឹងបញ្ជូនចម្លើយដោយស្វ័យប្រវត្តិ។");
+                    submitQuiz();
+                }
+            }, 1000);
+        }
+
+        function submitQuiz() {
+            if(!quizActive) return;
+            clearInterval(timerInterval);
+            quizActive = false;
+            
+            let score = 0;
+            flatQuizData.forEach((q, index) => {
+                const selected = document.querySelector(`input[name="q${index}"]:checked`);
+                const feedbackDiv = document.getElementById(`feedback-${index}`);
+                const container = document.getElementById(`q-container-${index}`);
+                
+                feedbackDiv.classList.remove('hidden');
+                
+                if (selected) {
+                    const selectedText = q.options[parseInt(selected.value)];
+                    if (selectedText === q.correct) {
+                        score++;
+                        container.classList.add('border-green-500', 'bg-green-50');
+                        feedbackDiv.innerHTML = `<span class="text-green-600">✓ ត្រឹមត្រូវ</span>`;
+                        feedbackDiv.classList.add('bg-green-100', 'border-green-200');
+                    } else {
+                        container.classList.add('border-red-500', 'bg-red-50');
+                        feedbackDiv.innerHTML = `
+                            <span class="text-red-600">✗ ខុសហើយ! ចម្លើយត្រូវគឺ: <b>${q.correct}</b></span>
+                            <br>
+                            <button onclick="goToLesson('${q.topic}')" class="mt-2 text-blue-600 underline text-sm hover:text-blue-800 pdf-exclude">
+                                ត្រឡប់ទៅមើលមេរៀនឡើងវិញ
+                            </button>
+                        `;
+                        feedbackDiv.classList.add('bg-red-100', 'border-red-200');
+                    }
+                } else {
+                    container.classList.add('border-orange-500', 'bg-orange-50');
+                    feedbackDiv.innerHTML = `
+                            <span class="text-orange-600">! មិនបានឆ្លើយ។ ចម្លើយត្រូវគឺ: <b>${q.correct}</b></span>
+                            <br>
+                            <button onclick="goToLesson('${q.topic}')" class="mt-2 text-blue-600 underline text-sm hover:text-blue-800 pdf-exclude">
+                                ត្រឡប់ទៅមើលមេរៀនឡើងវិញ
+                            </button>
+                        `;
+                    feedbackDiv.classList.add('bg-orange-100', 'border-orange-200');
+                }
+                
+                const inputs = document.querySelectorAll(`input[name="q${index}"]`);
+                inputs.forEach(input => input.disabled = true);
+            });
+
+            currentScore = score; 
+            
+            const scoreDiv = document.getElementById('quiz-score');
+            scoreDiv.classList.remove('hidden');
+            scoreDiv.innerHTML = `អ្នកទទួលបានពិន្ទុ: <span class="${score >= 25 ? 'text-green-600' : 'text-red-600'}">${score} / 50</span>`;
+            
+            document.getElementById('post-quiz-actions').classList.remove('hidden');
+            window.scrollTo({ top: scoreDiv.offsetTop, behavior: 'smooth' });
+        }
+
+        function downloadQuizScreenshot() {
+            if (typeof html2canvas === 'undefined') {
+                alert("បណ្ណាល័យបង្កើតរូបភាពកំពុងផ្ទុក សូមរង់ចាំបន្តិច...");
+                return;
+            }
+
+            const btn = document.getElementById('btn-screenshot');
+            const originalText = btn.innerHTML;
+
+            btn.innerHTML = `<svg class="w-6 h-6 animate-spin" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> កំពុងថត Screenshot...`;
+            btn.disabled = true;
+
+            let studentName = document.getElementById('student-name').value.trim() || 'សិស្សមិនបញ្ចេញឈ្មោះ';
+            let studentGender = document.getElementById('student-gender').value.trim() || '...';
+            let studentGrade = document.getElementById('student-grade').value.trim() || '...';
+            let studentYear = document.getElementById('student-year').value.trim() || '...';
+
+            document.getElementById('cert-name').innerText = studentName;
+            document.getElementById('cert-gender').innerText = studentGender;
+            document.getElementById('cert-grade').innerText = studentGrade;
+            document.getElementById('cert-year').innerText = studentYear;
+            
+            const scoreElem = document.getElementById('cert-score');
+            const msgElem = document.getElementById('cert-msg');
+            
+            scoreElem.innerText = `${currentScore} / 50`;
+            
+            if (currentScore >= 25) {
+                scoreElem.className = "text-7xl font-bold text-green-600";
+                msgElem.innerText = "សូមអបអរសាទរ! អ្នកប្រឡងជាប់។ 👏";
+                msgElem.className = "text-2xl mt-6 font-bold text-green-600";
+            } else {
+                scoreElem.className = "text-7xl font-bold text-red-600";
+                msgElem.innerText = "អ្នកត្រូវខិតខំរៀនបន្ថែមទៀត! គួរសាកល្បងម្ដងទៀត។ 💪";
+                msgElem.className = "text-2xl mt-6 font-bold text-red-600";
+            }
+
+            const targetElement = document.getElementById('summary-certificate');
+            targetElement.style.display = 'block';
+
+            const filename = `លទ្ធផលសង្ខេប_${studentName}_ពិន្ទុ_${currentScore}.png`;
+
+            html2canvas(targetElement, {
+                scale: 2, 
+                useCORS: true,
+                backgroundColor: "#ffffff", 
+                logging: false
+            }).then(canvas => {
+                const imgData = canvas.toDataURL('image/png');
+                
+                const link = document.createElement('a');
+                link.href = imgData;
+                link.download = filename;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+
+                targetElement.style.display = 'none';
+
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }).catch(err => {
+                console.error("Screenshot Error: ", err);
+                targetElement.style.display = 'none';
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+                alert("មានបញ្ហាក្នុងការថត Screenshot។");
+            });
+        }
+
+        // --- Educational Game Logic (Tab 5) ---
+        let gameScore = 0;
+        let gameLives = 3;
+        let gameTimer = 100; 
+        let gameInterval;
+        let currentGameObject;
+        
+        const polygonSVGs = {
+            3: `<svg viewBox="0 0 100 100" class="w-full h-full drop-shadow-[0_0_8px_rgba(59,130,246,0.8)]"><polygon points="50,10 90,90 10,90" fill="rgba(59,130,246,0.4)" stroke="#3b82f6" stroke-width="4" stroke-linejoin="round"/></svg>`,
+            4: `<svg viewBox="0 0 100 100" class="w-full h-full drop-shadow-[0_0_8px_rgba(34,197,94,0.8)]"><polygon points="10,10 90,10 90,90 10,90" fill="rgba(34,197,94,0.4)" stroke="#22c55e" stroke-width="4" stroke-linejoin="round"/></svg>`,
+            5: `<svg viewBox="0 0 100 100" class="w-full h-full drop-shadow-[0_0_8px_rgba(234,179,8,0.8)]"><polygon points="50,10 95,45 80,95 20,95 5,45" fill="rgba(234,179,8,0.4)" stroke="#eab308" stroke-width="4" stroke-linejoin="round"/></svg>`,
+            6: `<svg viewBox="0 0 100 100" class="w-full h-full drop-shadow-[0_0_8px_rgba(168,85,247,0.8)]"><polygon points="50,10 84.6,30 84.6,70 50,90 15.4,70 15.4,30" fill="rgba(168,85,247,0.4)" stroke="#a855f7" stroke-width="4" stroke-linejoin="round"/></svg>`,
+            8: `<svg viewBox="0 0 100 100" class="w-full h-full drop-shadow-[0_0_8px_rgba(99,102,241,0.8)]"><polygon points="50,10 78.3,21.7 90,50 78.3,78.3 50,90 21.7,78.3 10,50 21.7,21.7" fill="rgba(99,102,241,0.4)" stroke="#6366f1" stroke-width="4" stroke-linejoin="round"/></svg>`
+        };
+
+        const gameBank = [
+            { type: 'svg', content: 3, text: "តើរូបនេះមានឈ្មោះអ្វី?", ans: "ត្រីកោណ", opts: ["ចតុកោណ", "បញ្ចកោណ", "ឆកោណ"] },
+            { type: 'svg', content: 5, text: "តើរូបនេះមានឈ្មោះអ្វី?", ans: "បញ្ចកោណ", opts: ["ឆកោណ", "សត្តកោណ", "អដ្ឋកោណ"] },
+            { type: 'svg', content: 6, text: "តើរូបនេះមានឈ្មោះអ្វី?", ans: "ឆកោណ", opts: ["បញ្ចកោណ", "ទសកោណ", "អដ្ឋកោណ"] },
+            { type: 'svg', content: 8, text: "តើរូបនេះមានឈ្មោះអ្វី?", ans: "អដ្ឋកោណ", opts: ["ឆកោណ", "សត្តកោណ", "នវកោណ"] },
+            { type: 'math', content: null, text: "តើផលបូកមុំក្នុងនៃ ត្រីកោណ ស្មើនឹងប៉ុន្មាន?", ans: "180&deg;", opts: ["360&deg;", "90&deg;", "540&deg;"] },
+            { type: 'math', content: null, text: "តើផលបូកមុំក្នុងនៃ ចតុកោណ ស្មើនឹងប៉ុន្មាន?", ans: "360&deg;", opts: ["180&deg;", "540&deg;", "720&deg;"] },
+            { type: 'math', content: null, text: "តើផលបូកមុំក្នុងនៃ បញ្ចកោណ(៥ជ្រុង) ស្មើនឹងប៉ុន្មាន?", ans: "540&deg;", opts: ["360&deg;", "720&deg;", "900&deg;"] },
+            { type: 'math', content: null, text: "តើផលបូកមុំក្រៅនៃ ឆកោណប៉ោង ស្មើនឹងប៉ុន្មាន?", ans: "360&deg;", opts: ["720&deg;", "180&deg;", "540&deg;"] },
+            { type: 'math', content: null, text: "បើ S = 720&deg; តើវាជាពហុកោណអ្វី?", ans: "ឆកោណ(៦)", opts: ["បញ្ចកោណ(៥)", "សត្តកោណ(៧)", "អដ្ឋកោណ(៨)"] },
+            { type: 'math', content: null, text: "រករង្វាស់មុំក្នុងមួយ នៃការ៉េ (ចតុកោណនិយ័ត)", ans: "90&deg;", opts: ["60&deg;", "120&deg;", "45&deg;"] },
+            { type: 'math', content: null, text: "រករង្វាស់មុំក្រៅមួយ នៃបញ្ចកោណនិយ័ត", ans: "72&deg;", opts: ["108&deg;", "60&deg;", "90&deg;"] },
+            { type: 'math', content: null, text: "រូបមន្តផលបូកមុំក្នុងពហុកោណ គឺអ្វី?", ans: "(n-2)&times;180&deg;", opts: ["n&times;180&deg;", "360&deg;", "(n+2)&times;180&deg;"] }
+        ];
+
+        function initGame() {
+            gameScore = 0;
+            gameLives = 3;
+            document.getElementById('game-score').innerText = gameScore;
+            updateLivesDisplay();
+            
+            document.getElementById('game-start-screen').classList.add('hidden');
+            document.getElementById('game-over-screen').classList.add('hidden');
+            document.getElementById('game-active-screen').classList.remove('hidden');
+            
+            loadNextGameQuestion();
+        }
+
+        function updateLivesDisplay() {
+            let hearts = "";
+            for(let i=0; i<gameLives; i++) hearts += "❤️";
+            for(let i=gameLives; i<3; i++) hearts += "🖤";
+            document.getElementById('game-lives').innerHTML = hearts;
+        }
+
+        function loadNextGameQuestion() {
+            if (gameLives <= 0) {
+                endGame();
+                return;
+            }
+
+            const randIndex = Math.floor(Math.random() * gameBank.length);
+            currentGameObject = gameBank[randIndex];
+
+            const svgContainer = document.getElementById('game-question-svg');
+            const textContainer = document.getElementById('game-question-text');
+            
+            textContainer.innerHTML = currentGameObject.text;
+            
+            if (currentGameObject.type === 'svg') {
+                svgContainer.innerHTML = polygonSVGs[currentGameObject.content];
+                svgContainer.classList.remove('hidden');
+            } else {
+                svgContainer.classList.add('hidden');
+                svgContainer.innerHTML = '';
+            }
+
+            let allOptions = [currentGameObject.ans, ...currentGameObject.opts];
+            allOptions = shuffleArray(allOptions);
+
+            const optionsGrid = document.getElementById('game-options-grid');
+            optionsGrid.innerHTML = '';
+            
+            allOptions.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.className = "bg-gray-700 hover:bg-blue-600 text-white font-bold py-4 px-4 rounded-xl shadow border-2 border-gray-600 hover:border-blue-400 transition transform hover:scale-105 active:scale-95 text-lg";
+                btn.innerHTML = opt;
+                btn.onclick = () => checkGameAnswer(opt, btn);
+                optionsGrid.appendChild(btn);
+            });
+
+            gameTimer = 100;
+            updateTimerBar();
+            clearInterval(gameInterval);
+            gameInterval = setInterval(() => {
+                gameTimer -= 1; 
+                updateTimerBar();
+                if (gameTimer <= 0) {
+                    clearInterval(gameInterval);
+                    handleWrongAnswer(null); 
+                }
+            }, 100);
+        }
+
+        function updateTimerBar() {
+            const bar = document.getElementById('game-timer-bar');
+            bar.style.width = gameTimer + '%';
+            if (gameTimer > 50) bar.className = "bg-green-400 h-full transition-all duration-100 ease-linear";
+            else if (gameTimer > 20) bar.className = "bg-yellow-400 h-full transition-all duration-100 ease-linear";
+            else bar.className = "bg-red-500 h-full transition-all duration-100 ease-linear animate-pulse";
+        }
+
+        function checkGameAnswer(selectedOpt, btnElement) {
+            clearInterval(gameInterval);
+            const allBtns = document.getElementById('game-options-grid').querySelectorAll('button');
+            allBtns.forEach(b => b.disabled = true);
+
+            if (selectedOpt === currentGameObject.ans) {
+                btnElement.classList.remove('bg-gray-700', 'border-gray-600');
+                btnElement.classList.add('bg-green-500', 'border-green-400', 'scale-105');
+                
+                let pointsGained = 10 + Math.floor(gameTimer / 10);
+                gameScore += pointsGained;
+                
+                const scoreDisplay = document.getElementById('game-score');
+                scoreDisplay.innerText = gameScore;
+                scoreDisplay.classList.add('text-green-400', 'scale-150');
+                setTimeout(() => scoreDisplay.classList.remove('text-green-400', 'scale-150'), 300);
+
+                setTimeout(loadNextGameQuestion, 800);
+            } else {
+                btnElement.classList.remove('bg-gray-700', 'border-gray-600');
+                btnElement.classList.add('bg-red-600', 'border-red-400', 'animate-pulse');
+                
+                allBtns.forEach(b => {
+                    if (b.innerHTML === currentGameObject.ans) {
+                        b.classList.remove('bg-gray-700');
+                        b.classList.add('bg-green-500');
+                    }
+                });
+                
+                handleWrongAnswer(btnElement);
+            }
+        }
+
+        function handleWrongAnswer(btnElement) {
+            gameLives--;
+            updateLivesDisplay();
+            
+            const screen = document.getElementById('game-active-screen');
+            screen.classList.add('translate-x-2', '-translate-x-2');
+            setTimeout(() => screen.classList.remove('translate-x-2', '-translate-x-2'), 300);
+
+            if (gameLives > 0) {
+                setTimeout(loadNextGameQuestion, 1500);
+            } else {
+                setTimeout(endGame, 1500);
+            }
+        }
+
+        function endGame() {
+            clearInterval(gameInterval);
+            document.getElementById('game-active-screen').classList.add('hidden');
+            document.getElementById('game-over-screen').classList.remove('hidden');
+            document.getElementById('game-final-score').innerText = gameScore;
+        }
+
+        // --- Slides ---
+        const slides = [
+            `<h1 class="title-font text-5xl text-orange-600 mb-6 manim-fade-in">មេរៀនទី១៧៖ ពហុកោណ</h1><p class="text-2xl text-gray-700 manim-fade-in delay-1">ថ្នាក់ទី៩</p>`,
+            
+            `<h2 class="text-4xl text-blue-800 mb-6 font-bold">១. សញ្ញាណ និង របកគំហើញ</h2>
+             <p class="text-2xl mb-6 leading-relaxed px-10 text-left">ពាក្យថា <strong>"ពហុកោណ" (Polygon)</strong> មានប្រភពមកពីភាសាក្រិកបុរាណ៖</p>
+             <ul class="text-3xl text-left space-y-4 px-20">
+                 <li>👉 <strong>Polus</strong> = ច្រើន (Many)</li>
+                 <li>👉 <strong>Gonia</strong> = មុំ (Angle)</li>
+             </ul>
+             <p class="text-xl mt-8 text-gray-600 italic bg-blue-50 p-4 rounded-lg border border-blue-200 mx-10">អ្នកប្រាជ្ញគណិតវិទ្យាក្រិកបុរាណ ពីតាក័រ (Pythagoras) និង អឺគ្លីត (Euclid) ជាអ្នកកត់ត្រានិងសិក្សាពីវាដំបូងគេ។</p>`,
+
+            `<h2 class="text-4xl text-blue-800 mb-6 font-bold">ការកកើតនៃពហុកោណ</h2>
+             <div class="flex justify-around items-center w-full px-4 mt-8">
+                 <div class="text-center">
+                     <svg width="150" height="150" viewBox="0 0 100 100" class="mx-auto bg-gray-50 rounded-lg shadow border border-gray-200">
+                         <circle cx="20" cy="80" r="4" fill="#3b82f6" class="manim-fade-in" />
+                         <circle cx="50" cy="20" r="4" fill="#3b82f6" class="manim-fade-in delay-1" />
+                         <circle cx="80" cy="80" r="4" fill="#3b82f6" class="manim-fade-in delay-2" />
+                     </svg>
+                     <p class="mt-4 text-xl font-bold text-gray-600">១. ចំណុច</p>
+                 </div>
+                 <div class="text-5xl text-gray-400">→</div>
+                 <div class="text-center">
+                     <svg width="150" height="150" viewBox="0 0 100 100" class="mx-auto bg-gray-50 rounded-lg shadow border border-gray-200">
+                         <circle cx="20" cy="80" r="4" fill="#3b82f6" />
+                         <circle cx="50" cy="20" r="4" fill="#3b82f6" />
+                         <circle cx="80" cy="80" r="4" fill="#3b82f6" />
+                         <line x1="20" y1="80" x2="50" y2="20" stroke="#3b82f6" stroke-width="2" class="manim-draw delay-1" />
+                         <line x1="50" y1="20" x2="80" y2="80" stroke="#3b82f6" stroke-width="2" class="manim-draw delay-2" />
+                         <line x1="80" y1="80" x2="20" y2="80" stroke="#3b82f6" stroke-width="2" class="manim-draw delay-3" />
+                     </svg>
+                     <p class="mt-4 text-xl font-bold text-gray-600">២. អង្កត់</p>
+                 </div>
+                 <div class="text-5xl text-gray-400">→</div>
+                 <div class="text-center">
+                     <svg width="150" height="150" viewBox="0 0 100 100" class="mx-auto bg-gray-50 rounded-lg shadow border border-gray-200">
+                         <polygon points="20,80 50,20 80,80" fill="rgba(59,130,246,0.3)" stroke="#3b82f6" stroke-width="2" class="manim-fade-in delay-3" />
+                     </svg>
+                     <p class="mt-4 text-xl font-bold text-blue-700">៣. ពហុកោណ</p>
+                 </div>
+             </div>`,
+
+            `<h2 class="text-4xl text-blue-800 mb-6 font-bold">២. តើអ្វីទៅជាពហុកោណ?</h2>
+             <p class="text-2xl mb-6"><strong>ពហុកោណ</strong> គឺជាខ្សែបិទដែលកើតឡើងពីអង្កត់នៃបន្ទាត់ចាប់ពីបីឡើងទៅ។</p>
+             <div class="flex justify-center gap-10 w-full px-8">
+                <div class="text-center bg-blue-50 p-4 rounded-lg flex-1">
+                    <svg width="120" height="120" viewBox="0 0 100 100" class="mx-auto"><polygon points="50,10 90,90 10,90" fill="rgba(59,130,246,0.1)" stroke="#3b82f6" stroke-width="4" stroke-linejoin="round" class="manim-draw" /></svg>
+                    <p class="mt-4 text-xl font-bold text-blue-700">ត្រីកោណ</p>
+                </div>
+                <div class="text-center bg-green-50 p-4 rounded-lg flex-1">
+                    <svg width="120" height="120" viewBox="0 0 100 100" class="mx-auto"><polygon points="10,10 90,10 90,90 10,90" fill="rgba(34,197,94,0.1)" stroke="#22c55e" stroke-width="4" stroke-linejoin="round" class="manim-draw delay-1" /></svg>
+                    <p class="mt-4 text-xl font-bold text-green-700">ចតុកោណ</p>
+                </div>
+                <div class="text-center bg-yellow-50 p-4 rounded-lg flex-1">
+                    <svg width="120" height="120" viewBox="0 0 100 100" class="mx-auto"><polygon points="50,10 95,45 80,95 20,95 5,45" fill="rgba(234,179,8,0.1)" stroke="#eab308" stroke-width="4" stroke-linejoin="round" class="manim-draw delay-2" /></svg>
+                    <p class="mt-4 text-xl font-bold text-yellow-600">បញ្ចកោណ</p>
+                </div>
+             </div>`,
+
+            `<h2 class="text-4xl text-blue-800 mb-6 font-bold">ឈ្មោះពហុកោណ (៣ ដល់ ៦ ជ្រុង)</h2>
+             <div class="grid grid-cols-4 gap-6 w-full px-8">
+                <div class="bg-blue-50 p-4 rounded-lg text-center shadow">
+                    <svg width="80" height="80" viewBox="0 0 100 100" class="mx-auto mb-3"><polygon points="50,15 85,75 15,75" fill="rgba(59,130,246,0.2)" stroke="#3b82f6" stroke-width="4" class="manim-draw" /></svg>
+                    <span class="font-bold text-blue-700 text-2xl block">៣ ជ្រុង</span><span class="text-lg">ត្រីកោណ</span>
+                </div>
+                <div class="bg-green-50 p-4 rounded-lg text-center shadow">
+                    <svg width="80" height="80" viewBox="0 0 100 100" class="mx-auto mb-3"><polygon points="15,15 85,15 85,85 15,85" fill="rgba(34,197,94,0.2)" stroke="#22c55e" stroke-width="4" class="manim-draw delay-1" /></svg>
+                    <span class="font-bold text-green-700 text-2xl block">៤ ជ្រុង</span><span class="text-lg">ចតុកោណ</span>
+                </div>
+                <div class="bg-yellow-50 p-4 rounded-lg text-center shadow">
+                    <svg width="80" height="80" viewBox="0 0 100 100" class="mx-auto mb-3"><polygon points="50,10 90,39 74,86 26,86 10,39" fill="rgba(234,179,8,0.2)" stroke="#eab308" stroke-width="4" class="manim-draw delay-2" /></svg>
+                    <span class="font-bold text-yellow-700 text-2xl block">៥ ជ្រុង</span><span class="text-lg">បញ្ចកោណ</span>
+                </div>
+                <div class="bg-purple-50 p-4 rounded-lg text-center shadow">
+                    <svg width="80" height="80" viewBox="0 0 100 100" class="mx-auto mb-3"><polygon points="50,10 84.6,30 84.6,70 50,90 15.4,70 15.4,30" fill="rgba(168,85,247,0.2)" stroke="#a855f7" stroke-width="4" class="manim-draw delay-3" /></svg>
+                    <span class="font-bold text-purple-700 text-2xl block">៦ ជ្រុង</span><span class="text-lg">ឆកោណ</span>
+                </div>
+             </div>`,
+
+            `<h2 class="text-4xl text-blue-800 mb-6 font-bold">ឈ្មោះពហុកោណ (៧ ដល់ ១០ ជ្រុង)</h2>
+             <div class="grid grid-cols-4 gap-6 w-full px-8">
+                <div class="bg-pink-50 p-4 rounded-lg text-center shadow">
+                    <svg width="80" height="80" viewBox="0 0 100 100" class="mx-auto mb-3"><polygon points="50,10 81.2,25.2 88.8,58.8 67.2,86 32.8,86 11.2,58.8 18.8,25.2" fill="rgba(236,72,153,0.2)" stroke="#ec4899" stroke-width="4" class="manim-draw" /></svg>
+                    <span class="font-bold text-pink-700 text-2xl block">៧ ជ្រុង</span><span class="text-lg">សត្តកោណ</span>
+                </div>
+                <div class="bg-indigo-50 p-4 rounded-lg text-center shadow">
+                    <svg width="80" height="80" viewBox="0 0 100 100" class="mx-auto mb-3"><polygon points="50,10 78.3,21.7 90,50 78.3,78.3 50,90 21.7,78.3 10,50 21.7,21.7" fill="rgba(99,102,241,0.2)" stroke="#6366f1" stroke-width="4" class="manim-draw delay-1" /></svg>
+                    <span class="font-bold text-indigo-700 text-2xl block">៨ ជ្រុង</span><span class="text-lg">អដ្ឋកោណ</span>
+                </div>
+                <div class="bg-teal-50 p-4 rounded-lg text-center shadow">
+                    <svg width="80" height="80" viewBox="0 0 100 100" class="mx-auto mb-3"><polygon points="50,10 75.7,19.4 89.4,43 84.6,70 63.7,87.6 36.3,87.6 15.4,70 10.6,43 24.3,19.4" fill="rgba(20,184,166,0.2)" stroke="#14b8a6" stroke-width="4" class="manim-draw delay-2" /></svg>
+                    <span class="font-bold text-teal-700 text-2xl block">៩ ជ្រុង</span><span class="text-lg">នវកោណ</span>
+                </div>
+                <div class="bg-rose-50 p-4 rounded-lg text-center shadow">
+                    <svg width="80" height="80" viewBox="0 0 100 100" class="mx-auto mb-3"><polygon points="50,10 73.5,17.6 88,37.6 88,62.4 73.5,82.4 50,90 26.5,82.4 12,62.4 12,37.6 26.5,17.6" fill="rgba(244,63,94,0.2)" stroke="#f43f5e" stroke-width="4" class="manim-draw delay-3" /></svg>
+                    <span class="font-bold text-rose-700 text-2xl block">១០ ជ្រុង</span><span class="text-lg">ទសកោណ</span>
+                </div>
+             </div>`,
+
+            `<h2 class="text-4xl text-green-800 mb-6 font-bold">៣. ផលបូកមុំក្នុងនៃពហុកោណ</h2>
+             <p class="text-2xl mb-8">រូបមន្តសម្រាប់គណនាផលបូកមុំក្នុងទាំងអស់នៃពហុកោណ <span class="font-bold">n</span> ជ្រុង៖</p>
+             <div class="bg-yellow-100 text-red-600 text-5xl font-bold p-8 rounded-lg border-4 border-yellow-400 manim-fade-in delay-1 shadow-lg inline-block">
+                S = (n - 2) &times; 180&deg;
+             </div>
+             <div class="mt-8 flex justify-center items-center gap-6 bg-green-50 p-4 rounded border border-green-200 mx-auto w-3/4">
+                <svg width="150" height="150" viewBox="0 0 100 100" class="bg-white rounded shadow-sm border border-gray-100 p-2">
+                    <polygon points="50,5 95,30 95,70 50,95 5,70 5,30" fill="rgba(34,197,94,0.1)" stroke="#22c55e" stroke-width="2" />
+                    <line x1="50" y1="5" x2="95" y2="70" stroke="#ef4444" stroke-width="2" stroke-dasharray="4,4" />
+                    <line x1="50" y1="5" x2="50" y2="95" stroke="#ef4444" stroke-width="2" stroke-dasharray="4,4" />
+                    <line x1="50" y1="5" x2="5" y2="70" stroke="#ef4444" stroke-width="2" stroke-dasharray="4,4" />
+                </svg>
+                <p class="text-xl text-green-800 text-left">
+                    *ចំណាំ៖ រូបមន្តនេះបានមកពីការពុះពហុកោណជា <b>(n - 2)</b> ត្រីកោណតូចៗ។
+                </p>
+             </div>`,
+
+            `<h2 class="text-4xl text-green-800 mb-6 font-bold">លំហាត់គំរូ៖ រកផលបូកមុំក្នុង</h2>
+             <div class="bg-gray-50 p-8 rounded-lg border-l-8 border-blue-500 shadow-md text-left w-full max-w-2xl mx-auto">
+                 <p class="text-2xl mb-4"><b>សំណួរ៖</b> គណនាផលបូកមុំក្នុងនៃឆកោណ (៦ជ្រុង)។</p>
+                 <p class="text-2xl mt-6 font-bold text-green-700">ដំណោះស្រាយ៖</p>
+                 <ul class="text-2xl mt-4 space-y-4">
+                     <li>ដោយ n = 6</li>
+                     <li>តាមរូបមន្ត S = (n - 2) &times; 180&deg;</li>
+                     <li>S = (6 - 2) &times; 180&deg;</li>
+                     <li>S = 4 &times; 180&deg; = <b class="text-blue-700 text-3xl">720&deg;</b></li>
+                 </ul>
+             </div>`,
+
+            `<h2 class="text-4xl text-green-800 mb-6 font-bold">លំហាត់គំរូ៖ រកចំនួនជ្រុង n</h2>
+             <div class="bg-gray-50 p-8 rounded-lg border-l-8 border-green-500 shadow-md text-left w-full max-w-2xl mx-auto">
+                 <p class="text-2xl mb-4"><b>សំណួរ៖</b> តើពហុកោណមួយមានប៉ុន្មានជ្រុង បើផលបូកមុំក្នុងរបស់វាស្មើនឹង ១៤៤០&deg;?</p>
+                 <p class="text-2xl mt-6 font-bold text-green-700">ដំណោះស្រាយ៖</p>
+                 <ul class="text-2xl mt-4 space-y-4">
+                     <li>ដោយ S = 1440&deg;</li>
+                     <li>រូបមន្តបញ្ច្រាស៖ n = (S &divide; 180&deg;) + 2</li>
+                     <li>n = (1440&deg; &divide; 180&deg;) + 2</li>
+                     <li>n = 8 + 2 = <b class="text-blue-700 text-3xl">10 ជ្រុង (ទសកោណ)</b></li>
+                 </ul>
+             </div>`,
+
+            `<h2 class="text-4xl text-green-800 mb-6 font-bold">គ. មុំក្នុងមួយនៃពហុកោណនិយ័ត</h2>
+             <p class="text-2xl mb-8 text-left px-10">ចំពោះ <b>"ពហុកោណនិយ័ត"</b> យើងអាចរកមុំក្នុងមួយបាន ដោយយកផលបូកមុំក្នុងសរុប ចែកនឹងចំនួនជ្រុង n៖</p>
+             <div class="bg-purple-100 text-purple-800 text-5xl font-bold p-8 rounded-lg border-4 border-purple-400 manim-fade-in delay-1 shadow-lg inline-block">
+                មុំក្នុងមួយ = [(n - 2) &times; 180&deg;] &divide; n
+             </div>`,
+
+            `<h2 class="text-4xl text-purple-800 mb-6 font-bold">៤. ផលបូកមុំក្រៅនៃពហុកោណ</h2>
+             <p class="text-2xl mb-8">ទោះជាពហុកោណប៉ោងមានប៉ុន្មានជ្រុងក៏ដោយ ក៏ផលបូកមុំក្រៅទាំងអស់របស់វាតែងតែស្មើនឹង៖</p>
+             <div class="bg-yellow-200 text-red-600 text-7xl font-bold p-10 rounded-full border-8 border-yellow-400 inline-block w-64 h-64 flex items-center justify-center manim-fade-in delay-1 shadow-2xl transform hover:scale-110 transition">
+                360&deg;
+             </div>
+             <p class="text-xl mt-8 bg-purple-50 p-4 rounded text-purple-800 border border-purple-200 mx-auto w-2/3">
+                 *ចំណាំ៖ មុំក្នុង និងមុំក្រៅដែលនៅជាប់គ្នា បូកបញ្ចូលគ្នាស្មើនឹង <b>180&deg;</b>។
+             </p>`,
+
+            `<h2 class="text-4xl text-purple-800 mb-6 font-bold">លំហាត់គំរូ៖ រកមុំក្រៅមួយ</h2>
+             <div class="bg-gray-50 p-8 rounded-lg border-l-8 border-purple-500 shadow-md text-left w-full max-w-2xl mx-auto">
+                 <p class="text-2xl mb-4"><b>សំណួរ៖</b> គណនារង្វាស់មុំក្រៅមួយនៃបញ្ចកោណនិយ័ត។</p>
+                 <p class="text-2xl mt-6 font-bold text-green-700">ដំណោះស្រាយ៖</p>
+                 <ul class="text-2xl mt-4 space-y-4">
+                     <li>ដោយវាជាពហុកោណនិយ័ត ជ្រុង n = 5</li>
+                     <li>ផលបូកមុំក្រៅ S' = 360&deg; ជានិច្ច</li>
+                     <li>មុំក្រៅមួយ = 360&deg; &divide; n</li>
+                     <li>មុំក្រៅមួយ = 360&deg; &divide; 5 = <b class="text-purple-700 text-3xl">72&deg;</b></li>
+                 </ul>
+             </div>`,
+
+            `<h2 class="text-4xl text-purple-800 mb-6 font-bold">លំហាត់គំរូ៖ រកចំនួនជ្រុង n (មុំក្រៅ)</h2>
+             <div class="bg-gray-50 p-8 rounded-lg border-l-8 border-blue-500 shadow-md text-left w-full max-w-2xl mx-auto">
+                 <p class="text-2xl mb-4"><b>សំណួរ៖</b> ពហុកោណនិយ័តមួយមានមុំក្រៅមួយស្មើនឹង ៤៥&deg;។ តើវាមានប៉ុន្មានជ្រុង?</p>
+                 <p class="text-2xl mt-6 font-bold text-green-700">ដំណោះស្រាយ៖</p>
+                 <ul class="text-2xl mt-4 space-y-4">
+                     <li>ដោយ មុំក្រៅមួយ = 45&deg;</li>
+                     <li>រូបមន្តទាញរកជ្រុង៖ n = 360&deg; &divide; មុំក្រៅមួយ</li>
+                     <li>n = 360&deg; &divide; 45&deg;</li>
+                     <li>n = <b class="text-blue-700 text-3xl">8 ជ្រុង (អដ្ឋកោណ)</b></li>
+                 </ul>
+             </div>`,
+
+            `<h2 class="text-5xl text-indigo-800 mb-8 font-bold leading-tight">៥. ការអនុវត្តន៍ពហុកោណ<br>ក្នុងជីវភាពរស់នៅ</h2>
+             <p class="text-3xl text-gray-700 mb-8 px-10">
+                រូបរាងពហុកោណត្រូវបានប្រើប្រាស់យ៉ាងទូលំទូលាយនៅក្នុងស្ថាបត្យកម្ម សិល្បៈ ការរចនាម៉ូដ យោធា និងសូម្បីតែនៅក្នុងធម្មជាតិ...
+             </p>
+             <p class="text-2xl font-bold text-indigo-600 animate-pulse">តោះ! ទៅមើលលំហាត់ PISA ទាំងអស់គ្នា 👉</p>`,
+
+            `<h2 class="text-3xl text-indigo-800 mb-2 font-bold">លំហាត់ PISA ១៖ ការក្រាលឥដ្ឋកម្រាល (Tiling)</h2>
+             <p class="text-xl px-10 mb-2 text-left"><b>សំណួរ៖</b> ពេលតម្រៀបឥដ្ឋ "អដ្ឋកោណនិយ័ត" (៨ជ្រុង) ២ផ្ទាំងចូលគ្នា វាមានចន្លោះប្រហោងកណ្តាលមួយ។ តើឥដ្ឋពណ៌ខ្មៅតូចនោះត្រូវមានរាងជាអ្វី?</p>
+             <div class="perspective-container relative mt-2">
+                 <div class="interaction-hint absolute top-0 left-10 text-xs text-indigo-700 font-bold bg-indigo-100 px-3 py-1 rounded-full z-10 pdf-exclude">👆 ទាញដើម្បីវិល</div>
+                 <div class="rotating-plane">
+                     <svg width="250" height="180" viewBox="-50 -50 300 200" class="svg-3d-shadow">
+                         <polygon points="50,0 100,0 135,35 135,85 100,120 50,120 15,85 15,35" fill="rgba(255,255,255,0.9)" stroke="#4f46e5" stroke-width="3" />
+                         <polygon points="150,0 200,0 235,35 235,85 200,120 150,120 115,85 115,35" fill="rgba(255,255,255,0.9)" stroke="#4f46e5" stroke-width="3" />
+                         <polygon points="100,0 150,0 135,35 115,35" fill="#1f2937" opacity="0.9" />
+                         <line x1="135" y1="35" x2="115" y2="35" stroke="#ef4444" stroke-width="4" />
+                         <text x="125" y="20" font-size="20" fill="white" text-anchor="middle" font-weight="bold">?</text>
+                     </svg>
+                 </div>
+             </div>`,
+
+            `<h2 class="text-3xl text-green-800 mb-6 font-bold">ចម្លើយ PISA ១៖ ជារាងការ៉េ</h2>
+             <div class="bg-green-50 p-8 rounded-lg border-l-8 border-green-500 shadow-md text-left w-full max-w-3xl mx-auto">
+                 <ul class="text-2xl space-y-4">
+                     <li>១. មុំក្នុងនៃអដ្ឋកោណនីមួយៗ = (8-2) &times; 180&deg; / 8 = <b>135&deg;</b>។</li>
+                     <li>២. នៅពេលអដ្ឋកោណពីរជួបគ្នា មុំរួម = 135&deg; + 135&deg; = <b>270&deg;</b>។</li>
+                     <li>៣. ដើម្បីគ្រប់ 360&deg; មុំដែលខ្វះគឺ 360&deg; - 270&deg; = <b>90&deg;</b>។</li>
+                     <li>៤. ដោយជ្រុងស្មើគ្នា និងមានមុំក្នុង 90&deg; វាគឺជា <b>"ការ៉េ"</b>។</li>
+                 </ul>
+             </div>`,
+
+            `<h2 class="text-3xl text-amber-800 mb-2 font-bold">លំហាត់ PISA ២៖ សំបុកឃ្មុំធម្មជាតិ</h2>
+             <p class="text-xl px-10 mb-2 text-left"><b>សំណួរ៖</b> សត្វឃ្មុំប្រើក្រឡា "ឆកោណនិយ័ត"។ តើនៅចំណុចកំពូលមួយ មានក្រឡាប៉ុន្មានជួបគ្នា? ចុះបើឃ្មុំប្រើ "បញ្ចកោណ" វិញ តើមានចន្លោះប្រហោងឬទេ?</p>
+             <div class="perspective-container relative mt-2">
+                 <div class="interaction-hint absolute top-0 left-10 text-xs text-amber-700 font-bold bg-amber-100 px-3 py-1 rounded-full z-10 pdf-exclude">👆 ទាញដើម្បីវិល</div>
+                 <div class="rotating-plane">
+                     <svg width="220" height="220" viewBox="-50 -50 300 300" class="svg-3d-shadow">
+                         <polygon points="100,60 143,85 143,135 100,160 57,135 57,85" fill="rgba(251, 191, 36, 0.4)" stroke="#d97706" stroke-width="4" />
+                         <polygon points="100,-40 143,-15 143,35 100,60 57,35 57,-15" fill="rgba(251, 191, 36, 0.2)" stroke="#d97706" stroke-width="3" />
+                         <polygon points="186,110 229,135 229,185 186,210 143,185 143,135" fill="rgba(251, 191, 36, 0.2)" stroke="#d97706" stroke-width="3" />
+                         <polygon points="14,110 57,135 57,185 14,210 -29,185 -29,135" fill="rgba(251, 191, 36, 0.2)" stroke="#d97706" stroke-width="3" />
+                         <polygon points="186,10 229,35 229,85 186,110 143,85 143,35" fill="rgba(251, 191, 36, 0.2)" stroke="#d97706" stroke-width="3" />
+                         <polygon points="14,10 57,35 57,85 14,110 -29,85 -29,35" fill="rgba(251, 191, 36, 0.2)" stroke="#d97706" stroke-width="3" />
+                         <circle cx="143" cy="85" r="10" fill="#ef4444" />
+                     </svg>
+                 </div>
+             </div>`,
+
+            `<h2 class="text-3xl text-green-800 mb-6 font-bold">ចម្លើយ PISA ២៖ សំបុកឃ្មុំ</h2>
+             <div class="bg-amber-50 p-8 rounded-lg border-l-8 border-amber-500 shadow-md text-left w-full max-w-3xl mx-auto space-y-6 text-xl">
+                 <div>
+                     <p class="font-bold text-amber-700">១. មាន ៣ ក្រឡាជួបគ្នា</p>
+                     <p>មុំក្នុងឆកោណគឺ 120&deg;។ 120&deg; &times; 3 = 360&deg; ល្មមជិតឈឹងគ្មានចន្លោះ។</p>
+                 </div>
+                 <div>
+                     <p class="font-bold text-red-700">២. បើប្រើបញ្ចកោណ នឹងមានចន្លោះប្រហោង!</p>
+                     <p>មុំក្នុងបញ្ចកោណគឺ 108&deg;។ បើផ្គុំ៣ចូលគ្នា បានតែ 324&deg;។ វានៅសល់ចន្លោះប្រហោង 36&deg;។ ទើបឃ្មុំមិនអាចសង់បាន!</p>
+                 </div>
+             </div>`,
+
+            `<h2 class="text-3xl text-blue-800 mb-2 font-bold">លំហាត់ PISA ៣៖ ការរចនាបាល់ទាត់</h2>
+             <p class="text-xl px-10 mb-4 text-left"><b>សំណួរ៖</b> បាល់ទាត់ផ្សំពី បញ្ចកោណ (៥ជ្រុង) ១២ និង ឆកោណ (៦ជ្រុង) ២០។ ហេតុអ្វីមិនអាចដេរ "ឆកោណសុទ្ធ" បញ្ចូលគ្នាធ្វើជាបាល់បាន?</p>
+             <div class="flex justify-center mb-6 p-4">
+                 <div class="ball-sphere w-48 h-48 flex items-center justify-center relative overflow-hidden shadow-2xl">
+                     <svg width="180" height="180" viewBox="0 0 100 100" style="opacity: 0.8; transform: rotate(15deg);">
+                         <polygon points="50,25 74,42 65,70 35,70 26,42" fill="#1f2937" stroke="#000" stroke-width="1"/>
+                         <polygon points="50,25 26,42 10,25 25,0 50,0 65,10" fill="none" stroke="#000" stroke-width="1"/>
+                         <polygon points="74,42 50,25 65,10 90,15 100,40 90,60" fill="none" stroke="#000" stroke-width="1"/>
+                         <polygon points="65,70 74,42 90,60 85,85 60,95 45,85" fill="none" stroke="#000" stroke-width="1"/>
+                         <polygon points="35,70 65,70 45,85 20,90 10,75 15,50" fill="none" stroke="#000" stroke-width="1"/>
+                         <polygon points="26,42 35,70 15,50 0,40 0,15 10,25" fill="none" stroke="#000" stroke-width="1"/>
+                     </svg>
+                 </div>
+             </div>
+             <p class="text-2xl font-bold text-blue-700 bg-blue-100 p-4 rounded mx-8">ចម្លើយ៖ ព្រោះវាត្រូវការ "មុំខ្វះ" ដើម្បីបត់កោង!</p>`,
+
+            `<h2 class="text-3xl text-rose-800 mb-6 font-bold">លំហាត់ប្រាជ្ញា ៤៖ ផ្លាកសញ្ញា STOP</h2>
+             <div class="flex justify-center mb-6">
+                 <svg width="150" height="150" viewBox="0 0 100 100" class="shadow-md">
+                     <rect x="10" y="10" width="80" height="80" fill="#fecdd3" stroke="#e11d48" stroke-width="2" stroke-dasharray="4,4" />
+                     <polygon points="10,10 35,10 10,35" fill="#fda4af" />
+                     <polygon points="90,10 65,10 90,35" fill="#fda4af" />
+                     <polygon points="10,90 35,90 10,65" fill="#fda4af" />
+                     <polygon points="90,90 65,90 90,65" fill="#fda4af" />
+                     <polygon points="35,10 65,10 90,35 90,65 65,90 35,90 10,65 10,35" fill="#e11d48" stroke="#be123c" stroke-width="2" />
+                     <text x="50" y="55" font-size="20" fill="white" font-weight="bold" text-anchor="middle" font-family="Arial">STOP</text>
+                 </svg>
+             </div>
+             <p class="text-xl px-10 mb-4 text-left"><b>សំណួរ៖</b> តើត្រីកោណកាត់ចោលនៅតាមជ្រុង (ពណ៌ផ្កាឈូក) មានមុំប៉ុន្មានដឺក្រេខ្លះ?</p>
+             <div class="bg-rose-50 p-4 rounded border border-rose-200 text-left px-8 text-lg mx-8">
+                 <b>ចម្លើយ៖ (90&deg;, 45&deg;, 45&deg;)</b><br>ជ្រុងការ៉េគឺ 90&deg;។ មុំអដ្ឋកោណគឺ 135&deg;។ ដូច្នេះមុំសងខាងដែលខ្វះពីបន្ទាត់ត្រង់ (180&deg;) គឺ 180&deg; - 135&deg; = 45&deg;។ វាជាត្រីកោណកែងសមបាត!
+             </div>`,
+
+            `<h2 class="text-3xl text-violet-800 mb-2 font-bold">លំហាត់ PISA ៥៖ ក្រាហ្វិកហ្គេម 3D (Low-Poly)</h2>
+             <p class="text-xl px-10 mb-2 text-left"><b>សំណួរ៖</b> ហេតុអ្វី GPU កុំព្យូទ័រចូលចិត្តប្រើ "ត្រីកោណ" ជាងគេបំផុតក្នុងការបង្កើតរូបភាព 3D?</p>
+             <div class="perspective-container relative mt-2 mb-4">
+                 <div class="interaction-hint absolute top-0 left-10 text-xs text-violet-700 font-bold bg-violet-100 px-3 py-1 rounded-full z-10 pdf-exclude">👆 ទាញដើម្បីវិល</div>
+                 <div class="rotating-plane">
+                     <svg width="200" height="200" viewBox="-100 -100 200 200" class="svg-3d-shadow">
+                         <polygon points="0,-80 70,-30 70,40 0,90 -70,40 -70,-30" fill="rgba(139, 92, 246, 0.15)" stroke="#8b5cf6" stroke-width="2"/>
+                         <polygon points="0,-80 30,0 70,-30" fill="rgba(139, 92, 246, 0.3)" stroke="#8b5cf6" stroke-width="2"/>
+                         <polygon points="0,-80 -30,0 -70,-30" fill="rgba(139, 92, 246, 0.4)" stroke="#8b5cf6" stroke-width="2"/>
+                         <polygon points="0,90 30,0 70,40" fill="rgba(139, 92, 246, 0.2)" stroke="#8b5cf6" stroke-width="2"/>
+                         <polygon points="0,90 -30,0 -70,40" fill="rgba(139, 92, 246, 0.5)" stroke="#8b5cf6" stroke-width="2"/>
+                         <polygon points="0,-80 30,0 -30,0" fill="rgba(139, 92, 246, 0.6)" stroke="#8b5cf6" stroke-width="2"/>
+                         <polygon points="0,90 30,0 -30,0" fill="rgba(139, 92, 246, 0.25)" stroke="#8b5cf6" stroke-width="2"/>
+                         <polygon points="70,-30 30,0 70,40" fill="rgba(139, 92, 246, 0.35)" stroke="#8b5cf6" stroke-width="2"/>
+                         <polygon points="-70,-30 -30,0 -70,40" fill="rgba(139, 92, 246, 0.45)" stroke="#8b5cf6" stroke-width="2"/>
+                     </svg>
+                 </div>
+             </div>
+             <p class="text-xl bg-violet-100 p-3 rounded text-violet-900 mx-8">ចម្លើយ៖ ព្រោះត្រីកោណមានផ្ទៃ "រាបស្មើជានិច្ច" ជួយឲ្យ GPU គណនាពន្លឺនិងស្រមោលបានលឿននិងត្រឹមត្រូវ!</p>`,
+
+            `<h2 class="text-3xl text-gray-800 mb-2 font-bold">លំហាត់ PISA ៦៖ បច្ចេកវិទ្យាយន្តហោះបំបាំងកាយ</h2>
+             <p class="text-xl px-10 mb-2 text-left"><b>សំណួរ៖</b> ហេតុអ្វីយន្តហោះបំបាំងកាយប្រើប្រាស់ផ្ទៃ "ពហុកោណកាច់ៗ" ជំនួសឲ្យផ្ទៃកោងរលោង?</p>
+             <div class="perspective-container relative mt-2 mb-4 bg-gray-900 rounded-lg mx-8 py-4">
+                 <div class="interaction-hint absolute top-2 left-2 text-xs text-gray-300 font-bold bg-black/60 px-3 py-1 rounded-full z-10 pdf-exclude">👆 ទាញដើម្បីវិល</div>
+                 <div class="rotating-plane">
+                     <svg width="250" height="200" viewBox="-150 -125 300 250" class="svg-3d-shadow">
+                         <path d="M -130,-50 L -30,-10" stroke="#ef4444" stroke-width="3" class="radar-anim-in"/>
+                         <path d="M -130,50 L -30,10" stroke="#ef4444" stroke-width="3" class="radar-anim-in" style="animation-delay: 0.5s;"/>
+                         <path d="M -10,-20 L 80,-110" stroke="#3b82f6" stroke-width="4" class="radar-anim-out"/>
+                         <path d="M -10,20 L 80,110" stroke="#3b82f6" stroke-width="4" class="radar-anim-out" style="animation-delay: 0.5s;"/>
+                         <g transform="scale(1.3) translate(10, 0)">
+                             <polygon points="-60,0 -10,-15 10,0 -10,15" fill="#374151" stroke="#111827" stroke-width="1.5"/>
+                             <polygon points="-10,-15 40,-60 20,0 10,0" fill="#4b5563" stroke="#111827" stroke-width="1.5"/>
+                             <polygon points="-10,15 40,60 20,0 10,0" fill="#4b5563" stroke="#111827" stroke-width="1.5"/>
+                             <polygon points="10,0 20,0 60,-20 50,0" fill="#6b7280" stroke="#111827" stroke-width="1.5"/>
+                             <polygon points="10,0 20,0 60,20 50,0" fill="#6b7280" stroke="#111827" stroke-width="1.5"/>
+                             <polygon points="-10,0 0,-4 10,0 0,4" fill="#60a5fa" stroke="#1e3a8a" stroke-width="1"/>
+                         </g>
+                     </svg>
+                 </div>
+             </div>
+             <p class="text-xl text-gray-800 px-8">ចម្លើយ៖ ដើម្បីចំណាំងផ្លាតរលករ៉ាដាទៅកាន់ទិសដៅផ្សេងយ៉ាងឆ្ងាយ បញ្ចៀសមិនឲ្យវាផ្លាតត្រឡប់ទៅស្ថានីយ៍រ៉ាដាវិញ!</p>`,
+
+            `<h2 class="text-3xl text-cyan-900 mb-2 font-bold">លំហាត់ PISA ៧៖ វិមាត្រទី៤ (Tesseract)</h2>
+             <p class="text-xl px-10 mb-2 text-left"><b>សំណួរ៖</b> តើ Tesseract (4D) បង្កើតចេញពីរូបរាងអ្វី ហើយមានចំនួនប៉ុន្មាន?</p>
+             <div class="perspective-container relative mt-2 mb-4 bg-gray-900 rounded-lg mx-8 py-8 shadow-2xl">
+                 <div class="interaction-hint absolute top-2 left-2 text-xs text-cyan-300 font-bold bg-black/60 px-3 py-1 rounded-full z-10 pdf-exclude">👆 ទាញដើម្បីបង្វិលរូប 4D</div>
+                 <div class="rotating-plane">
+                     <svg width="250" height="250" viewBox="-150 -150 300 300" class="glow-effect tesseract-outer">
+                         <polygon points="-80,-80 80,-80 80,80 -80,80" fill="none" stroke="#06b6d4" stroke-width="2" />
+                         <polygon points="-40,-120 120,-120 120,40 -40,40" fill="none" stroke="#06b6d4" stroke-width="2" />
+                         <line x1="-80" y1="-80" x2="-40" y2="-120" stroke="#06b6d4" stroke-width="2" />
+                         <line x1="80" y1="-80" x2="120" y2="-120" stroke="#06b6d4" stroke-width="2" />
+                         <line x1="80" y1="80" x2="120" y2="40" stroke="#06b6d4" stroke-width="2" />
+                         <line x1="-80" y1="80" x2="-40" y2="40" stroke="#06b6d4" stroke-width="2" />
+                         <g class="tesseract-inner">
+                             <polygon points="-50,-50 50,-50 50,50 -50,50" fill="rgba(168, 85, 247, 0.2)" stroke="#a855f7" stroke-width="2" />
+                             <polygon points="-20,-80 80,-80 80,20 -20,20" fill="rgba(6, 182, 212, 0.1)" stroke="#a855f7" stroke-width="2" />
+                             <line x1="-50" y1="-50" x2="-20" y2="-80" stroke="#a855f7" stroke-width="2" />
+                             <line x1="50" y1="-50" x2="80" y2="-80" stroke="#a855f7" stroke-width="2" />
+                             <line x1="50" y1="50" x2="80" y2="20" stroke="#a855f7" stroke-width="2" />
+                             <line x1="-50" y1="50" x2="-20" y2="20" stroke="#a855f7" stroke-width="2" />
+                             <line x1="-50" y1="-50" x2="-100" y2="-100" stroke="#ec4899" stroke-width="1.5" stroke-dasharray="4,4" />
+                             <line x1="50" y1="-50" x2="100" y2="-100" stroke="#ec4899" stroke-width="1.5" stroke-dasharray="4,4" />
+                             <line x1="50" y1="50" x2="100" y2="100" stroke="#ec4899" stroke-width="1.5" stroke-dasharray="4,4" />
+                             <line x1="-50" y1="50" x2="-100" y2="100" stroke="#ec4899" stroke-width="1.5" stroke-dasharray="4,4" />
+                         </g>
+                     </svg>
+                 </div>
+             </div>
+             <p class="text-xl bg-cyan-100 p-3 rounded text-cyan-900 mx-8">ចម្លើយ៖ វាត្រូវបានបង្កើតចេញពី "គូប (Cubes) ចំនួន ៨" បញ្ចូលគ្នា និងមានចលនាត្រួតស៊ីគ្នា!</p>`,
+
+            `<h2 class="title-font text-5xl text-green-600 mb-6">សង្ខេបបញ្ចប់</h2>
+             <div class="text-3xl text-left space-y-6 px-12 bg-gray-50 p-8 rounded shadow-lg border border-gray-200">
+                 <p>✔️ ផលបូកមុំក្នុង S = (n - 2) &times; 180&deg;</p>
+                 <p>✔️ ផលបូកមុំក្រៅ S' = 360&deg; ជានិច្ច</p>
+                 <p>✔️ ពហុកោណនិយ័តមានជ្រុងស្មើ និងមុំស្មើ</p>
+                 <p>✔️ ធរណីមាត្រមានប្រយោជន៍អស្ចារ្យ ចាប់ពី 2D ដល់ 4D!</p>
+             </div>
+             <p class="mt-10 text-2xl font-bold text-gray-600">សូមអរគុណសម្រាប់ការយកចិត្តទុកដាក់!</p>`
+        ];
+
+        let currentSlide = 0;
+
+        function renderSlide() {
+            const slideContent = document.getElementById('slide-content');
+            slideContent.innerHTML = slides[currentSlide];
+            document.getElementById('slide-counter').innerText = `${currentSlide + 1} / 25`;
+            
+            init3DInteractions(slideContent);
+        }
+
+        function nextSlide() {
+            if (currentSlide < slides.length - 1) {
+                currentSlide++;
+                renderSlide();
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                renderSlide();
+            }
+        }
+
+        renderSlide();
+
+        function init3DInteractions(rootElement) {
+            const containers = rootElement.querySelectorAll('.perspective-container');
+            containers.forEach(container => {
+                const plane = container.querySelector('.rotating-plane');
+                if (!plane || plane.dataset.initialized) return;
+                plane.dataset.initialized = 'true';
+
+                let isDragging = false;
+                let currentX = 0;
+                let currentY = 0;
+                let rotX = 60; 
+                let rotZ = 0;
+                let autoRotate = true;
+                let lastTime = performance.now();
+
+                function animate(time) {
+                    if (autoRotate && !isDragging) {
+                        const delta = time - lastTime;
+                        rotZ += delta * 0.05; 
+                        plane.style.transform = `rotateX(${rotX}deg) rotateZ(${rotZ}deg)`;
+                    }
+                    lastTime = time;
+                    requestAnimationFrame(animate);
+                }
+                requestAnimationFrame(animate);
+
+                const startDrag = (e) => {
+                    isDragging = true;
+                    autoRotate = false; 
+                    currentX = e.clientX || (e.touches && e.touches[0].clientX);
+                    currentY = e.clientY || (e.touches && e.touches[0].clientY);
+                    const hint = container.parentElement.querySelector('.interaction-hint');
+                    if (hint) hint.style.opacity = '0'; 
+                };
+
+                const doDrag = (e) => {
+                    if (!isDragging) return;
+                    if(e.cancelable) e.preventDefault(); 
+                    const clientX = e.clientX || (e.touches && e.touches[0].clientX);
+                    const clientY = e.clientY || (e.touches && e.touches[0].clientY);
+                    
+                    const deltaX = clientX - currentX;
+                    const deltaY = clientY - currentY;
+                    
+                    rotZ += deltaX * 0.5;
+                    rotX -= deltaY * 0.5;
+                    
+                    rotX = Math.max(0, Math.min(90, rotX)); 
+
+                    plane.style.transform = `rotateX(${rotX}deg) rotateZ(${rotZ}deg)`;
+                    
+                    currentX = clientX;
+                    currentY = clientY;
+                };
+
+                const endDrag = () => {
+                    isDragging = false;
+                    setTimeout(() => { if (!isDragging) autoRotate = true; }, 3000);
+                };
+
+                container.addEventListener('mousedown', startDrag);
+                window.addEventListener('mousemove', doDrag, { passive: false });
+                window.addEventListener('mouseup', endDrag);
+                
+                container.addEventListener('touchstart', startDrag, { passive: false });
+                window.addEventListener('touchmove', doDrag, { passive: false });
+                window.addEventListener('touchend', endDrag);
+            });
+
+            const ball = rootElement.querySelector('.ball-sphere');
+            if (ball && !ball.dataset.initialized) {
+                ball.dataset.initialized = 'true';
+                const svg = ball.querySelector('svg');
+                let isDragging = false;
+                let currentX = 0;
+                let rotZ = 15;
+                
+                ball.style.cursor = 'grab';
+
+                const startDrag = (e) => {
+                    isDragging = true;
+                    currentX = e.clientX || (e.touches && e.touches[0].clientX);
+                    ball.style.cursor = 'grabbing';
+                    const hint = ball.parentElement.parentElement.querySelector('.interaction-hint');
+                    if(hint) hint.style.opacity = '0';
+                };
+
+                const doDrag = (e) => {
+                    if (!isDragging) return;
+                    if(e.cancelable) e.preventDefault();
+                    const clientX = e.clientX || (e.touches && e.touches[0].clientX);
+                    const deltaX = clientX - currentX;
+                    rotZ += deltaX * 0.8; 
+                    svg.style.transform = `rotate(${rotZ}deg)`;
+                    currentX = clientX;
+                };
+
+                const endDrag = () => {
+                    isDragging = false;
+                    ball.style.cursor = 'grab';
+                };
+
+                ball.addEventListener('mousedown', startDrag);
+                window.addEventListener('mousemove', doDrag, { passive: false });
+                window.addEventListener('mouseup', endDrag);
+                
+                ball.addEventListener('touchstart', startDrag, { passive: false });
+                window.addEventListener('touchmove', doDrag, { passive: false });
+                window.addEventListener('touchend', endDrag);
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            init3DInteractions(document);
+        });
+    </script>
+
+<div class="floating-tools">
+    <button class="tool-btn" onclick="toggleDarkMode()">🌙 Dark</button>
+    <button class="tool-btn" onclick="window.print()">🖨 PDF</button>
+</div>
+
+<script>
+function toggleDarkMode(){document.body.classList.toggle('dark-mode');}
+</script>
+
+<div class="quiz-box">
+<h2 style="font-size:28px;font-weight:bold;color:#1e3a8a;">🎮 Smart Polygon Quiz</h2>
+<p style="margin:10px 0;">ពហុកោណមួយមាន 8 ជ្រុង។ តើផលបូកមុំក្នុងស្មើប៉ុន្មាន?</p>
+
+<button onclick="checkQuiz(720)" class="tool-btn">720°</button>
+<button onclick="checkQuiz(1080)" class="tool-btn">1080°</button>
+<button onclick="checkQuiz(1440)" class="tool-btn">1440°</button>
+
+<p id="quizResult" style="margin-top:15px;font-weight:bold;"></p>
+</div>
+
+<script>
+function checkQuiz(ans){
+    const result=document.getElementById('quizResult');
+    if(ans===1080){
+        result.innerHTML='✅ Correct! S=(8−2)×180 = 1080°';
+        result.style.color='green';
+    }else{
+        result.innerHTML='❌ Try again';
+        result.style.color='red';
+    }
+}
+</script>
+
+</body>
+</html>
